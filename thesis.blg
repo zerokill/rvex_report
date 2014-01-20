@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: biblio.bib
+Database file #2: bibdesk.bib
+Warning--entry type for "clang:features" isn't style-file defined
+--line 52 of file bibdesk.bib
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Name 1 in "Olatunji Ruwase, Chris Lattner, Vikram Adve, and David Koes, Gennady Pekhimenko" has a comma at the end for entry llvm:presentation
+while executing---line 2419 of file IEEEtran.bst
+
+Done.
+You've used 6 entries,
+            4039 wiz_defined-function locations,
+            850 strings with 8363 characters,
+and the built_in function-call counts, 3981 in all, are:
+= -- 311
+> -- 97
+< -- 28
++ -- 53
+- -- 18
+* -- 192
+:= -- 629
+add.period$ -- 12
+call.type$ -- 6
+change.case$ -- 6
+chr.to.int$ -- 66
+cite$ -- 6
+duplicate$ -- 282
+empty$ -- 317
+format.name$ -- 21
+if$ -- 888
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 55
+newline$ -- 43
+num.names$ -- 6
+pop$ -- 127
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 308
+stack$ -- 0
+substring$ -- 159
+swap$ -- 223
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 6
+warning$ -- 0
+while$ -- 17
+width$ -- 7
+write$ -- 78
+(There was 1 error message)

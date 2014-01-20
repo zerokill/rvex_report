@@ -1,0 +1,246 @@
+\documentclass[11pt,twoside]{ce}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{acronym}
+\usepackage{hyperref}
+\usepackage{newclude}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+
+%Eigen toevoeging
+\usepackage{listings} % Required for insertion of code
+\usepackage{xcolor}
+\usepackage{textcomp}
+
+\lstset{
+    inputencoding=utf8,
+%    backgroundcolor=\color{white},
+    tabsize=4,
+    rulecolor=,
+    upquote=true,
+%    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    basicstyle=\scriptsize\ttfamily,
+    identifierstyle=\ttfamily,
+    keywordstyle=\ttfamily\color[rgb]{0,0,1},
+    commentstyle=\ttfamily\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+}
+
+\makeatletter
+\lstdefinelanguage{llvm}{
+  morecomment = [l]{;},
+  morestring=[b]", 
+  sensitive = true,
+  classoffset=0,
+  morekeywords={
+    define, declare, global, constant,
+    internal, external, private,
+    linkonce, linkonce_odr, weak, weak_odr, appending,
+    common, extern_weak,
+    thread_local, dllimport, dllexport,
+    hidden, protected, default,
+    except, deplibs,
+    volatile, fastcc, coldcc, cc, ccc,
+    x86_stdcallcc, x86_fastcallcc,
+    ptx_kernel, ptx_device,
+    signext, zeroext, inreg, sret, nounwind, noreturn,
+    nocapture, byval, nest, readnone, readonly, noalias, uwtable,
+    inlinehint, noinline, alwaysinline, optsize, ssp, sspreq,
+    noredzone, noimplicitfloat, naked, alignstack,
+    module, asm, align, tail, to,
+    addrspace, section, alias, sideeffect, c, gc,
+    target, datalayout, triple,
+    blockaddress
+  },
+  classoffset=1, keywordstyle=\color{purple},
+  morekeywords={
+    fadd, sub, fsub, mul, fmul,
+    sdiv, udiv, fdiv, srem, urem, frem,
+    and, or, xor,
+    icmp, fcmp,
+    eq, ne, ugt, uge, ult, ule, sgt, sge, slt, sle,
+    oeq, ogt, oge, olt, ole, one, ord, ueq, ugt, uge,
+    ult, ule, une, uno,
+    nuw, nsw, exact, inbounds,
+    phi, call, select, shl, lshr, ashr, va_arg,
+    trunc, zext, sext,
+    fptrunc, fpext, fptoui, fptosi, uitofp, sitofp,
+    ptrtoint, inttoptr, bitcast,
+    ret, br, indirectbr, switch, invoke, unwind, unreachable,
+    malloc, alloca, free, load, store, getelementptr,
+    extractelement, insertelement, shufflevector,
+    extractvalue, insertvalue,
+  },
+  alsoletter={\%},
+  keywordsprefix={\%},
+}
+\makeatother
+
+
+%-----------------------------------------------------------------------%
+%           Please enter your personal details !!!                      %
+%-----------------------------------------------------------------------%
+
+\newcommand{\TITLE}{LLVM based $\rho$-VEX compiler}
+\newcommand{\AUTHOR}{Maurice Daverveldt}
+\newcommand{\country}{Netherlands}
+\newcommand{\city}{Utrecht}
+\newcommand{\NR}{CE-MS-2014} 
+\newcommand{\KEY}{}   % key words for your thesis
+\newcommand{\SUBTITLE}{asd}
+
+%-----------------------------------------------------------------------%
+%            Fixed Title page - Don't change any thing here             %
+%-----------------------------------------------------------------------%
+\newcommand{\DATE}{\today} 
+\newcommand{\LTYPE}{latex2e}
+\newcommand{\reffig}[1]{Figure~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\refsec}[1]{Section~\ref{#1}}
+
+%-----------------------------------------------------------------------%
+%  Enter the names of members in the committee,i.e. chair-person,       %
+%  advisors and other members. At this moment,                          %
+%  maximally 7 members signatures are supported. Be careful             %
+%  with the length of the abstract (should be about 15 lines ).         %
+%                                                                       %
+%  Use the following format to fill in the committee memebers           %
+%        " name, group, organization"
+%
+%        for example, Stephan Wong, CE, TU Delft                        %
+%-----------------------------------------------------------------------%
+\firstadvisor{dr.ir. Stephan Wong, CE, TU Delft}
+\chairperson{dr.ir. K.L.M. Bertels, CE, TU Delft}
+\firstmember{dr.ir. A. van Genderen, CE, TU Delft}
+\secondmember{dr.ir. Guido Wachsmuth, CE, TU Delft}
+
+
+%-----------------------------------------------------------------------%
+%            Fixed   - Don't change any thing here                      %
+%-----------------------------------------------------------------------%
+
+\begin{document}
+\pagenumbering{roman}
+\pagestyle{plain}
+
+%-----------------------------------------------------------------------%
+%            Fixed cover page  - Don't change any thing here            %
+%-----------------------------------------------------------------------%
+\thispagestyle{empty}
+\include{0_template/cover}                                   % thesis cover
+\setcounter{page}{0} \cleardoublepage
+
+%-----------------------------------------------------------------------%
+%            Fixed Title page - Don't change any thing here             %
+%-----------------------------------------------------------------------%
+\thispagestyle{empty}
+\title{\TITLE}
+\subtitle{\SUBTITLE} \extitle{\EXTITLE}
+\author{\AUTHOR}
+\date{
+    \small \LAB \\
+    \small \DEP \\
+    \small \FAC \\
+    \small \INSTITUTE \\
+} \maketitle
+
+\setcounter{page}{0} \cleardoublepage
+
+%-----------------------------------------------------------------------%
+%       Front page includes a small abstract and signatures of          %
+%       advisor, supervisor and mentors                                 %
+%                                                                       % 
+%       Please fill in your dedication words                            %
+%-----------------------------------------------------------------------%
+\include{0_template/front}
+\cleardoublepage
+
+\dedicate{Dedicated to my family and friends}                                        % fill in your dedication words  
+
+\thankyou                                          % "Thankyou" page
+\tableofcontents                                   %  Table of contents
+
+%------------------------------------------------------------------------%
+%        List of Figures and Tables - don't change anything here         %
+%------------------------------------------------------------------------%
+%\clearsinglepage
+\clearpage
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+%\clearsinglepage
+\clearpage
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+\clearpage
+\input{0_template/acronym}
+\addcontentsline{toc}{chapter}{List of Acronyms}
+
+%-----------------------------------------------------------------------%
+%                     Include thesis acknowledgements                   %
+%-----------------------------------------------------------------------%
+\include{0_template/ack}                                     % inlcude acknowledgements page
+
+\addtocontents{toc}{\protect\addvspace{1cm}}
+\cleardoublepage
+
+\pagestyle{headings}
+\pagestyle{private}
+\pagenumbering{arabic}
+
+%-----------------------------------------------------------------------%
+%                     Include separate chapters                         %
+%                                                                       %
+%       1)  fill in the tex file of each chapter                        %
+%       2)  If more chapters, add more include commands                 %
+%-----------------------------------------------------------------------%
+
+\input{1_introduction/index}
+\input{2_background/index}
+\input{3_implementation/index}
+\input{4_results/index}
+\input{5_conclusion/index}
+
+%-----------------------------------------------------------------------%
+%             Use IEEE bibtex style instead of the one                  %
+%                   defined in the style file                           %
+%             fill in your thesis bib file                              %
+%-----------------------------------------------------------------------%
+\cleardoublepage
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{amsplain}
+%\bibliographystyle{plain}
+\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}
+\bibliography{biblio,bibdesk}                                   % fill in your thesis bib file here
+\addcontentsline{toc}{chapter}{Bibliography}
+
+%-----------------------------------------------------------------------%
+%                     Include thesis appendixes if you have             %
+%-----------------------------------------------------------------------%
+
+
+\cleardoublepage
+\markboth{LIST OF DEFINITIONS}{LIST OF DEFINITIONS}
+\addcontentsline{toc}{chapter}{List of Definitions}
+\include{appendix/dictionary}    
+
+\cleardoublepage
+
+\appendix
+\include{appendix/appendixA}                                       % fill in the tex file for thesis Appendixes
+\include{appendix/appendixB}                                       % fill in the tex file for thesis Appendixes
+
+\end{document}

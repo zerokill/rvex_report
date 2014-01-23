@@ -1,5 +1,45 @@
 \chapter{Implementation}
+\label{chap:implementation}
 \section{Tablegen}
+LLVM uses a domain specific language (DSL) called Tablegen to describe features of the backend such as instructions, registers and pipeline information. 
+
+Tablegen uses a object-oriented approach to describe functionality. Information is described in classes and definitions that are called “records”. Superclasses can be described to a subclass can derive structure from another class. In addition multiclasses can be used to instantiate multiple abstract records at once.
+
+The tablegen tool aims to provide a flexible way to describe processor features. For example processor instructions could be described as follows:
+
+A class is created that represents an abstract instruction. The class will describe information that is of direct importance to code generation such as opcode, register usage and immediate values but also information that is needed during the code generation such as liveness information, instruction pattern and scheduling information.
+
+\begin{lstlisting}[language=java]
+class rvexInst<dag outs, dag ins, string asmstr, list<dag> pattern,
+               InstrItinClass itin, Format f, CType type>: Instruction
+{
+}
+\end{lstlisting}
+
+The rvexInst class can be used for instructions that operate on three operands such as add, sub and mult. Common features of these instructions are described in the class “ArithLogicR”. This class describes the instruction pattern to match and the instruction string to emit. 
+\begin{lstlisting}[language=java]
+class ArithLogicR<string instr_asm, SDNode OpNode,
+                  InstrItinClass itin, RegisterClass RC, bit isComm = 0, CType type>:
+  rvexInst <(outs RC:$ra), (ins RC:$rb, RC:$rc),
+     !strconcat(instr_asm, "\t$ra = $rb, $rc"),
+     [(set RC:$ra, (OpNode RC:$rb, RC:$rc))], itin, type> 
+{
+}
+\end{lstlisting}
+
+Finally this class is used to describe processor instructions such as the add instruction. The instruction is described as using the class “ArithLogicR” with a certain instruction string, instruction pattern and other information needed during compilation.
+\begin{lstlisting}[language=java]
+def ADD         : ArithLogicR<"add ", add, IIAlu, CPURegs, 1, TypeIIAlu>;
+\end{lstlisting}
+
+Tablegen provides for a very flexible way to describe backend functionality. The existing LLVM backends use tablegen in a variety of ways which best match the target processor. 
+
+The \emph{tblgen} tool is used to transform the tablegen input files into C++. The resulting C++ files contain a enums, structs and arrays that describe the properties. The instruction selection part is transformed into imperative code that is used by the backend for pattern matching. 
+
+\subsection{Register definition}
+asd
+
+\subsection{Pipeline definition}
 asd
 
 \section{Code generation}

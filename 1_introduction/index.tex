@@ -1,4 +1,5 @@
 \chapter{Introduction}
+\label{chap:introduction}
 \section{Motivation}
 % \subsection{Origin and history}
 
@@ -18,6 +19,7 @@ asd
 	\item Possible JITing of code
 	\item Generic binaries, one size fits all
 \end{itemize}
+
 \section{Problem statement}
 Currently both HP-VEX and GCC can be used to generate code for the rvex processor. Both compilers have got a number of advantages and disadvantages that will be explored. The compilers will be judged on the following subjects: Code quality, support, languages support, backend supported and customization possibilities.
 
@@ -57,16 +59,52 @@ Unfortunately GCC has a number of disadvantages that need mentioning.
 
 The comparison shows that both the HP-VEX and GCC compilers have serious disadvantages. The fact that HP-VEX cannot be customized excludes it from further development for the $\rho$-VEX project. Bringing the GCC compiler performance and features up to the same level as HP-VEX will be very difficult because of the complexity involved with GCC development.  
 
-In 2000 the LLVM project has been started with the goal of replacing the code generator in the GCC compiler. LLVM provides a modern, modular design and is written in C++. The compiler 
+In 2000 the LLVM project has been started with the goal of replacing the code generator in the GCC compiler. LLVM provides a modern, modular design and is written in C++. The GCC front-end was used to translate programs into LLVM compatibale intermediate representation. Around 2005 Apple started the Clang project (CITATION NEEDED) which aimed to replace the GCC front-end with an independent front-end with support for C, C++ and ObjC. Currently the LLVM based compiler offers performance that approaches GCC but offering a significant improvement in terms of modularity, ease of development and "hackability".
 
 \subsection{Goals}
-asd
-\subsection{Subgoals}
-asd
+The main goal of this thesis is to develop a new compiler for the $\rho$-VEX system. The compiler will be based on the LLVM compiler. The new compiler should have the following characteristics:
+
+\begin{itemize}
+	\item \textbf{Open source:} The compiler should be open source so the compiler can be customized and used for future research.
+	\item \textbf{Code quality:} A new compiler should provide a significant improvement in terms of performance, code size and resource utilization.
+	\item \textbf{Reconfigurability:} Charachteristics of the $\rho$-VEX processor should be reconfigurable during run-time.
+\end{itemize}
+
+In addition research will be done on the following subjects:
+
+\begin{itemize}
+	\item \textbf{asd:} asd
+\end{itemize}
+
 \section{Methodology}
-asd
+The following steps need to be completed for successful implementation of a rvex LLVM compiler.
+\begin{itemize}
+	\item Research rvex and VEX platform
+	\item Research LLVM compiler framework
+	\item Build LLVM based VEX compiler with following features:
+	\begin{itemize}
+		\item 4 issue width VLIW
+		\item Code generation
+		\item Assembly emitter
+	\end{itemize}
+	\item Add support for reconfigurability
+		\begin{itemize}
+			\item VEX machine description
+			\item Reconfigure LLVM during runtime
+		\end{itemize}	
+	\item Optimize performance
+	\begin{itemize}
+		\item Instruction selection
+		\item Hazard recognizer
+		\item Register allocator
+	\end{itemize}	
+\end{itemize}
+
+
+
+
 \section{Thesis overview}
-asd
+The thesis is organized as follows. The background of the $\rho$-VEX processor and of the LLVM compiler will be explored in the chapter \ref{chap:background}. In chapter \ref{chap:implementation} will discuss how the $\rho$-VEX compiler was implemented.  This chapter will present how a back-end is implemented in LLVM. Additional optimization and added functionality is also discussed in this chapter. Chapter \ref{chap:results} will explore the performance of the new compiler. Performance will be compared to existing compilers in terms of issue width, optimization levels and other metrics. A conclusion and recommendations for future research is presented in chapter \ref{chap:conclusion}.  
 
 
 \acresetall

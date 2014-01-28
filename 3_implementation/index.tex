@@ -34,13 +34,108 @@ def ADD         : ArithLogicR<"add ", add, IIAlu, CPURegs, 1, TypeIIAlu>;
 
 Tablegen provides for a very flexible way to describe backend functionality. The existing LLVM backends use tablegen in a variety of ways which best match the target processor. 
 
-The \emph{tblgen} tool is used to transform the tablegen input files into C++. The resulting C++ files contain a enums, structs and arrays that describe the properties. The instruction selection part is transformed into imperative code that is used by the backend for pattern matching. 
+The \emph{tblgen} tool is used to transform the tablegen input files into C++. The resulting C++ files contain enums, structs and arrays that describe the properties. The instruction selection part is transformed into imperative code that is used by the backend for pattern matching. 
 
 \subsection{Register definition}
-asd
+LLVM uses a predefined class “register” to handle register classes. All $\rho$-VEX registers are derived from this empty class. The “rvexReg” class is used to define all $\rho$-VEX registers. 
+
+\begin{lstlisting}[language=java]
+class rvexReg<string n> : Register<n> {
+  field bits<7> Num;
+  let Namespace = "rvex";
+}
+\end{lstlisting}
+
+The “rvexReg” class is used to define the general purpose registers and the branch registers.
+\begin{lstlisting}[language=java]
+class rvexGPRReg<bits<7> num, string n> : rvexReg<n> {
+  let Num = num;
+}
+
+class rvexBRReg<bits<7> num, string n> : rvexReg<n> {
+  let Num = num;
+}
+\end{lstlisting}
+
+Each physical register is defined as an instance of one of these classes. For example, R5 is defined as follows. The register is associated with a register number, a register string and a dwarf register number that is used for debugging.
+
+\begin{lstlisting}[language=java]
+def R5 : rvexGPRReg< 5, "r0.5">, DwarfRegNum<[5]>;
+\end{lstlisting}
+
+The physical registers are divided in two register classes for the general purpose registers and for the branch registers. The register classes also define what type of value can be stored in the physical register.
+
+\begin{lstlisting}[language=java]
+def CPURegs : RegisterClass<"rvex", [i32], 32, 
+  (add
+    (sequence "R%u", 0, 63),
+    LR, PC
+  )>;
+
+def BRRegs   : RegisterClass<"rvex", [i32], 32, 
+  (add 
+    (sequence "B%u", 0, 7)
+  )>;
+\end{lstlisting}
+
+The branch registers have been defined to also use 32 bit values even though in reality the branch register is only 1 bit wide. This has been done because LLVM had a lot of trouble identifying the correct instruction patterns for compare instructions. The compare instructions operate on two CPURegs instructions and produce a result in BRRegs or in CPURegs. For example consider the following pseude instruction patterns:
+
+\begin{lstlisting}[language=java] 
+<1 bit>BRRegs = Operation, <32 bit>CPURegs, <32 bit>CPURegs
+<32 bit>CPURegs = Operation, <32 bit>CPURegs, <32 bit>CPURegs
+\end{lstlisting}
+
+When an operation works on 32 bit operands and produces a result 1 bit wide LLVM will try to truncate the input operands to the final operand with even though this is not necessary for the $\rho$-VEX ISA. This has been solved by implementing the BRRegs as 32 bit wide so LLVM will not insert truncate and extend instructions when operating on these type of instructions.
 
 \subsection{Pipeline definition}
-asd
+Tablegen can be used to describe the architecture of the processor in a generic way. A processor functional unit executes each instruction. For this example we will assume that the rvex processor is a 4 issue width machine.
+
+\begin{lstlisting}[language=java] 
+def P0 : FuncUnit;
+def P1 : FuncUnit;
+def P2 : FuncUnit;
+def P3 : FuncUnit;
+\end{lstlisting}
+
+Each instruction is associated with an instruction itinerary. An instruction itinerary groups scheduling properties of instructions together. The rvex processor uses the following instruction itineraries.
+
+\begin{lstlisting}[language=java] 
+def IIAlu              : InstrItinClass;
+def IILoadStore        : InstrItinClass;
+def IIBranch           : InstrItinClass;
+def IIMul              : InstrItinClass;
+\end{lstlisting}
+
+The functional units and instruction itineraries are used to describe the properties of the rvex pipeline. Each instruction itinerary is derived from an instruction stage with certain properties. These properties include the “cycle count” that describes the length of the instruction stage and the functional units that can execute the instruction. The following itinerary describes a rvex pipeline with four functional units. Each functional unit is able to execute every instruction except for load / store instructions. Only “P0” is able to execute load / store instructions. These instructions take two cycles to complete.
+
+\begin{lstlisting}[language=java] 
+def rvexGenericItineraries : ProcessorItineraries<[P0, P1, P2, P3], [], [
+  InstrItinData<IIAlu              , [InstrStage<1,  [P0, P1, P2, P3]>]>,
+  InstrItinData<IILoadStore        , [InstrStage<2,  [P0]>]>,
+  InstrItinData<IIBranch           , [InstrStage<1,  [P0, P1, P2, P3]>]>,
+  InstrItinData<IIHiLo             , [InstrStage<1,  [P0, P1, P2, P3]>]>,
+  InstrItinData<IIImul             , [InstrStage<1,  [P0, P1, P2, P3]>]>,
+  InstrItinData<IIAluImm           , [InstrStage<1,  [P0, P2]>]>,
+  InstrItinData<IIPseudo           , [InstrStage<1,  [P0, P1, P2, P3]>]>
+]>;
+\end{lstlisting}
+
+The machine model class is used to encapsulate the processor itineraries and certain high level properties such as issue width and latencies.
+
+\begin{lstlisting}[language=java] 
+def rvexModel : SchedMachineModel {
+  let IssueWidth = 2;
+  let Itineraries = rvexGenericItineraries;
+}
+\end{lstlisting}
+
+\subsection{Other specifications}
+Tablegen is also used to describe other properties of the target processor. LLVM has stated as goal to move more parts of the backend description to the tablegen format because tablegen offers such a flexible implementation. At the moment tablegen is also used to implement:
+
+\begin{itemize}
+	\item Calling convention
+	\item Subtarget features
+\end{itemize}
 
 \section{Code generation}
 asd

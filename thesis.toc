@@ -24,29 +24,30 @@
 \contentsline {chapter}{\numberline {3}Implementation}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Tablegen}{9}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Register definition}{10}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Pipeline definition}{10}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Code generation}{10}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Instruction selection}{10}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Scheduling}{10}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Register allocation}{10}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Pipeline description}{10}{subsection.3.2.4}
-\contentsline {subsection}{\numberline {3.2.5}VLIW Packetizer}{10}{subsection.3.2.5}
-\contentsline {subsection}{\numberline {3.2.6}Assembly emitter}{10}{subsection.3.2.6}
-\contentsline {section}{\numberline {3.3}LLVM Improvements}{10}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Reconfigurable compiler}{10}{subsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.1.1}Machine description}{11}{subsubsection.3.3.1.1}
-\contentsline {subsubsection}{\numberline {3.3.1.2}Compiler run-time reconfiguration}{11}{subsubsection.3.3.1.2}
-\contentsline {subsubsection}{\numberline {3.3.1.3}Optimize VLIW scheduling}{11}{subsubsection.3.3.1.3}
-\contentsline {subsubsection}{\numberline {3.3.1.4}Generic binary support}{11}{subsubsection.3.3.1.4}
-\contentsline {chapter}{\numberline {4}Results}{13}{chapter.4}
-\contentsline {section}{\numberline {4.1}Verification}{13}{section.4.1}
-\contentsline {section}{\numberline {4.2}Benchmark results}{13}{section.4.2}
-\contentsline {section}{\numberline {4.3}Generic binary}{13}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclusion}{15}{chapter.5}
-\contentsline {chapter}{Bibliography}{17}{Item.14}
-\contentsline {chapter}{List of Definitions}{19}{Item.14}
-\contentsline {chapter}{\numberline {A}LLVM Quickstart guide}{21}{appendix.A}
-\contentsline {section}{\numberline {A.1}LLVM toolchain}{21}{section.A.1}
-\contentsline {section}{\numberline {A.2}XSTsim}{21}{section.A.2}
-\contentsline {chapter}{\numberline {B}LLVM Development guide}{23}{appendix.B}
-\contentsline {section}{\numberline {B.1}Building LLVM from source}{23}{section.B.1}
+\contentsline {subsection}{\numberline {3.1.2}Pipeline definition}{11}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Other specifications}{11}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Code generation}{12}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Instruction selection}{12}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Scheduling}{12}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Register allocation}{12}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Pipeline description}{12}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}VLIW Packetizer}{12}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Assembly emitter}{12}{subsection.3.2.6}
+\contentsline {section}{\numberline {3.3}LLVM Improvements}{12}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Reconfigurable compiler}{12}{subsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.1.1}Machine description}{12}{subsubsection.3.3.1.1}
+\contentsline {subsubsection}{\numberline {3.3.1.2}Compiler run-time reconfiguration}{12}{subsubsection.3.3.1.2}
+\contentsline {subsubsection}{\numberline {3.3.1.3}Optimize VLIW scheduling}{13}{subsubsection.3.3.1.3}
+\contentsline {subsubsection}{\numberline {3.3.1.4}Generic binary support}{13}{subsubsection.3.3.1.4}
+\contentsline {chapter}{\numberline {4}Results}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Verification}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Benchmark results}{15}{section.4.2}
+\contentsline {section}{\numberline {4.3}Generic binary}{15}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclusion}{17}{chapter.5}
+\contentsline {chapter}{Bibliography}{19}{Item.14}
+\contentsline {chapter}{List of Definitions}{21}{Item.14}
+\contentsline {chapter}{\numberline {A}LLVM Quickstart guide}{23}{appendix.A}
+\contentsline {section}{\numberline {A.1}LLVM toolchain}{23}{section.A.1}
+\contentsline {section}{\numberline {A.2}XSTsim}{23}{section.A.2}
+\contentsline {chapter}{\numberline {B}LLVM Development guide}{25}{appendix.B}
+\contentsline {section}{\numberline {B.1}Building LLVM from source}{25}{section.B.1}

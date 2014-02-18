@@ -49,7 +49,11 @@ P.~G. Lowney, P.~G. Lowney, S.~M. Freudenberger, T.~J. Karzes, W.~D.
 Clang, ``Clang - features and goals.''
 
 \bibitem{llvm:presentation}
-V.~A. Olatunji~Ruwase, Chris~Lattner and G.~P. David~Koes, ``The llvm compiler
-  framework and infrastructure (part 1),'' Presentation.
+C.~Lattner, ``The llvm compiler framework and infrastructure (part 1),''
+  Presentation.
+
+\bibitem{Anthony-Brandon:2013jk}
+S.~W. Anthony~Brandon, ``Support for dynamic issue width in vliw processors
+  using generic binaries,'' \emph{EDAA}, 2013.
 
 \end{thebibliography}

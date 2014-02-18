@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  27 JAN 2014 15:43
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 FEB 2014 22:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -367,7 +367,11 @@ Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
 Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
-) (./thesis.aux)
+) (./thesis.aux
+
+LaTeX Warning: Label `sub:implementation' multiply defined.
+
+)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
@@ -387,8 +391,7 @@ LaTeX Font Info:    ... okay on input line 134.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 134.
 
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 134.
@@ -445,7 +448,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count127
  (./0_template/cover.tex
-<0_template/fig/CE_conv.png, id=179, 770.88pt x 753.81625pt>
+<0_template/fig/CE_conv.png, id=256, 770.88pt x 753.81625pt>
 File: 0_template/fig/CE_conv.png Graphic file (type png)
 
 <use 0_template/fig/CE_conv.png>
@@ -473,7 +476,7 @@ Overfull \hbox (29.90347pt too wide) in paragraph at lines 29--40
 []|  $[]$ 
  []
 
-<0_template/fig/TUDelft_conv.png, id=180, 513.92pt x 241.90375pt>
+<0_template/fig/TUDelft_conv.png, id=257, 513.92pt x 241.90375pt>
 File: 0_template/fig/TUDelft_conv.png Graphic file (type png)
 
 <use 0_template/fig/TUDelft_conv.png>
@@ -605,7 +608,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 ] (./version.txt) [2] (./version.txt) [3]) (./2_background/index.tex
 (./version.txt) [4]
 Chapter 2.
-<2_background/img/Basic_compiler.png, id=347, 978.65625pt x 225.84375pt>
+<2_background/img/Basic_compiler.png, id=444, 978.65625pt x 225.84375pt>
 File: 2_background/img/Basic_compiler.png Graphic file (type png)
 
 <use 2_background/img/Basic_compiler.png>
@@ -622,140 +625,110 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 58.
+nput line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 59.
+(Font)              <5> on input line 58.
 
-(./version.txt) [7]) (./3_implementation/index.tex (./version.txt) [8]
+(./version.txt) [7]
+<2_background/img/Codegen.png, id=504, 2146.0175pt x 526.96875pt>
+File: 2_background/img/Codegen.png Graphic file (type png)
+
+<use 2_background/img/Codegen.png>
+Package pdftex.def Info: 2_background/img/Codegen.png used on input line 110.
+(pdftex.def)             Requested size: 335.33424pt x 82.33865pt.
+ (./version.txt) [8 <./2_background/img/Codegen.png (PNG copy)>]) (./3_implemen
+tation/index.tex (./version.txt) [9]
+(./version.txt) [10
+
+]
 Chapter 3.
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
 LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 23.
 
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) [11]
+(./version.txt) [12] (./version.txt) [13] (./version.txt) [14] (./version.txt)
+[15]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 239.
+
+ (/usr/local/texlive/2011/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
- [9
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 239.
 
-]
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
-
-(./version.txt) [10]
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
- (./version.txt) [11] (./version.txt) [12])
-(./4_results/index.tex (./version.txt) [13] (./version.txt) [14
-
-]
+(./version.txt) [16] (./version.txt) [17] (./version.txt) [18] (./version.txt)
+[19]) (./4_optimization/index.tex (./version.txt) [20]
 Chapter 4.
-) (./5_conclusion/index.tex [15] (./version.txt) [16
+[21
+
+] (./version.txt) [22]) (./5_results/index.tex (./version.txt) [23]
+(./version.txt) [24
 
 ]
 Chapter 5.
-) [17] (./version.txt) [18
+) (./6_conclusion/index.tex [25] (./version.txt) [26
+
+]
+Chapter 6.
+) [27] (./version.txt) [28
 
 ] (./thesis.bbl
 Missing character: There is no œ in font cmr10!
 Missing character: There is no Å in font cmr10!
-) [19
+) [29
 
-] (./version.txt) [20
+] (./version.txt) [30
 
 ]
-(./appendix/dictionary.tex) [21
+(./appendix/dictionary.tex) [31
 
 
-] (./version.txt) [22
+] (./version.txt) [32
 
 
 ] (./appendix/appendixA.tex
 Appendix A.
-) [23
+) [33
 
 
-] (./appendix/appendixB.tex (./version.txt) [24
+] (./appendix/appendixB.tex (./version.txt) [34
 
 
 
 ]
 Appendix B.
-) [25]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
+) [35]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 246.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 246.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: FA1A88F08D8C1695E7936AEEE02EEDE4;3950.
 
 
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: 9BCCEC269AF0F4D4D9AE7D60D21AA754;2670
-(rerunfilecheck)             After:  63E080DE3BCD53CEBA99C7DD84501691;2744.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 246.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 9659 strings out of 493633
- 142613 string characters out of 3143378
- 451453 words of memory out of 3000000
- 12552 multiletter control sequences out of 15000+200000
+ 9966 strings out of 493633
+ 146833 string characters out of 3143378
+ 494909 words of memory out of 3000000
+ 12718 multiletter control sequences out of 15000+200000
  14606 words of font info for 51 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  36i,10n,51p,833b,1203s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{cite.llvm:presentation} has been referenced but d
-oes not exist, replaced by a fixed one
+pdfTeX warning (dest): name{cite.Anthony-Brandon:2013jk} has been referenced 
+but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.llvm:presentation} has been referenced but doe
+s not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.clang:features} has been referenced but does n
 ot exist, replaced by a fixed one
@@ -789,10 +762,10 @@ e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
 011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
 11/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2011
 /texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on thesis.pdf (43 pages, 343162 bytes).
+Output written on thesis.pdf (53 pages, 432500 bytes).
 PDF statistics:
- 680 PDF objects out of 1000 (max. 8388607)
- 608 compressed objects within 7 object streams
- 219 named destinations out of 1000 (max. 500000)
- 368 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 931 PDF objects out of 1000 (max. 8388607)
+ 846 compressed objects within 9 object streams
+ 335 named destinations out of 1000 (max. 500000)
+ 525 words of extra memory for PDF output out of 10000 (max. 10000000)
 

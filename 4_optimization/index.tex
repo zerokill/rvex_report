@@ -1,7 +1,6 @@
 \chapter{Optimization}
 \label{chap:optimization}
-
-Certain LLVM optimizations have been implemented to achieve higher performance for $\rho$-VEX binaries.
+The previous chapter described how the basic $\rho$-VEX LLVM compiler has been implemented. In this chapter we are going to discuss certain optimizations to improve the performance of binaries that are generated with the LLVM-based compiler.
 
 \section{Generic binary optimization}
 Research has shown \cite{Anthony-Brandon:2013jk} that generic binaries incur a performance penalty because of inefficient register usage. Consider the previous generic binary example again:
@@ -32,7 +31,7 @@ This kind of optimization poses a significant challenge for VLIW type compilers 
 
 A solution could be to perform VLIW packetization before register allocation is completed. This would allow the register allocation pass to determine if a RAW hazard occurs inside a packet and to assign an extra register if needed.
 
-In practice this approach is not possible because between the register allocation pass and the VLIW packetizer pass other passes are run that can change the final code. For example the register allocator pass can insert spill code and the prologue / epilogue insertion pass inserts code related to the stack layout. Inserting new instructions into instructions packets that have already been formed is very ugly because "packet spilling" could occur where a packet that is already full needs to move instructions to the next packet, etc. 
+In practice this approach is not possible because between the register allocation pass and the VLIW packetizer pass other passes are run that can change the final code. For example the register allocator pass can insert spill code and the prologue / epilogue insertion pass inserts code related to the stack layout. Inserting new instructions into instructions packets that have already been formed is very ugly because \emph{packet spilling} could occur where a packet that is already full needs to move instructions to the next packet, etc. 
 
 A second approach is to form temporary instruction bundles during the scheduling pass and for the scheduler to provide register allocation hints to the register allocator. This is a similar approach to the machine scheduler pass that from the Hexagon target. Unfortunately this proved impractical because liveliness information was not available during the scheduling pass. The Hexagon machine scheduler uses the temporary bundles and certain register allocation metrics to optimize the instruction ordering but the extra information is not passed to the register allocator.
 
@@ -60,14 +59,14 @@ This would be transformed into the following code where the final r0.8 assignmen
 
 \subsection{Implementation} % (fold)
 \label{sub:implementation}
-The 'LiveIntervals' pass is used to determine the live ranges of each virtual register. The pass uses the 'LiveRangeCalc' class
-Each virtual register has an associated 'SlotIndex' which tracks when the register becomes live and when the register is killed. The 'ExtendToUses' method of the 'LiveRangeCalc' class is used to update the SlotIndex to match the latest use of a virtual register. The SlotIndex class also provides method that give information on the MachineBasicBlock (MBB) in which the virtual register is used.
+The \texttt{LiveIntervals} pass is used to determine the live ranges of each virtual register. The pass uses the \texttt{LiveRangeCalc} class
+Each virtual register has an associated \texttt{SlotIndex} which tracks when the register becomes live and when the register is killed. The \texttt{ExtendToUses} method of the \texttt{LiveRangeCalc} class is used to update the SlotIndex to match the latest use of a virtual register. The SlotIndex class also provides method that give information on the MachineBasicBlock (MBB) in which the virtual register is used.
 
 Extending of the liverange has been enabled by getting the boundary of the MBB from the SlotIndex and by extending the SlotIndex to this boundary. This enables the virtual register to be live for the duration of the basic block and will make sure the register allocator will not assign a new virtual register to a previously used physical register.
 
 This approach is not optimal because it will increase the register usage even if RAW hazards do not occur. If more virtual registers are used then physical registers are available the execution speed will drop because extra spill code needs to be inserted.
 
-\section{Scheduling}
+\section{Large immediate values}
 The $\rho$-VEX processor has support for using 32 bit immediate values. 8 bit immediate values can be handled in a single $\rho$-VEX instruction. Values larger then 8 bit values borrow space from the adjecant $\rho$-VEX instruction. The following code examples show the maximum amount of instruction in a packet for a 4 issue width $\rho$-VEX processor.
 
 \begin{lstlisting}
@@ -111,5 +110,9 @@ During the packetization pass each instruction that uses an immediate value is c
 
 
 \section{Conclusion}
-asd
+In this section we have discussed the optimizations that have been implemented to increase performance of  $\rho$-VEX binaries that have been generated with the LLVM compiler.
+
+The generic binary optimization allows binaries with generic binary support to perform on par with regular binaries. The performance of generic binaries will only degrade once the register pressure becomes too high and spill code needs to be inserted.
+
+The immediate value optimization allows more efficient use of available instructions of the  $\rho$-VEX processor.
 \acresetall

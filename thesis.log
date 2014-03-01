@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 FEB 2014 22:01
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  1 MAR 2014 12:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -448,7 +448,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count127
  (./0_template/cover.tex
-<0_template/fig/CE_conv.png, id=256, 770.88pt x 753.81625pt>
+<0_template/fig/CE_conv.png, id=248, 770.88pt x 753.81625pt>
 File: 0_template/fig/CE_conv.png Graphic file (type png)
 
 <use 0_template/fig/CE_conv.png>
@@ -476,7 +476,7 @@ Overfull \hbox (29.90347pt too wide) in paragraph at lines 29--40
 []|  $[]$ 
  []
 
-<0_template/fig/TUDelft_conv.png, id=257, 513.92pt x 241.90375pt>
+<0_template/fig/TUDelft_conv.png, id=249, 513.92pt x 241.90375pt>
 File: 0_template/fig/TUDelft_conv.png Graphic file (type png)
 
 <use 0_template/fig/TUDelft_conv.png>
@@ -579,11 +579,8 @@ l.168 \cleardoublepage
  [9] (./0_template/acronym.tex [10
 
 
-]
-
-Package hyperref Warning: Ignoring empty anchor on input line 3.
-
-) [11] (./0_template/ack.tex [12
+]) [11]
+(./0_template/ack.tex [12
 
 
 ]) [13] [14
@@ -591,33 +588,83 @@ Package hyperref Warning: Ignoring empty anchor on input line 3.
 
 ] (./1_introduction/index.tex
 Chapter 1.
+<1_introduction/img/MIPS_pipe.png, id=424, 632.6034pt x 291.489pt>
+File: 1_introduction/img/MIPS_pipe.png Graphic file (type png)
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 15.
+<use 1_introduction/img/MIPS_pipe.png>
+Package pdftex.def Info: 1_introduction/img/MIPS_pipe.png used on input line 14
+.
+(pdftex.def)             Requested size: 335.33424pt x 154.5151pt.
+ [1
+
+ <./1_introduction/img/MIPS_pipe.png>]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--40
+
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 15.
+Underfull \vbox (badness 6445) has occurred while \output is active []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 15.
+(./version.txt) [2] (./version.txt) [3] (./version.txt) [4])
+(./2_background/index.tex (./version.txt) [5] (./version.txt) [6
 
-[1
-
-] (./version.txt) [2] (./version.txt) [3]) (./2_background/index.tex
-(./version.txt) [4]
+]
 Chapter 2.
-<2_background/img/Basic_compiler.png, id=444, 978.65625pt x 225.84375pt>
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+<2_background/img/rvex_arch.png, id=476, 1656.1875pt x 1543.7675pt>
+File: 2_background/img/rvex_arch.png Graphic file (type png)
+
+<use 2_background/img/rvex_arch.png>
+Package pdftex.def Info: 2_background/img/rvex_arch.png used on input line 15.
+(pdftex.def)             Requested size: 335.33424pt x 312.56409pt.
+ [7]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+
+<2_background/img/Instructions.png, id=486, 1295.84125pt x 632.3625pt>
+File: 2_background/img/Instructions.png Graphic file (type png)
+
+<use 2_background/img/Instructions.png>
+Package pdftex.def Info: 2_background/img/Instructions.png used on input line 3
+9.
+(pdftex.def)             Requested size: 335.33424pt x 163.63844pt.
+ (./version.txt) [8 <./2_background/img/rvex_arch.png (PNG copy)>]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+ (./version.txt) [9 <./2_background/img/Instructions.png>]
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 74.
+
+ (/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Overfull \hbox (22.4208pt too wide) in paragraph at lines 71--88
+ [][] 
+ []
+
+<2_background/img/Basic_compiler.png, id=500, 978.65625pt x 225.84375pt>
 File: 2_background/img/Basic_compiler.png Graphic file (type png)
 
 <use 2_background/img/Basic_compiler.png>
 Package pdftex.def Info: 2_background/img/Basic_compiler.png used on input line
- 19.
+ 97.
 (pdftex.def)             Requested size: 335.33424pt x 77.38547pt.
- [5
-
- <./2_background/img/Basic_compiler.png (PNG copy)>] (./version.txt) [6]
+ (./version.txt) [10 <./2_background/img/Basic_compiler.png (PNG copy)>] (./ver
+sion.txt) [11]
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
@@ -625,91 +672,95 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 57.
+nput line 135.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 58.
+(Font)              <5> on input line 136.
 
-(./version.txt) [7]
-<2_background/img/Codegen.png, id=504, 2146.0175pt x 526.96875pt>
+(./version.txt) [12]
+<2_background/img/Codegen.png, id=559, 2146.0175pt x 526.96875pt>
 File: 2_background/img/Codegen.png Graphic file (type png)
 
 <use 2_background/img/Codegen.png>
-Package pdftex.def Info: 2_background/img/Codegen.png used on input line 110.
+Package pdftex.def Info: 2_background/img/Codegen.png used on input line 188.
 (pdftex.def)             Requested size: 335.33424pt x 82.33865pt.
- (./version.txt) [8 <./2_background/img/Codegen.png (PNG copy)>]) (./3_implemen
-tation/index.tex (./version.txt) [9]
-(./version.txt) [10
-
-]
+ (./version.txt) [13 <./2_background/img/Codegen.png (PNG copy)>]) (./3_impleme
+ntation/index.tex (./version.txt) [14]
 Chapter 3.
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 23.
-
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmtt.fd
-File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [11]
-(./version.txt) [12] (./version.txt) [13] (./version.txt) [14] (./version.txt)
-[15]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 239.
-
- (/usr/local/texlive/2011/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 239.
-
-(./version.txt) [16] (./version.txt) [17] (./version.txt) [18] (./version.txt)
-[19]) (./4_optimization/index.tex (./version.txt) [20]
-Chapter 4.
-[21
-
-] (./version.txt) [22]) (./5_results/index.tex (./version.txt) [23]
-(./version.txt) [24
+) [15
 
 ]
+(./version.txt) [16] (./version.txt) [17] (./version.txt
+LaTeX Info: Active EOL character found while output routine is active 
+            This may be a bug in a package file you are using.
+) [18] (./version.txt)
+[19]
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 241
+.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 241.
+
+
+LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
+(Font)              using `OML/cmm/m/it' instead
+(Font)              for symbol `textless' on input line 241.
+
+(./version.txt) [20] (./version.txt) [21] (./version.txt) [22] (./version.txt)
+[23] (./version.txt
+LaTeX Info: Active EOL character found while output routine is active 
+            This may be a bug in a package file you are using.
+) [24]) (./4_optimization/index.tex (./version.txt) [25]
+(./version.txt) [26
+
+]
+Chapter 4.
+[27] (./version.txt) [28] (./version.txt) [29]) (./5_results/index.tex
+(./version.txt) [30]
 Chapter 5.
-) (./6_conclusion/index.tex [25] (./version.txt) [26
+) (./6_conclusion/index.tex [31
+
+] (./version.txt) [32
 
 ]
 Chapter 6.
-) [27] (./version.txt) [28
+) [33] (./version.txt) [34
 
 ] (./thesis.bbl
 Missing character: There is no œ in font cmr10!
 Missing character: There is no Å in font cmr10!
-) [29
+) [35
 
-] (./version.txt) [30
+] (./version.txt) [36
 
 ]
-(./appendix/dictionary.tex) [31
+(./appendix/dictionary.tex) [37
 
 
-] (./version.txt) [32
+] (./version.txt) [38
 
 
 ] (./appendix/appendixA.tex
 Appendix A.
-) [33
+) [39
 
 
-] (./appendix/appendixB.tex (./version.txt) [34
+] (./appendix/appendixB.tex (./version.txt) [40
 
 
 
 ]
 Appendix B.
-) [35]
+) [41]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./thesis.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: FA1A88F08D8C1695E7936AEEE02EEDE4;3950.
+(rerunfilecheck)             Checksum: 86D0D609BE6D6C34C6BB459BD1E51C17;3824.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -717,13 +768,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 9966 strings out of 493633
- 146833 string characters out of 3143378
- 494909 words of memory out of 3000000
- 12718 multiletter control sequences out of 15000+200000
- 14606 words of font info for 51 fonts, out of 3000000 for 9000
+ 10081 strings out of 493633
+ 148489 string characters out of 3143378
+ 498325 words of memory out of 3000000
+ 12768 multiletter control sequences out of 15000+200000
+ 14904 words of font info for 52 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 36i,10n,51p,833b,1203s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,51p,781b,1203s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{cite.Anthony-Brandon:2013jk} has been referenced 
 but does not exist, replaced by a fixed one
 
@@ -733,17 +784,35 @@ s not exist, replaced by a fixed one
 pdfTeX warning (dest): name{cite.clang:features} has been referenced but does n
 ot exist, replaced by a fixed one
 
+pdfTeX warning (dest): name{cite.Seedorf:2011fj} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Joseph-A.-Fisher:2005cr} has been referenced b
+ut does not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{cite.Lowney:1993qy} has been referenced but does no
 t exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.Fisher:1983:VLI:1067651.801649} has been refer
 enced but does not exist, replaced by a fixed one
 
+pdfTeX warning (dest): name{cite.Wall:1993xy} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.John-L.-Hennessy:2012bs} has been referenced b
+ut does not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{cite.854391} has been referenced but does not exist
 , replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.As:2008rt} has been referenced but does not ex
 ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Joseph-A.-Fisher:2012rm} has been referenced b
+ut does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.John-L.-Hennessy:2009wq} has been referenced b
+ut does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2011/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
 /usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
@@ -760,12 +829,14 @@ ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
 2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2
 011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
-11/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2011
-/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on thesis.pdf (53 pages, 432500 bytes).
+11/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/201
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2011/
+texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2011/te
+xmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on thesis.pdf (59 pages, 589522 bytes).
 PDF statistics:
- 931 PDF objects out of 1000 (max. 8388607)
- 846 compressed objects within 9 object streams
- 335 named destinations out of 1000 (max. 500000)
- 525 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1034 PDF objects out of 1200 (max. 8388607)
+ 934 compressed objects within 10 object streams
+ 384 named destinations out of 1000 (max. 500000)
+ 524 words of extra memory for PDF output out of 10000 (max. 10000000)
 

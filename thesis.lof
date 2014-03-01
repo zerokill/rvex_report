@@ -1,7 +1,10 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces MIPS pipeline \cite {John-L.-Hennessy:2009wq}\relax }}{1}{figure.caption.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Basic compiler structure\relax }}{5}{figure.caption.7}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Basic codegeneration process\relax }}{8}{figure.caption.8}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces $\rho $-VEX architecture\relax }}{8}{figure.caption.8}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces $\rho $-VEX instruction format\relax }}{9}{figure.caption.9}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Basic compiler structure\relax }}{10}{figure.caption.11}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Basic codegeneration process\relax }}{13}{figure.caption.12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

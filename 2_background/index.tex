@@ -1,20 +1,98 @@
 \chapter{Background}
 \label{chap:background}
+In this section we will explore the background of the VEX system and of the LLVM compiler. This section will show the basic design of the $\rho$-VEX processor and how the $\rho$-VEX processor operates. Further we will also demonstrate the design of the LLVM compiler framework and how coded is transformed from a high level language such as C/C++ to a target specific assembly language.
+
 \section{VEX System}
-asd
+The $\rho$-VEX processor is based on the VEX ISA \cite{As:2008rt}. The processor uses a VLIW architecture and is designed to serve as both a application-specific processor and a general-purpose processor. During synthesis the core can be reconfigured to alter the issue-width, the amount of physical registers, the type of functional units, and other parameters.
+
+The VEX ISA defines hardware operations as syllables. An instruction is defined as a set of multiple syllables. The VEX operations are similar to 32 bit RISC operations.
+
 \subsection{Architecture}
-asd
+The architecture of the $\rho$-VEX core is shown in Figure \ref{fig:rvex_arch} \cite{Seedorf:2011fj}. The core uses a five stage pipelined design. There are multiple functional units with different functionality, such as ALU’s, Multipliers, Load / Store units, and Branch units.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{2_background/img/rvex_arch.png}
+\caption{$\rho$-VEX architecture}
+\label{fig:rvex_arch}
+\end{figure}
+
+The register file consists of 64 32-bit general purpose registers. These registers can generally be targeted by any instruction. In addition to the general purpose registers there also exists 8 1-bit Branch Registers. These registers are used by the branch operations to determine if a branch should occur.
+
+The pipeline uses five stages to execute an instruction. For example, consider a $\rho$-VEX processor with a 4-issue organization:
+
+\begin{itemize}
+  \item \textbf{Fetch stage:} An instruction is selected from the instruction memory using the Program Counter (PC) or the Branch Target address. Note that 1 instruction contains four different operations.
+  \item \textbf{Decode stage:} Each operation is decoded in parallel and the needed registers are read from the register file. 
+  \item \textbf{Execute 1 stage:} In this stage the functional units produce results for ALU operations. In addition this stage is also used to write to the data memory when Store operations are executed. 
+  \item \textbf{Execute 2 stage:} This stage produces results for MUL operations. The $\rho$-VEX processor uses $32*16$-bit multipliers that have two stages. In addition this stage reads data from the data memory when load operations are executed.
+  \item \textbf{Writeback stage:} In this stage results that have been generated in the previous stages are committed to the register file.
+\end{itemize}
+
+The $\rho$-VEX processor uses a bypass network to forward operations to other pipeline stages when needed.
+
 \subsection{ISA}
-asd
-\subsection{Registers}
-asd
+The assembly format for VEX instructions is shown in Figure \ref{fig:rvex_asm} \cite{Joseph-A.-Fisher:2012rm}. The destination of an operation is to the left of the “=” sign, while the source operands are listed on the right-hand side. On the right-hand side both registers and immediate values can be used as source operands. The $\rho$-VEX processor does not support multiple clusters and each instruction is executed on cluster 0.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.8\textwidth]{2_background/img/Instructions.png}
+\caption{$\rho$-VEX instruction format}
+\label{fig:rvex_asm}
+\end{figure}
+
+The $\rho$-VEX processor supports 32-bit immediate values through a operations borrowing scheme. Each operations supports 8-bit immediate values but if larger values are required the adjacent operation is used to store the upper 24-bits of the immediate value. This means that when using large immediate value the amount of operations that can be executed decreases.
+
+Multiple classes of $\rho$-VEX instructions exists with the following properties:
+
+\begin{itemize}
+  \item \textbf{Integer arithmetic operations:} These operations include the “traditional” RISC-style instructions such as \texttt{ADD}, \texttt{SUB}, \texttt{AND}, and \texttt{OR}. 
+  \item \textbf{Multiplication operations:} The VEX ISA defines multiple multiplication operations that use the builtin $16*32$-bit multiplier. Operations include for example: Multiply Low 16 * Low 16, etc. 
+  \item \textbf{Logical and Select operations:} These operations are used to compare two registers to each other or to select between two values based on the result of a branch register. Operations include: \texttt{CMPEQ}, \texttt{CMPNEQ}, etc.
+  \item \textbf{Memory operations:} Operations that load and store data from the data memory. Operations exist to store and load operands of different sizes such as \texttt{LDW}, \texttt{LDH} and \texttt{LDB}.
+  \item \textbf{Control operations:} These operations are used to control the Program Counter of the $\rho$-VEX processor. Operations include: \texttt{GOTO}, \texttt{CALL}, \texttt{BR}, and \texttt{RETURN}.
+\end{itemize}
+
 \subsection{Run-time architecture}
-asd
+The $\rho$-VEX Run-Time architecture defines the software conventions that are used during compilation, linking and execution of $\rho$-VEX executables. $\rho$-VEX programs are executed in a 32-bit environment where integers, long and pointers are 32-bit values. 
+
+The following $\rho$-VEX register classes are used:
+\begin{itemize}
+  \item \textbf{Scratch registers:} Caller-saved registers that are destroyed during function calls.
+  \item \textbf{Preserved registers:} callee-saved registers that must not be destroyed during procedure calls.
+  \item \textbf{Constant registers:} Contains a value that cannot be changed.
+  \item \textbf{Special registers:} Used during call / return operations.
+\end{itemize}
+
+The \ref{tbl:rvex_reg} described the properties of all the available $\rho$-VEX registers.
+
+\begin{table}
+  \centering
+    \begin{tabular}{|l|l|p{10cm}|}
+    \hline
+    \textbf{Register} & \textbf{Class} & \textbf{Description}   \\ \hline
+    \texttt{\$r0.0}         & Constant  & Constant register 0  \\ \hline
+    \texttt{\$r0.1}         & Special   & \textbf{Stack-pointer:} Holds the limit of the current stackframe. 
+                                          SP is preserved across function calls.  \\ \hline
+    \texttt{\$r0.2}         & Scratch   & \textbf{Struct return pointer:} If a function returns a struct or union the register
+                                          contains the memory adres of the value being returned.  \\ \hline
+    \texttt{\$r0.3-\$r0.10} & Scratch   & \textbf{Arguments and return values:} Arguments that do not fit in the registers are
+                                          passes using the main memory.  \\ \hline
+    \texttt{\$r0.11-\$r0.56}& Scratch   & Caller-saved scratch registers.  \\ \hline
+    \texttt{\$r0.57-\$r0.63}& Preserved & Callee-saved registers that need to be preserved across function calls.  \\ \hline
+    \texttt{\$l0.0}         & Special   & \textbf{Link register:} Used to store the return adres when a function call is 
+                                          performed.  \\ \hline
+    \texttt{\$pc0.0}        & Special   & \textbf{Program Counter}  \\ \hline
+    \texttt{\$b0.0-\$b0.7}  & Scratch   & \textbf{Branch registers:} Caller-saved registers.  \\ \hline
+    \end{tabular}
+  \caption{$\rho$-VEX Register usage \cite{Joseph-A.-Fisher:2012rm}}
+  \label{tbl:rvex_reg}
+\end{table}
 
 \section{LLVM Compiler infrastructure}
 LLVM is based on the classic three-stage compiler architecture shown in figure \ref{fig:compiler_structure}. The compiler uses a number language specific front-ends, an optimizer and target specific backends. This modular design enables compiler designers to work on different parts of the compiler as a separate part. Support for a new processor can be added by building a new back-end. The existing front-end and optimizer can be reused for the new compiler.
 
-\begin{figure}[ph!]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{2_background/img/Basic_compiler.png}
 \caption{Basic compiler structure}
@@ -98,14 +176,14 @@ define i32 @main() nounwind ssp uwtable {
 \subsection{Code generation}
 During code generation the optimized LLVM IR is translated into machine specific assembly instructions. The modular design of LLVM enables generic algorithms to be used for this process. 
 
-A backend is described in a domain specific language (DSL) called tablegen. The tablegen files describe properties of a backend such as available instructions, registers, calling convention and pipeline structure. During compilation of LLVM the tablegen files are converted into a C++ description of the backend. Tablegen has been specifically designed to describe the backend structure in a flexible and generic way. Common features can be more easily described using tablegen. For example the $Add$ and $Sub$ instruction are almost identical and using tablegen can be described in a more generic way. This results in less repetition and reduces the chance of error.
+A backend is described in a domain specific language (DSL) called tablegen. The tablegen files describe properties of a backend such as available instructions, registers, calling convention and pipeline structure. During compilation of LLVM the tablegen files are converted into a C++ description of the backend. Tablegen has been specifically designed to describe the backend structure in a flexible and generic way. Common features can be more easily described using tablegen. For example the \texttt{Add} and \texttt{Sub} instruction are almost identical and using tablegen can be described in a more generic way. This results in less repetition and reduces the chance of error.
 
 Because of the generic description of the backend large amount of code can be reused by each backend. Algorithms such as register allocation and instruction selection operate on the generic tablegen descriptions and do not require target specific hooks to operate correctly. An additional advantage of this approach is that multiple algorithms are available to achieve certain functionality. For example, LLVM offers the developer a choice between four different register allocation algorithms. Each algorithm has a number of advantages and disadvantages and the developer can choose between an algorithm which matches the target processor best.
 
 At the moment not all parts of the backend can be described in Tablegen and hand written C++ code is still needed. As LLVM develops more parts of the backend description should be integrated into the backend. 
 
 Figure \ref{fig:codegen_process} shows the basic codegeneration process. Each block can consist of multiple LLVM passes. For example the instruction selection phase consists of multiple passes that transform the input LLVM IR into a DAG that only contains instructions and types that are supported by the target processor.
-\begin{figure}[ph!]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{2_background/img/Codegen.png}
 \caption{Basic codegeneration process}

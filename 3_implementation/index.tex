@@ -3,23 +3,24 @@
 The previous chapter demonstrated the architecture of the $\rho$-VEX processor and of the LLVM compiler. In this chapter we will show how the LLVM-based backend for the $\rho$-VEX processor has been implemented.
 
 \section{Tablegen}
-LLVM uses a domain specific language (DSL) called Tablegen to describe features of the backend such as instructions, registers, and pipeline information. 
+LLVM uses a domain specific language (DSL) called \texttt{tablegen} to describe features of the backend such as instructions, registers, and pipeline information. 
 
-Tablegen uses a object-oriented approach to describe functionality. Information is described in classes and definitions that are called "records". Superclasses can be described to a subclass can derive structure from another class. In addition, multiclasses can be used to instantiate multiple abstract records at once.
+\texttt{tablegen} uses a object-oriented approach to describe functionality. Information is described in classes and definitions that are called \emph{records}. Inheritance is supported so classes can derive information from superclasses. In addition, multiclasses can be used to instantiate multiple abstract records at once.
 
-The tablegen tool aims to provide a flexible way to describe processor features. For example processor instructions could be described as follows:
+The \texttt{tablegen} tool aims to provide a flexible way to describe processor features. For example processor instructions could be described as follows:
 
 A class is created that represents an abstract instruction. The class will describe information that is of direct importance to code generation such as opcode, register usage and immediate values but also information that is needed during the code generation such as liveness information, instruction pattern and scheduling information.
 
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=tblgen]
 class rvexInst<dag outs, dag ins, string asmstr, list<dag> pattern,
                InstrItinClass itin, Format f, CType type>: Instruction
 {
 }
 \end{lstlisting}
 
-The rvexInst class can be used for instructions that operate on three operands such as add, sub, and mult. Common features of these instructions are described in the class \texttt{ArithLogicR}. This class describes the instruction pattern to match and the instruction string to emit. 
-\begin{lstlisting}[language=java]
+The \texttt{rvexInst} class is used for all type of instructions that are supported by the $\rho$-VEX processor. Multiple instructions with common featurs such as \texttt{add}, \texttt{sub}, and \texttt{and} can be described in subclasses that inherit from the \texttt{rvexInst} class. For example, the class \texttt{ArithLogicR} holds arithmetic instructions that use three register operands. The class describes common features such as the instruction string format and the instruction pattern that is used during instruction selection.
+
+\begin{lstlisting}[language=tblgen]
 class ArithLogicR<string instr_asm, SDNode OpNode,
                   InstrItinClass itin, RegisterClass RC, bit isComm = 0, CType type>:
   rvexInst <(outs RC:$ra), (ins RC:$rb, RC:$rc),
@@ -29,19 +30,29 @@ class ArithLogicR<string instr_asm, SDNode OpNode,
 }
 \end{lstlisting}
 
-Finally, this class is used to describe processor instructions such as the add instruction. The instruction is described as using the class \texttt{ArithLogicR} with a certain instruction string, instruction pattern and other information needed during compilation.
-\begin{lstlisting}[language=java]
+The following code shows how to define instructions that inherit from the \texttt{ArithLogicR} class. The instruction is defined as using the \texttt{ArithLogicR} class with certain parameters that match the instruction properties. These properties include instruction string, LLVM IR opcode, and other information that is needed during compilation.
+
+\begin{lstlisting}[language=tblgen]
 def ADD         : ArithLogicR<"add ", add, IIAlu, CPURegs, 1, TypeIIAlu>;
 \end{lstlisting}
 
-Tablegen provides for a very flexible way to describe backend functionality. The existing LLVM backends use tablegen in a variety of ways which best match the target processor. 
+Figure \ref{fig:tblgen} displays an example of how individual instructions inherit from higher level classes. The final class is a \texttt{rvexInstr} that contains a description of all the available $\rho$-VEX instructions.
 
-The \emph{tblgen} tool is used to transform the tablegen input files into C++. The resulting C++ files contain enums, structs and arrays that describe the properties. The instruction selection part is transformed into imperative code that is used by the backend for pattern matching. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{3_implementation/img/instr.png}
+\caption{\texttt{tblgen} instructions}
+\label{fig:tblgen}
+\end{figure}
+
+\texttt{tablegen} provides for a very flexible way to describe backend functionality. The existing LLVM backends use \texttt{tablegen} in a variety of ways which best match the target processor. 
+
+The \emph{tblgen} tool is used to transform the \texttt{tablegen} input files into C++. The resulting C++ files contain enums, structs and arrays that describe the properties. The instruction selection part is transformed into imperative code that is used by the backend for pattern matching. 
 
 \subsection{Register definition}
-LLVM uses a predefined class \texttt{register} to handle register classes. All $\rho$-VEX registers are derived from this empty class. The \texttt{vexReg} class is used to define all $\rho$-VEX registers. 
+LLVM uses a predefined class \texttt{register} to handle register classes. All $\rho$-VEX registers are derived from this empty class. The \texttt{rvexReg} class is used to define all type of $\rho$-VEX registers. 
 
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=tblgen]
 class rvexReg<string n> : Register<n> {
   field bits<7> Num;
   let Namespace = "rvex";
@@ -49,7 +60,7 @@ class rvexReg<string n> : Register<n> {
 \end{lstlisting}
 
 The \texttt{rvexReg} class is used to define the general purpose registers and the branch registers.
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=tblgen]
 class rvexGPRReg<bits<7> num, string n> : rvexReg<n> {
   let Num = num;
 }
@@ -59,15 +70,15 @@ class rvexBRReg<bits<7> num, string n> : rvexReg<n> {
 }
 \end{lstlisting}
 
-Each physical register is defined as an instance of one of these classes. For example, R5 is defined as follows. The register is associated with a register number, a register string and a dwarf register number that is used for debugging.
+Each physical register is defined as an instance of one of these classes. For example, R5 is defined as follows. The register is associated with a register number, a register string, and a dwarf register number that is used for debugging.
 
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=tblgen]
 def R5 : rvexGPRReg< 5, "r0.5">, DwarfRegNum<[5]>;
 \end{lstlisting}
 
 The physical registers are divided in two register classes for the general purpose registers and for the branch registers. The register classes also define what type of value can be stored in the physical register.
 
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=tblgen]
 def CPURegs : RegisterClass<"rvex", [i32], 32, 
   (add
     (sequence "R%u", 0, 63),
@@ -80,51 +91,48 @@ def BRRegs   : RegisterClass<"rvex", [i32], 32,
   )>;
 \end{lstlisting}
 
-The branch registers have been defined to also use 32 bit values even though in reality the branch register is only 1 bit wide. This has been done because LLVM had a lot of trouble identifying the correct instruction patterns for compare instructions. The compare instructions operate on two CPURegs instructions and produce a result in BRRegs or in CPURegs. For example consider the following pseude instruction patterns:
+The branch registers have been defined to also use 32 bit values even though in reality the branch register is only 1 bit wide. This has been done because LLVM had a lot of trouble identifying the correct instruction patterns for compare instructions. The $\rho$-VEX compare instruction can produce results in both the CPURegs and the BRegs as illustrated in the following example:
 
-\begin{lstlisting}[language=java] 
+\begin{lstlisting}
 <1 bit>BRRegs = Operation, <32 bit>CPURegs, <32 bit>CPURegs
 <32 bit>CPURegs = Operation, <32 bit>CPURegs, <32 bit>CPURegs
 \end{lstlisting}
 
-When an operation works on 32 bit operands and produces a result 1 bit wide LLVM will try to truncate the input operands to the final operand with even though this is not necessary for the $\rho$-VEX ISA. This has been solved by implementing the BRRegs as 32 bit wide so LLVM will not insert truncate and extend instructions when operating on these type of instructions.
+The LLVM compiler is unaware that when the compare instruction is used to define a 32-bit result only the lowest bit will be set. The compiler tried to resolve this issue by inserting \texttt{truncate} and \texttt{zero\_extend} instructions even though this is not required.This has been solved by implementing the BRRegs as 32 bit wide so LLVM will not insert truncate and extend instructions when operating on these type of instructions.
 
 \subsection{Pipeline definition}
-Tablegen can be used to describe the architecture of the processor in a generic way. A processor functional unit executes each instruction. For this example we will assume that the $\rho$-VEX processor is a 4 issue width machine.
+\texttt{tablegen} can be used to describe the architecture of the processor in a generic way. LLVM will schedule an instruction to a processor functional unit during the scheduling pass. The following code describes the available functional units for a 4-issue a $\rho$-VEX processor.
 
-\begin{lstlisting}[language=java] 
+\begin{lstlisting}[language=tblgen]
 def P0 : FuncUnit;
 def P1 : FuncUnit;
 def P2 : FuncUnit;
 def P3 : FuncUnit;
 \end{lstlisting}
 
-Each instruction is associated with an instruction itinerary. An instruction itinerary groups scheduling properties of instructions together. The $\rho$-VEX processor uses the following instruction itineraries.
+Each instruction is associated with an instruction itinerary. An instruction itinerary is used to group scheduling properties of instructions together. The $\rho$-VEX processor uses the following instruction itineraries.
 
-\begin{lstlisting}[language=java] 
+\begin{lstlisting}[language=tblgen]
 def IIAlu              : InstrItinClass;
 def IILoadStore        : InstrItinClass;
 def IIBranch           : InstrItinClass;
 def IIMul              : InstrItinClass;
 \end{lstlisting}
 
-The functional units and instruction itineraries are used to describe the properties of the $\rho$-VEX pipeline. Each instruction itinerary is derived from an instruction stage with certain properties. These properties include the "cycle count" that describes the length of the instruction stage and the functional units that can execute the instruction. The following itinerary describes a $\rho$-VEX pipeline with four functional units. Each functional unit is able to execute every instruction except for load / store instructions. Only \texttt{P0} is able to execute load / store instructions. These instructions take two cycles to complete.
+The functional units and instruction itineraries are used to describe the properties of the $\rho$-VEX pipeline. The scheduling properties are derived from a description of an instruction stage with certain properties and the associated instruction itinerary. These properties include the \emph{cycle count}, that describes the length of the instruction stage, and the functional units that can execute the instruction. The following itinerary describes a $\rho$-VEX pipeline with four functional units. Each functional unit is able to execute every instruction except for load / store instructions. Only \texttt{P0} is able to execute load / store instructions. These instructions take two cycles to complete.
 
-\begin{lstlisting}[language=java] 
+\begin{lstlisting}[language=tblgen]
 def rvexGenericItineraries : ProcessorItineraries<[P0, P1, P2, P3], [], [
   InstrItinData<IIAlu              , [InstrStage<1,  [P0, P1, P2, P3]>]>,
   InstrItinData<IILoadStore        , [InstrStage<2,  [P0]>]>,
   InstrItinData<IIBranch           , [InstrStage<1,  [P0, P1, P2, P3]>]>,
-  InstrItinData<IIHiLo             , [InstrStage<1,  [P0, P1, P2, P3]>]>,
-  InstrItinData<IIImul             , [InstrStage<1,  [P0, P1, P2, P3]>]>,
-  InstrItinData<IIAluImm           , [InstrStage<1,  [P0, P2]>]>,
-  InstrItinData<IIPseudo           , [InstrStage<1,  [P0, P1, P2, P3]>]>
+  InstrItinData<IIIMul             , [InstrStage<1,  [P0, P1, P2, P3]>]>,
 ]>;
 \end{lstlisting}
 
 The machine model class is used to encapsulate the processor itineraries and certain high level properties such as issue width and latencies.
 
-\begin{lstlisting}[language=java] 
+\begin{lstlisting}[language=tblgen]
 def rvexModel : SchedMachineModel {
   let IssueWidth = 2;
   let Itineraries = rvexGenericItineraries;
@@ -132,7 +140,7 @@ def rvexModel : SchedMachineModel {
 \end{lstlisting}
 
 \subsection{Other specifications}
-Tablegen is also used to describe other properties of the target processor. LLVM has stated as goal to move more parts of the backend description to the tablegen format because tablegen offers such a flexible implementation. At the moment tablegen is also used to implement:
+\texttt{tablegen} is also used to describe other properties of the target processor. LLVM has stated as goal to move more parts of the backend description to the \texttt{tablegen} format because \texttt{tablegen} offers such a flexible implementation. At the moment \texttt{tablegen} is also used to implement:
 
 \begin{itemize}
 	\item Calling convention
@@ -142,22 +150,21 @@ Tablegen is also used to describe other properties of the target processor. LLVM
 \section{Code generation}
 To understand how the compiler changes code from the LLVM IR representation to VEX assembly instruction it is necessary to understand how the code generation process works. The code generation process is divided into multiple steps, called passes, that are performed in order. 
 
-\subsection{Instruction selection}
+\subsection{Instruction transformation}
 The instruction selection phase is completed in the following steps
 \begin{itemize}
-  \item \textbf{Build innitial DAG:} DAG build from LLVM IR instruction that contains illegal types and instructions.
+  \item \textbf{Build innitial DAG:} Transform the LLVM IR into a DAG that contains illegal types and instructions. The innitial DAG is a one-to-one representation of the LLVM IR code.
   \item \textbf{Legalize instructions:} Illegal instructions are expanded and replaced with legal instructions.
   \item \textbf{Legalize types:} Transform the types used in the DAG to types that are supported by the target processor 
-  \item \textbf{Instruction selection:} The legalized DAG still contains only LLVM IR instructions. The DAG is transformed to a DAG containing target processor instructions.
+  \item \textbf{Instruction selection:} The legalized DAG still contains only LLVM IR instructions. The DAG is transformed to a DAG containing target-specific processor instructions.
 \end{itemize}
 
-The instruction selection passes are contained in \texttt{rvexISelLowering} class and \texttt{rvexISelDAGToDag} class. The \texttt{rvexISelLowering} class gives a high level description of the operations that are supported by the target processor. The class can describe how the compiler should handle each LLVM IR instruction through four parameters: Legal, Expand, Promote or Custom. The default option is Legal which implies that the LLVM IR instruction is natively supported by the target processor.
-
-The \texttt{rvexISelDAGToDag} class is used to match LLVM IR instructions to instructions of the target processor. The bulk of this class is generated automatically from the tablegen description but instructions can also be matched manually.
+\subsection{Instruction Lowering}
+The \texttt{rvexISelLowering} class gives a high level description of the operations that are supported by the target processor. The class can describe how the compiler should handle each LLVM IR instruction using four parameters: Legal, Expand, Promote or Custom. The default option is Legal which implies that the LLVM IR instruction is natively supported by the target processor.
 
 \subsubsection{Expanded instructions}
 The Expand flag is used to indicate that the compiler should try to expand the instruction into simpler instructions. 
-For example consider the LLVM IR UMUL\_LOHI instruction. This instruction multiplies two values of type iN and returns a result of type i[2*N]. Through expansion this instruction will be transformed into two mult instructions that calculate the low part and the high part separately.
+For example consider the LLVM IR \texttt{UMUL\_LOHI} instruction. This instruction multiplies two values of type \texttt{iN} and returns a result of type \texttt{i[2*N]}. Through expansion this instruction will be transformed into two mult instructions that calculate the low part and the high part separately.
 
 \begin{lstlisting}[language=c] 
 setOperationAction(ISD::UMUL_LOHI,  MVT::i32, Expand);
@@ -177,19 +184,29 @@ There are some instructions that cannot be expanded automatically by the compile
 setOperationAction(ISD::MULHS,      MVT::i32, Custom);
 \end{lstlisting}
 
-When a MULHS instruction is parsed the compiler will execute a function that describes the sequence of operations to lower this instruction. This sequence of instructions is implemented in the \texttt{LowerMULHS} function of the \texttt{rvexISelLowering} class. The LowerMULHS function is used to manually traverse the DAG and insert a sequence of instructions to support the operation.
+When a MULHS instruction is parsed the compiler will execute a function that describes the sequence of operations to lower this instruction. This sequence of instructions is implemented in the \texttt{LowerMULHS} function of the \texttt{rvexISelLowering} class. The \texttt{LowerMULHS} function is used to manually traverse the DAG and insert a sequence of instructions to support the operation.
 
 For each instruction that requires custom lowering a \texttt{LowerXX} function has been defined.
 
+\subsection{Instruction selection}
+After instruction lowering the DAG contains LLVM IR operations and types that are all supported by the target processor but the DAG still contains only LLVM IR operations and no target-specific operations. The \texttt{rvexISelDAGToDag} class is used to match LLVM IR instructions to instructions of the target processor. The bulk of this class is generated automatically from the \texttt{tablegen} description but instructions can also be matched manually.
+
 \subsection{New instructions}
-The $\rho$-VEX processor supports some instrruction that have no equivalent LLVM ISD operation. These instructions include \texttt{divs}, \texttt{addcg}, \texttt{min}, \texttt{max}, and others. The rvexISelLowering class is used to define when these instructions need to be used.
+The $\rho$-VEX processor supports some instruction that have no equivalent LLVM ISD operation. These instructions include \texttt{divs}, \texttt{addcg}, \texttt{min}, \texttt{max}, and others. Two stages are required to add support for these operations:
 
-For example consider the divide operation. The $\rho$-VEX processor supports division in steps using the divs instruction. The divs instructions executes a single step of a division algorithm. The algorithm that performs division and that uses the divs instruction is implemented in the rvexISelLowering class as a custom expansion of the LLVM div instruction.
+\begin{enumerate}
+  \item \textbf{Extend ISD namespace:} The new instructions will be added to the ISD namespace. This means that the LLVM IR will be \emph{extended} with the new instructions.
+  \item \textbf{Instruction lowering:} Describe when these instruction should be inserted in the LLVM IR. For example, lowering of the LLVM IR \texttt{div} instruction uses a custom lowering function to describe the algorithm that uses the $\rho$-VEX \texttt{divs} instruction.
+  \item \textbf{Instruction matching:} New pattern matching rules need to be defined that map a custom instruction from the extended ISD namespace to the final target-specific $\rho$-VEX instructions.
+\end{enumerate}
 
-At this point the compiler knows how to use the custom instructions but still does not know how to select and match the custom instructions. The tablegen instruction description files are used to define the custom instructions. First the operand types for a custom instruction are defined. The following code shows the definition for the \texttt{addcg} instruction that has five operands. 
+For this example we are going to consider the $\rho$-VEX \texttt{divs} instruction.
 
-\begin{lstlisting}
-def SDT_rvexAddc          : SDTypeProfile<2, 3
+\subsubsection{Extend ISD namespace}
+The ISD namespace can be extended with custom by defining the instruction type and the instruction name. Because the \texttt{divs} instruction uses five operands a custom instruction type will be used. The following code shows the definition for the custom instruction type. This type describes an instruction that produces two results and consumes three operands.
+
+\begin{lstlisting}[language=tblgen]
+def SDT_rvexDivs          : SDTypeProfile<2, 3
                                           [SDTCisSameAs<0, 2>,
                                           SDTCisSameAs<0, 3>,
                                           SDTCisInt<0>, SDTCisVT<0, i32>,
@@ -197,20 +214,26 @@ def SDT_rvexAddc          : SDTypeProfile<2, 3
                                           SDTCisInt<1>, SDTCisVT<1, i1>]>;
 \end{lstlisting}
 
-The next step involves defining the name of the custom instruction. The instruction is defined as a custom SelectionDAG node and uses the instruction type that has been defined earlier. This operation expands the LLVM ISD namespace with custom operations that are only available in the $\rho$-VEX backend.
+The next step involves defining the name of the custom instruction. The instruction is defined as a custom \texttt{SDNode} and uses the instruction type that has been defined earlier. This operation expands the LLVM ISD namespace with custom operations that are only available in the $\rho$-VEX backend.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=tblgen]
 def rvexDivs              : SDNode<"rvexISD::Divs", SDT_rvexAddc>;
 \end{lstlisting}
 
-With the custom instruction named we can now define a custom instruction class. Note that the instruction pattern that is used for matching is empty. This is because the current version of tablegen has no support for instructions that define multiple values. Custom selection will be used for matching of these instructions.
+\subsubsection{Instruction lowering}
+The \texttt{rvexISelLowering} class is extended with functions that produce the new ISD operation. For this example LLVM IR \texttt{div} instruction is custom lowered in the \texttt{LowerDIVS} function. In this function an algorithm is implemented that uses the new \texttt{divs} SDNode.
 
-\begin{lstlisting}
+After instruction lowering a DAG will have been produced that contains only legal ISD operations and the new ISD operations that have been defined earlier.
+
+\subsubsection{Instruction selection}
+The following code describes the instruction class that is used by the \texttt{divs} instruction. This class describes the instruction string, register class properties and certain scheduling properties of this instruction. Note that the instruction pattern is empty because the current version of \texttt{tablegen} has no support for instructions that produce multiple results. A custom pattern matching function will need to be implemented in the \texttt{rvexISelDAGToDAG} class.
+
+\begin{lstlisting}[language=tblgen]
 class ArithLogicC<bits<8> op, string instr_asm, SDNode OpNode,
                   InstrItinClass itin, RegisterClass RC, RegisterClass BRRegs, bit isComm = 0, CType type>:
   FA<op, (outs RC:$ra, BRRegs:$co), (ins RC:$rb, RC:$rc, BRRegs:$ci),
      !strconcat(instr_asm, "\t$ra, $co = $rb, $rc, $ci"),
-     [//EMPTY], itin, type> {
+     [], itin, type> {        // Note empty instruction matching pattern
   let shamt = 0;
   let isCommutable = isComm;  // e.g. add rb rc =  add rc rb
   let isReMaterializable = 1;
@@ -219,15 +242,15 @@ class ArithLogicC<bits<8> op, string instr_asm, SDNode OpNode,
 
 The last step is to define the properties of the custom instruction.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=tblgen]
 def rvexDIVS    : ArithLogicC<0x13, "divs ", rvexDivs, IIAlu, CPURegs, BRRegs, 1, TypeIIAlu>;
 \end{lstlisting}
 
-The \texttt{rvexISelDAGToDAG} class is used to define the custom instruction selection patterns. This class implements the pattern matching code that is generated from the tablegen description files. The class has a separate \texttt{select} function to match instructions that have no pattern matching rules defined.
+The \texttt{rvexISelDAGToDAG} class is used to define the custom instruction selection patterns. This class implements the pattern matching code that is generated from the \texttt{tablegen} description files. The class has a separate \texttt{select} function to match instructions that have no pattern matching rules defined.
 
-The select function uses switch statements to select between custom SDNodes. The following function implements the pattern matching rule for the divs instruction that replaces the \texttt{divs} with the $\rho$-VEX instruction \texttt{rvexDIVS}. The rvexDIVS instruction has been defined earlier in the tablegen description files.
+The select function uses switch statements to select between custom \texttt{SDNodes}. The following function implements the pattern matching rule for the \texttt{divs} instruction that replaces the extended ISD \texttt{divs} instruction with the $\rho$-VEX instruction \texttt{rvexDIVS}. The \texttt{rvexDIVS} instruction has been defined earlier in the \texttt{tablegen} description files.
 
-\begin{lstlisting}   
+\begin{lstlisting}[language=C++]   
   case rvexISD::Divs: {
     SDValue LHS = Node->getOperand(0);
     SDValue RHS = Node->getOperand(1);
@@ -238,9 +261,10 @@ The select function uses switch statements to select between custom SDNodes. The
   }
 \end{lstlisting}
 
-Some instructions, such as the SHXADD instructions, are easier to support and do not need custom lowering. These instructions are also defined with empty pattern matching rules so the compiler will never insert them automatically. However the SHXADD instruction is easier to support because we can also match an instruction to a sequence of instructions. The following code describes a rule to replace the sequence \texttt{ADD (LHS\textless\textless1), RHS} with \texttt{SH1ADD LHS, RHS}.
+\subsubsection{Other cases}
+Some $\rho$-VEX specific instructions, such as the SHXADD instructions, are easier to support and do not need custom lowering. These instructions are also defined with empty pattern matching rules so the compiler will never insert them automatically. However the SHXADD instruction is easier to support because we can also match an instruction to a sequence of instructions. The following code describes a rule to replace the sequence \texttt{ADD (LHS\textless\textless1), RHS} with \texttt{SH1ADD LHS, RHS}.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=tblgen]
 def : Pat<(add (shl CPURegs:$lhs, (i32 1)), CPURegs:$rhs),
           (SH1ADD CPURegs:$lhs, CPURegs:$rhs)>;
 \end{lstlisting}
@@ -251,19 +275,19 @@ $\rho$-VEX processor does not natively support floating-point instructions. Inst
 The LLVM compiler uses library functions that are compatible with the GCC Soft-FP library. The LLVM compiler-RT library is compatible with the GCC soft-FP library and is used for execution of FP instructions. Compiler-RT is a runtime library developed for LLVM that provides for these library functions.
 
 \subsection{Scheduling}
-During the scheduling pass the SDNodes are transformed into a sequential list form. Different schedulers are available for different processor types. For instance the register pressure scheduler will always try to keep the register pressure minimal which works better for x86 type processors.
+During the scheduling pass the SDNodes are transformed into a sequential list form. Different schedulers are available for different processor types. For instance the register pressure scheduler will always try to keep the register pressure minimal which works better for x86 type processors. For the $\rho$-VEX processor a VLIW scheduler is used.
 
 The list still does not contain valid assembly instructions. Virtual SSA based registers are still used and all the stack references do not reference true offsets.
 
 \subsection{Register allocation}
 During register allocation the virtual registers are mapped to available physical registers of the target processor. The register allocator considers the calling convention, reserved registers and special hardware registers during allocation. In addition the register allocator also inserts spill code when a register mapping is not available.
 
-Liveness analysis is used to determine which virtual registers are used at a certain time. The liveness of virtual registers can be determined easily through the SSA based form of the input DAG. Multiple register allocation algorithms are available. All algorithms operate on the liveness information.
+Liveness analysis is used to determine which virtual registers are used at a certain time. The liveness of virtual registers can be determined easily through the SSA based form of the input list. Multiple register allocation algorithms are available. All algorithms operate on the liveness information.
 
 \subsection{Hazard recognizer}
 The $\rho$-VEX processor has no way to recognize hazards or halt execution of code for a cycle. Because of this the correct scheduling of instructions is important for correct execution. Consider the following sequence of code:
 
-\begin{lstlisting}
+\begin{lstlisting}[language=rvex]
   ldw $r0.2 = 0[$r0.2]  # Load from main memory
 ;;
   add $r0.2 = $r0.2, 2  # Add 2 to register
@@ -272,48 +296,26 @@ The $\rho$-VEX processor has no way to recognize hazards or halt execution of co
 
 After execution the register r0.2 will contain an undefined value because the load instruction has not completed execution. The compiler needs to insert an instruction or nop between the load and add instruction for correct execution. The correct instruction sequence should be the following:
 
-\begin{lstlisting}
-  ldw $r0.2 = 0[$r0.2]  # Load from main memory
+\begin{lstlisting}[language=rvex]
+  ldw $r0.2 = 0[$r0.2]  ## Load from main memory
 ;;
-                        # Empty instruction
+                        ## Empty instruction
 ;;
-  add $r0.2 = $r0.2, 2  # Add 2 to register
-;;
-\end{lstlisting}
-
-A Post Register Allocation scheduler is used to reschedule code and insert nops when required. The Post-RA scheduler uses a the \texttt{ScheduleHazardRecognizer} class to recognize hazards. The \texttt{ScheduleHazardRecognizer} class uses the pipeline description to recognize structural hazards such as pipeline or resource constraint. If a hazards has been found the Post-RA scheduler will try to insert an alternative instruction. If this is not possible the processor pipeline will be stalled. The $\rho$-VEX processor has no support for hardware stalls so \texttt{nop} instructions should be inserted when a hazard occurs.
-
-The $\rho$-VEX processor has a 1 cycle delay between defining a branch register and using a branch register. The hazard recognizer has been customized to insert \texttt{nop} instruction proceeding each branch instruction. This solution is not optimal because the empty instruction could also be used to execute an instruction that is not dependent on the proceeding instructions. Unfortunetely this proved impossible to implement in the current version of the LLVM compile because it is not possible to specify a delay between specific instruction classes
-
-The following instruction sequence illustrates the current solution: 
-
-\begin{lstlisting}
-  c0  cmpgt   $b0.0, $r0.2, 9
-;;
-
-;;
-  c0  br    $b0.0, .BB0_3
+  add $r0.2 = $r0.2, 2  ## Add 2 to register
 ;;
 \end{lstlisting}
 
-The following code uses select instruction instead of branch instruction and does not need the 1 cycle delay between instructions:
-
-\begin{lstlisting}
-  c0  cmpgt   $b0.0, $r0.2, 9
-;;
-  c0  slct    $r0.1 = $b0.0, $r0.2, $r0.3 
-;;
-\end{lstlisting}
+The \texttt{ScheduleHazardRecognizer} is only able to resolve structural hazards, not data hazards. In chapter \ref{chap:optimization} we will describe how the hazard recognizer has been combined with a new scheduling algorithm to resolve both data and structural hazards.
 
 \subsection{Prologue and epilogue insertion}
-After the register allocation pass prologue en epilogue functions can be calculated. The prologue and epilogue pass is used calculate the correct stack offset for each variable. Code is inserted that reserves room on the stack and saves / loads variables from the stackframe.
+After the register allocation pass the prologue en epilogue functions can be inserted. The prologue and epilogue pass is used calculate the correct stack offset for each variable. Code is inserted that reserves room on the stack and saves / loads variables from the stackframe.
 
 \subsection{VLIW Packetizer}
 The packetizer pass is an optional pass that is used for VLIW targets. The packetizer receives a list of sequential machine instructions that need to be bundled for VLIW processors. 
 
-The tablegen pipeline definition is used to build a DFA that represents the resource usage of the processor. The DFA can be used to determine to which functional unit an instruction can be mapped and if enough functional units are available.
+The \texttt{tablegen} pipeline definition is used to build a DFA that represents the resource usage of the processor. The DFA can be used to determine to which functional unit an instruction can be mapped and if enough functional units are available.
 
-The DFA representation is powerful enough to consider different properties of functional units. For example consider a 4 issue width VLIW processor but with only units supporting load / store operations. The DFA can model this pipeline and guarantee only 1 load / store instruction will be executed per clock cycle.
+The DFA representation is powerful enough to consider different properties of functional units. For example consider a 4-issue width VLIW processor but with only one unit supporting load / store operations. The DFA can model this pipeline and guarantee only one load / store instruction will be executed per clock cycle.
 
 The VLIW packetizer also checks if certain instructions are legal to bundle together. The packetizer can be customized to check for hazards such as data dependency hazards, anti dependencies and output dependencies. Custom hazards can also be inserted to make sure that control flow instructions are always in a single bundle.
 
@@ -323,7 +325,7 @@ This section describes features that have been added to the LLVM compiler. Curre
 \subsection{Generic binary support}
 By disallowing RAW hazards in instruction bundles, binaries can be generated that can execute on any $\rho$-VEX processor irrespective of issue width. For example consider the following instruction packet. The RAW hazard will occur on the r0.8 register.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=rvex]
   add $r0.10  = $r0.10, $r0.11
   add $r0.12  = $r0.12, $r0.13
   add $r0.14  = $r0.14, $r0.8
@@ -331,14 +333,14 @@ By disallowing RAW hazards in instruction bundles, binaries can be generated tha
 ;; 
 \end{lstlisting}
 
-Execution of this processor on a 4 issue width processor will be fine but if this instruction is executed on a 2 issue width processor a problem will arise. The contents of register r0.8 will be changed during execution of the first bundle and execution of the second bundle will produce an invalid result.
+Execution of this code on a 4-issue width processor will be fine but if this instruction is executed on a 2-issue width processor a problem will arise. The contents of register r0.8 will be changed during execution of the first bundle and execution of the second bundle will produce an invalid result.
 
 This bundle should be split into two instructions during compilation. This can be achieved by checking for RAW hazards inside a bundle during the VLIW packetizer pass. The VLIW packetizer will detect these hazards and split the instructions into different bundles so correct execution is guaranteed.
 
 \subsection{Compiler parameterization}
-The HP VEX compiler supports a machine description file that describes properties of the processor. Using this machine description certain parameters, such as issue width, multiply units, load / store units and branch units, can be customized during runtime. 
+The HP VEX compiler supports a machine description file that describes properties of the processor. Using this machine description certain parameters, such as issue width, multiply units, load / store units, and branch units can be customized. 
 
-Currently runtime reconfiguration is supported through subtarget support. Backend features can be enabled and disabled through command line parameters. The ARM backend uses this approach to select between different ARMv7 architectures, floating point support and div/mul support. This approach would not be useful for the $\rho$-VEX processor because of the amount of features that can be customized. Each customizable feature would need a new subtarget. For example, when four features can be customized (W, X, Y and Z), then $W*X*Y*Z$ subtargets would be needed. Clearly this approach is not usable for the $\rho$-VEX processor where multiple parameters can be customized with a wide range of possibilities.
+Currently the LLVM compiler supports parameterization through subtarget support. Backend features can be enabled and disabled with command line parameters. The ARM backend uses this approach to select between different ARMv7 architectures, floating point support and div/mul support. This approach would not be useful for the $\rho$-VEX processor because of the amount of features that can be customized. Each customizable feature would need a new subtarget. For example, when four features can be customized (W, X, Y and Z), then $W*X*Y*Z$ subtargets would be needed. Clearly this approach is not usable for the $\rho$-VEX processor where multiple parameters can be customized with a wide range of possibilities.
 
 A different approach is used that changes the target description during runtime of the compiler. The target processor features are described in the \texttt{rvexMCTargetDesc} class. During runtime a machine description file will be read parsed and information from this machine description will be used to update the \texttt{rvexMCTargetDesc} class. 
 
@@ -347,34 +349,33 @@ The following properties can be customized through the machine description file:
 \begin{itemize}
   \item \textbf{Generic binary:} disable RAW hazard check in VLIW packetizer
   \item \textbf{Width:} issue width of the processor
-  \item \textbf{Stages:} Describes all the available functional units an the delay associated with a functional unit
-  \item \textbf{Instruction itinerary:} Maps an instruction itinerary to a function unit
+  \item \textbf{Stages:} describes all the available functional units an the amount of cycles an instruction fills a functional unit.
+  \item \textbf{Instruction itinerary:} maps an instruction itinerary to a function unit. Also describes at what cycle the output contains a legal value.
 \end{itemize}
 
-The parameters are also used to generate the DFA that will track the resource unit. During the translation of the tablegen file an algorithm is used to generate a DFA from the available functional units. This algorithm has been implemented in the \texttt{rvexMCTargetDesc} class.
-
-<MOET IK HET ALGORITHME VERMELDEN EN UITLEGGEN?>
+The parameters are also used to generate the DFA that will track the resource usage. During the translation of the \texttt{tablegen} file an algorithm is used to generate a DFA from the available functional units. This algorithm has been implemented in the \texttt{rvexMCTargetDesc} class.
 
 The location of the machine description file is passed to the \texttt{rvexMCTargetDesc} through command line parameters. Custom command line parameters can be implemented in LLVM using \texttt{cl::opt} templates.
 
-Some parameters such as the toggling of generic binary support is not handled through the \texttt{rvexMCTargetDesc} file. These parameters are used to set global state flags that can be read during anypoint in the compilation process. The \texttt{Is\_Generic\_flag} is used during the \texttt{rvexVLIWPacketizer} pass and during the liveliness calculation pass.
+Some parameters such as the toggling of generic binary support is not handled through the \texttt{rvexMCTargetDesc} file. These parameters are used to set global state flags that can be read at anypoint in the compilation process. The \texttt{Is\_Generic\_flag} is used during the \texttt{rvexVLIWPacketizer} pass and during the liveliness calculation pass.
 
 The following code demonstrates the config file for a 4 issue width  $\rho$-VEX processor with support for generic binaries. The \texttt{Stages} parameter uses three values. The first value describes the amount of clock cycles a instruction occupies a functional unit the second parameter is a bitmask for which functional unit can handle this instruction. The third paramater is currently not used.
 
 The \texttt{InstrItinerary} parameter describes which type of instruction maps to which \texttt{Stage}. The first value describes which Stage an instruction is going to use, the second parameter describes when the result of the operation is available.
 
-\begin{lstlisting}
-Generic  = 1;
-Width = 4; 
-Stages   = {1, 15, 1}, {1, 1, 1}, {2, 2, 1};
-InstrItinerary = {1, 2}, {1, 2}, {3, 5}, {2, 3}, 
-        {1, 2}, {1, 2};
+\begin{lstlisting}[language=config]
+Generic         = 1;
+Width           = 4; 
+Stages          = {1, 15, 1}, {1, 1, 1}, {2, 2, 1};
+InstrItinerary  = {1, 2}, {1, 2}, {3, 5}, {2, 3}, {1, 2}, {1, 2};
 \end{lstlisting}
 
-
+The compiler parameterization feature can be easily ported to other LLVM backends. The only part that has changed is the \texttt{rvexMCTargetDesc} class. 
 
 \section{Conclusion}
-In this section we have shown how the $\rho$-VEX backend for the LLVM compiler has been implemented. A short description has been provided on how the Tablegen features are used for description of the a backend. We have shown how the $\rho$-VEX processor has been described in Tablegen and how the different passes have been implemented. All the phases that are involved with code generation have been discussed.
+In this section we have shown how the $\rho$-VEX backend for the LLVM compiler has been implemented. A short description has been provided on how the \texttt{tablegen} features are used for description of the a backend. We have shown how the $\rho$-VEX processor has been described in \texttt{tablegen} and how the different passes have been implemented. All the phases that are involved with code generation have been discussed.
+
+Support for floating point operations has been added by porting the LLVM floating point library to the $\rho$-VEX processor.
 
 Certain features that are required for the $\rho$-VEX processor are not available in the LLVM compiler. Features such as a machine description file are new to LLVM and we have shown what changes have been made to the LLVM compiler to support machine description files. In addition we have shown how the backend has been updated to provide support for the $\rho$-VEX generic binary format.
 

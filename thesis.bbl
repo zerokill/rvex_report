@@ -82,4 +82,9 @@ C.~Lattner, ``The llvm compiler framework and infrastructure (part 1),''
 S.~W. Anthony~Brandon, ``Support for dynamic issue width in vliw processors
   using generic binaries,'' \emph{EDAA}, 2013.
 
+\bibitem{Jeff-Scott:1998fj}
+J.~A. B.~M. Jeff~Scott, Lea Hwang~Lee, ``Designing the low-power m*core
+  architecture,'' in \emph{Proc. IEEE Power Driven Microarchitecture Workshop},
+  1998.
+
 \end{thebibliography}

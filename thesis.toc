@@ -27,39 +27,51 @@
 \contentsline {subsection}{\numberline {3.1.2}Pipeline definition}{17}{subsection.3.1.2}
 \contentsline {subsection}{\numberline {3.1.3}Other specifications}{18}{subsection.3.1.3}
 \contentsline {section}{\numberline {3.2}Code generation}{18}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Instruction selection}{18}{subsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.1.1}Expanded instructions}{19}{subsubsection.3.2.1.1}
-\contentsline {subsubsection}{\numberline {3.2.1.2}Promote instruction}{19}{subsubsection.3.2.1.2}
-\contentsline {subsubsection}{\numberline {3.2.1.3}Custom expansion}{19}{subsubsection.3.2.1.3}
-\contentsline {subsection}{\numberline {3.2.2}New instructions}{19}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Floating-point operations}{21}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Scheduling}{21}{subsection.3.2.4}
-\contentsline {subsection}{\numberline {3.2.5}Register allocation}{21}{subsection.3.2.5}
-\contentsline {subsection}{\numberline {3.2.6}Hazard recognizer}{21}{subsection.3.2.6}
-\contentsline {subsection}{\numberline {3.2.7}Prologue and epilogue insertion}{22}{subsection.3.2.7}
-\contentsline {subsection}{\numberline {3.2.8}VLIW Packetizer}{23}{subsection.3.2.8}
-\contentsline {section}{\numberline {3.3}New LLVM features}{23}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Generic binary support}{23}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.2.1}Instruction transformation}{18}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Instruction Lowering}{19}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Expanded instructions}{19}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Promote instruction}{19}{subsubsection.3.2.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.3}Custom expansion}{19}{subsubsection.3.2.2.3}
+\contentsline {subsection}{\numberline {3.2.3}Instruction selection}{20}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}New instructions}{20}{subsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Extend ISD namespace}{20}{subsubsection.3.2.4.1}
+\contentsline {subsubsection}{\numberline {3.2.4.2}Instruction lowering}{21}{subsubsection.3.2.4.2}
+\contentsline {subsubsection}{\numberline {3.2.4.3}Instruction selection}{21}{subsubsection.3.2.4.3}
+\contentsline {subsubsection}{\numberline {3.2.4.4}Other cases}{22}{subsubsection.3.2.4.4}
+\contentsline {subsection}{\numberline {3.2.5}Floating-point operations}{22}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Scheduling}{22}{subsection.3.2.6}
+\contentsline {subsection}{\numberline {3.2.7}Register allocation}{22}{subsection.3.2.7}
+\contentsline {subsection}{\numberline {3.2.8}Hazard recognizer}{23}{subsection.3.2.8}
+\contentsline {subsection}{\numberline {3.2.9}Prologue and epilogue insertion}{23}{subsection.3.2.9}
+\contentsline {subsection}{\numberline {3.2.10}VLIW Packetizer}{23}{subsection.3.2.10}
+\contentsline {section}{\numberline {3.3}New LLVM features}{24}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Generic binary support}{24}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Compiler parameterization}{24}{subsection.3.3.2}
 \contentsline {section}{\numberline {3.4}Conclusion}{25}{section.3.4}
 \contentsline {chapter}{\numberline {4}Optimization}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Generic binary optimization}{27}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Problem statement}{27}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Implementation}{28}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Large immediate values}{29}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Problem statement}{29}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}implementation}{29}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Conclusion}{30}{section.4.3}
-\contentsline {chapter}{\numberline {5}Verification and Results}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Verification}{31}{section.5.1}
-\contentsline {section}{\numberline {5.2}Benchmark results}{31}{section.5.2}
-\contentsline {section}{\numberline {5.3}Generic binary}{31}{section.5.3}
-\contentsline {section}{\numberline {5.4}Conclusion}{31}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusion}{33}{chapter.6}
-\contentsline {chapter}{Bibliography}{35}{Item.16}
-\contentsline {chapter}{List of Definitions}{37}{Item.16}
-\contentsline {chapter}{\numberline {A}LLVM Quickstart guide}{39}{appendix.A}
-\contentsline {section}{\numberline {A.1}LLVM toolchain}{39}{section.A.1}
-\contentsline {section}{\numberline {A.2}XSTsim}{39}{section.A.2}
-\contentsline {chapter}{\numberline {B}LLVM Development guide}{41}{appendix.B}
-\contentsline {section}{\numberline {B.1}Building LLVM from source}{41}{section.B.1}
+\contentsline {section}{\numberline {4.1}Machine scheduler}{27}{section.4.1}
+\contentsline {section}{\numberline {4.2}Branch analysis}{29}{section.4.2}
+\contentsline {section}{\numberline {4.3}Generic binary optimization}{30}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Problem statement}{30}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Implementation}{31}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Large immediate values}{31}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Problem statement}{32}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}implementation}{32}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Conclusion}{32}{section.4.5}
+\contentsline {chapter}{\numberline {5}Verification and Results}{35}{chapter.5}
+\contentsline {section}{\numberline {5.1}Verification}{35}{section.5.1}
+\contentsline {section}{\numberline {5.2}Benchmark results}{36}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}General performance}{37}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}Generic binary}{39}{section.5.3}
+\contentsline {section}{\numberline {5.4}Conclusion}{42}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion}{45}{chapter.6}
+\contentsline {section}{\numberline {6.1}Summary}{45}{section.6.1}
+\contentsline {section}{\numberline {6.2}Main contributions}{46}{section.6.2}
+\contentsline {section}{\numberline {6.3}Future work}{46}{section.6.3}
+\contentsline {chapter}{Bibliography}{49}{Item.20}
+\contentsline {chapter}{List of Definitions}{51}{Item.20}
+\contentsline {chapter}{\numberline {A}LLVM Quickstart guide}{53}{appendix.A}
+\contentsline {section}{\numberline {A.1}LLVM toolchain}{53}{section.A.1}
+\contentsline {section}{\numberline {A.2}XSTsim}{53}{section.A.2}
+\contentsline {chapter}{\numberline {B}LLVM Development guide}{55}{appendix.B}
+\contentsline {section}{\numberline {B.1}Building LLVM from source}{55}{section.B.1}

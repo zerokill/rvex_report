@@ -1,3 +1,56 @@
 \chapter{Conclusion}
 \label{chap:conclusion}
+
+\section{Summary}
+In chapter \ref{chap:background} we discussed the background of the $\rho$-VEX processor and the basics of the LLVM compiler framework. Instructions that are supported by the $\rho$-VEX processor have been shown, the run-time architecture has been discussed and the register layout of the $\rho$-VEX processor has been discussed. The background information on the LLVM compiler should provide for a basic understanding on how the compiler operates and what parts need to be implemented to build a $\rho$-VEX backend.
+
+Finally we have also discussd how the LLVM compiler will be verified. The verification step is extremely important to determine wheter the binaries that are generated work correctly.
+
+Chapter \ref{chap:implementation} discussed how the LLVM-based compiler has been implemented. A short description has been provided on how the Tablegen features are used for description of the a backend. We have shown how the $\rho$-VEX processor has been described in Tablegen and how the different passes have been implemented. All the phases that are involved with code generation have been discussed.
+
+Certain features that are required for the $\rho$-VEX processor are not available in the LLVM compiler. Features such as a machine description file are new to LLVM and we have shown what changes have been made to the LLVM compiler to support machine description files. In addition we have shown how the backend has been updated to provide support for the $\rho$-VEX generic binary format.
+
+The chapter \ref{chap:optimization} discussed the optimizations that have been implemented to improve performance of the $\rho$-VEX binaries.
+
+The \texttt{rvexMachineScheduler} pass is used to handle structural and data hazards. Temporary instruction packets are generated and are filled with instructions that have been selected using cost based scheduling algorithms to reduce register pressure. The pass enables $\rho$-VEX binaries to execute correclty and to perform better then binaries that have not been scheduled using the \texttt{rvexMachineScheduler}.
+
+The branch analysis optimization is used to erase unnecessary \texttt{goto} statements from the code. In addition hooks have been provided that allow the LLVM \texttt{BranchFolding} pass to further optimize branches that are used in $\rho$-VEX binaries. The generic binary optimization allows binaries with generic binary support to perform on par with regular binaries. The performance of generic binaries will only degrade once the register pressure becomes too high and spill code needs to be inserted. The immediate value optimization allows more efficient use of available instructions of the  $\rho$-VEX processor.
+
+Finally in chapter \ref{chap:results} we have shown how the operation of the LLVM-based compiler has been verified and how well binaries execute that have been generated with the LLVM-based compiler.
+
+The benchmarks and verifications have shown that the LLVM-based compiler still contains bugs. Not all benchmarks are able to execute using the Modelsim simulator but all benchmarks are able to execute using the XSTsim simulator. This indicates that there are probably scheduling issues in the assembly that is generated.
+
+We have shown that the LLVM-based compiler exceeds the performance of the GCC-based compiler but the compiler is still outperformed by the HP-based compiler. As expected the HP-based compiler generates binaries that perform very well. This is probably related to the trace based scheduling techniques that are employed to extract a high level of ILP. In addition the HP-based compiler also performs certain optimizations that are not available to the LLVM-based compiler at \texttt{-O0}.
+
+Additionally the benchmarks have also shown that the LLVM-based compiler is the only compiler able to generate correct code for all selected benchmarks. Surprisingly, even the HP-based compiler generates incorrect binaries for certain benchmarks. The code quality of the GCC-based compiler is bad with four benchmarks failing to execute.
+
+Further we have also shown that the generic binary optimization allows generic binaries to operate at speeds that are nearly equel to the regular binaries. The generic binary optimization does introduce spill code in benchmarks that already use a large number of physical registers.
+
+\section{Main contributions}
+The following parts have been contributed to the $\rho$-VEX project:
+
+\begin{itemize}
+	\item LLVM-based $\rho$-VEX compiler.
+	\begin{itemize}
+		\item Floating point support.
+		\item 64-bit integer support
+	\end{itemize}
+	\item Parameterization of LLVM-based compilers.
+	\item Support for generic binaries.
+	\item Scheduling optimizations that improve performance of regular binaries.
+	\item Register allocation optimization that improves performance of generic binaries
+\end{itemize}
+
+\section{Future work}
+Future work for the LLVM-based $\rho$-VEX could involve the following subjects.
+
+\begin{itemize}
+	\item \textbf{Enhance parameterization:} At the moment only issue width, instruction stages and instruction delay can be customized through config files. In the future more configuration options can be added such as number of registers available or scheduling parameters.
+
+	\item \textbf{LLVM JIT:} The LLVM compiler support Just-In-Time compilation through the LLVM interpreter. Implementing the interpreter for the rvex processor could produce interesting results where binary properties can be modified during runtime. For example the interpreter could look for code with higher degree of ILP. If suitable code is found the program will be executed on an 8-issue width rvex processor. If suitable code is not found the issue width could be reduced to 2- or 4-issue code and the idle functional units can be shut down to preserve energy.
+
+	\item \textbf{Trace based scheduling:} Currently the LLVM compiler uses a basic block scheduler. Introducing a trace based scheduler could further improve performance of binaries for VLIW type processors.
+
+\end{itemize}
+
 \acresetall

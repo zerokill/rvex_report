@@ -10,53 +10,51 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: biblio.bib
 Database file #2: bibdesk.bib
 Warning--entry type for "clang:features" isn't style-file defined
---line 52 of file bibdesk.bib
+--line 161 of file bibdesk.bib
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Name 1 in "Olatunji Ruwase, Chris Lattner, Vikram Adve, and David Koes, Gennady Pekhimenko" has a comma at the end for entry llvm:presentation
-while executing---line 2419 of file IEEEtran.bst
 
 Done.
-You've used 6 entries,
+You've used 19 entries,
             4039 wiz_defined-function locations,
-            850 strings with 8363 characters,
-and the built_in function-call counts, 3981 in all, are:
-= -- 311
-> -- 97
-< -- 28
-+ -- 53
-- -- 18
-* -- 192
-:= -- 629
-add.period$ -- 12
-call.type$ -- 6
-change.case$ -- 6
+            924 strings with 10329 characters,
+and the built_in function-call counts, 9163 in all, are:
+= -- 735
+> -- 203
+< -- 31
++ -- 103
+- -- 43
+* -- 390
+:= -- 1577
+add.period$ -- 37
+call.type$ -- 19
+change.case$ -- 15
 chr.to.int$ -- 66
-cite$ -- 6
-duplicate$ -- 282
-empty$ -- 317
-format.name$ -- 21
-if$ -- 888
+cite$ -- 19
+duplicate$ -- 722
+empty$ -- 829
+format.name$ -- 52
+if$ -- 2042
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 55
-newline$ -- 43
-num.names$ -- 6
-pop$ -- 127
+int.to.str$ -- 19
+missing$ -- 142
+newline$ -- 82
+num.names$ -- 19
+pop$ -- 352
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 308
+skip$ -- 733
 stack$ -- 0
-substring$ -- 159
-swap$ -- 223
-text.length$ -- 6
+substring$ -- 178
+swap$ -- 482
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 6
+type$ -- 19
 warning$ -- 0
-while$ -- 17
-width$ -- 7
-write$ -- 78
-(There was 1 error message)
+while$ -- 32
+width$ -- 21
+write$ -- 184
+(There was 1 warning)

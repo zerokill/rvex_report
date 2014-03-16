@@ -1,4 +1,34 @@
 \chapter{LLVM Development guide}
-asd
+This section describes how to build LLVM from source. The following software is required:
+
+\begin{itemize}
+	\item \textbf{Compiler:} A compiler is obviously required to build LLVM. On Linux LLVM can be compiled with LLVM and GCC. Mac users can build LLVM using LLVM.
+	\item \textbf{CMAKE:} CMAKE is required to generate the build files for LLVM.
+	\item \textbf{git:} Required to get the source files
+\end{itemize}
+
+The source files can be downloaded from the following repository:
+
+\begin{lstlisting}
+	git@github.com:zerokill/lbd.git
+\end{lstlisting}
+
 \section{Building LLVM from source}
-asd
+CMAKE is used to generate the build scripts for LLVM. On Mac systems the following command is used to generate a \emph{xcode} project that can build LLVM:
+
+\begin{lstlisting}
+	mkdir build
+	cd build
+	cmake -G "Xcode" ../lbd/ -DLLVM_TARGETS_TO_BUILD="rvex"
+\end{lstlisting}
+
+\begin{itemize}
+	\item \texttt{../lbd/:} Points to the LLVM source directory
+	\item \texttt{-DLLVM\_TARGETS\_TO\_BUILD:} Selects the target architectures that should be supported. Multiple architectures are possible.
+\end{itemize}
+
+LLVM can be build using the following command:
+
+\begin{lstlisting}
+	make vex\_llc
+\end{lstlisting}

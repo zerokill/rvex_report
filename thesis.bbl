@@ -22,8 +22,8 @@
 \BIBdecl
 
 \bibitem{John-L.-Hennessy:2009wq}
-D.~A.~P. John L.~Hennessy, \emph{Computer Organization and Design}.\hskip 1em
-  plus 0.5em minus 0.4em\relax Morgan Kaufmann, 2009.
+J.~L. Hennessy and D.~A. Patterson, \emph{Computer Organization and
+  Design}.\hskip 1em plus 0.5em minus 0.4em\relax Morgan Kaufmann, 2009.
 
 \bibitem{Joseph-A.-Fisher:2012rm}
 J.~A. Fisher, \emph{The VEX System}, pdf.
@@ -39,8 +39,13 @@ P.~Faraboschi, G.~Brown, J.~Fisher, G.~Desoll, and F.~Homewood, ``Lx: a
   \emph{Computer Architecture, 2000. Proceedings of the 27th International
   Symposium on}, 2000, pp. 203--213.
 
+\bibitem{Roel-Seedorf:2012qf}
+R.~Seedorf, F.~Anjam, A.~Brandon, and S.~Wong, ``Design of a pipelined and
+  parameterized vliw processor: ρ-vex v2.0,'' \emph{6th HiPEAC Workshop on
+  Reconfigurable Computing (WRC 2012)}, 2012.
+
 \bibitem{John-L.-Hennessy:2012bs}
-D.~A.~P. John L.~Hennessy, \emph{Computer Architecture, A Quantitative
+J.~L. Hennessy and D.~A. Patterson, \emph{Computer Architecture, A Quantitative
   Approach, Fifth edition}.\hskip 1em plus 0.5em minus 0.4em\relax Morgan
   Kaufmann, 2012, ch. Chapter Three: Intstruction-Level Parallelism and Its
   Exploitation, p. 244.
@@ -63,9 +68,28 @@ P.~G. Lowney, P.~G. Lowney, S.~M. Freudenberger, T.~J. Karzes, W.~D.
   vol.~7, pp. 51--142, 1993.
 
 \bibitem{Joseph-A.-Fisher:2005cr}
-C.~Y. Joseph A.~Fisher, Paolo~Faraboschi, \emph{Embedded computing: A VLIW
+J.~A. Fisher, P.~Faraboschi, and C.~Young, \emph{Embedded computing: A VLIW
   Approach to Architecture, Compilers and Tools}.\hskip 1em plus 0.5em minus
   0.4em\relax Elsevier, 2005.
+
+\bibitem{Chris-Lattner:2004lq}
+V.~A. Chris~Lattner, ``Llvm: A compilation framework for lifelong program
+  analysis \& transformation,'' \emph{Proceedings of the International
+  Symposium on Code Generation and Optimization}, 2004.
+
+\bibitem{Simpson:2011qc}
+L.~T. Simpson, ``Porting llvm to a next generation dsp,'' \emph{LLVM
+  Developers' Meeting}, 2011.
+
+\bibitem{Erhardt:2009sy}
+C.~Erhardt, ``Design and implementation of a tricore backend for the llvm
+  compiler framework,'' Master's thesis, Friedrich-Alexander-Universita ̈t
+  Erlangen-N{\"u}rnberg, 2009.
+
+\bibitem{Antani:2014om}
+L.~Antani, H.~Ansari, and A.~Parameswaran, ``Tricore port for gcc - an
+  analysis,'' Master's thesis, Indian Institute of Technology, Bombay Mumbai,
+  XXXX.
 
 \bibitem{Seedorf:2011fj}
 R.~Seedorf, ``Fingerprint verification on the vex processor,'' Master's thesis,
@@ -79,11 +103,11 @@ C.~Lattner, ``The llvm compiler framework and infrastructure (part 1),''
   Presentation.
 
 \bibitem{Anthony-Brandon:2013jk}
-S.~W. Anthony~Brandon, ``Support for dynamic issue width in vliw processors
+A.~Brandon and S.~Wong, ``Support for dynamic issue width in vliw processors
   using generic binaries,'' \emph{EDAA}, 2013.
 
 \bibitem{Jeff-Scott:1998fj}
-J.~A. B.~M. Jeff~Scott, Lea Hwang~Lee, ``Designing the low-power m*core
+J.~Scott, L.~H. Lee, J.~Arends, and B.~Moyer, ``Designing the low-power m*core
   architecture,'' in \emph{Proc. IEEE Power Driven Microarchitecture Workshop},
   1998.
 

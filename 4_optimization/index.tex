@@ -3,7 +3,8 @@
 The previous chapter described how the basic $\rho$-VEX LLVM compiler has been implemented. In this chapter we are going to discuss certain optimizations to improve the performance of binaries that are generated with the LLVM-based compiler.
 
 \section{Machine scheduler}
-A Machine Instruction scheduler is used to resolve structural and datahazards. The hazard recognizer that has been described earlier only resolves structural hazards. This means that the hazard recognizer can keep track of the functional units but it cannot keep track of data hazards between packets. The machine scheduler operates before the register allocator and is used to determine register allocation costs of each virtual register. This information is used during the register allocation pass to select a better mapping of physical registers to virtual registers that avoids expensive spills for commonly used virtual registers.
+% FIXME data-hazards?
+A Machine Instruction scheduler is used to resolve structural and data hazards. The hazard recognizer that has been described earlier only resolves structural hazards. This means that the hazard recognizer can keep track of the functional units but it cannot keep track of data hazards between packets. The machine scheduler operates before the register allocator and is used to determine register allocation costs of each virtual register. This information is used during the register allocation pass to select a better mapping of physical registers to virtual registers that avoids expensive spills for commonly used virtual registers.
 
 The Hexagon Machine scheduler has been customized to provide support for the $\rho$-VEX processor. The original Hexagon Machine Scheduler was used to perform packetization and to provide register allocation hints to the register allocator. The $\rho$-VEX machine scheduler has been enhanced with support for resolving data and structural hazards. 
 
@@ -16,10 +17,10 @@ The machine scheduler passes uses the VLIW packetization information to build te
   \item \textbf{Compare and branch operations:} 2 cycles
 \end{itemize}
 
-The machine scheduler operates in two phases: Building of an instruction queue and scheduling of the instruction queue.
-During initialization of the machine scheduler two queues are build: The pending instruction queue and the available instruction queue. The available queue contains all the instructions that are available to schedule before a structural hazard occurs. The scheduler will schedule instructions until the available queue is empty and checks for any remaining structural hazards. If this hazard exists a \texttt{nop} instruction will be inserted, otherwise nothing will be done. The machine scheduler will then load new instruction from the pending queue to the available queue until a new structural hazard occurs.
+The machine scheduler operates in two phases: building of an instruction queue and scheduling of the instruction queue.
+During initialization of the machine scheduler two queues are built: The pending instruction queue and the available instruction queue. The available queue contains all the instructions that are available to schedule before a structural hazard occurs. The scheduler will schedule instructions until the available queue is empty and checks for any remaining structural hazards. If this hazard exists, a \texttt{nop} instruction will be inserted, otherwise nothing will be done. The machine scheduler will then load new instruction from the pending queue to the available queue until a new structural hazard occurs.
 
-The scheduling phase is used to keep track of data hazards that have been scheduled in instructions. The algorithm builds temporary packets and checks for data dependencies between each packet. If a data dependency has been found a \texttt{nop} instruction is inserted to resolve the hazard. Listing \ref{lst:scheduler} displays the algorithm in pseudo that is used to determine data dependencies. 
+The scheduling phase is used to keep track of data hazards that have been scheduled in instructions. The algorithm builds temporary packets and checks for data dependencies between each packet. If a data dependency has been found a \texttt{nop} instruction is inserted to resolve the hazard. Listing \ref{lst:scheduler} displays the algorithm in pseudo-code that is used to determine data dependencies. 
 
 
 \begin{lstlisting}[language=python,label=lst:scheduler]
@@ -61,7 +62,7 @@ The scheduling phase is used to keep track of data hazards that have been schedu
 
 Some corner cases exist that have been manually implemented in the machine scheduler.
 
-The $\rho$-VEX processor has a 1 cycle delay between defining a branch register and using a branch register. The scheduler has been customized to insert \texttt{nop} instruction proceeding each branch instruction. This solution is not optimal because the empty instruction could also be used to execute an instruction that is not dependent on the proceeding instructions. Unfortunetely this proved impossible to implement in the current version of the LLVM compiler because it is not possible to specify a delay between specific instruction classes
+The $\rho$-VEX processor has a 1 cycle delay between defining a branch register and using a branch register. The scheduler has been customized to insert \texttt{nop} instruction proceeding each branch instruction. This solution is not optimal because the empty instruction could also be used to execute an instruction that is not dependent on the proceeding instructions. Unfortunately, this proved impossible to implement in the current version of the LLVM compiler because it is not possible to specify a delay between specific instruction classes.
 
 The following instruction sequence illustrates the current solution: 
 
@@ -146,16 +147,16 @@ This instruction packet is not legal because of the RAW hazard that is caused by
 ;;
 \end{lstlisting}
 
-Because more instruction packets are used the amount of ILP that is extracted decreases and the performance of the resulting binary decreases. Performance could be improved by using a different register for the last assignment of r0.8. 
+Because more instruction packets are used than required the amount of ILP that is extracted decreases and the performance of the resulting binary decreases. Performance could be improved by using a different register for the last assignment of r0.8. 
 
 \subsection{Problem statement}
 This kind of optimization poses a significant challenge for VLIW type compilers because the register allocation pass is executed before the VLIW packetization. This implies that the register allocator has no information about which operations will be grouped together and for which operations an extra register should be used.
 
 A solution could be to perform VLIW packetization before register allocation is completed. This would allow the register allocation pass to determine if a RAW hazard occurs inside a packet and to assign an extra register if needed.
 
-In practice this approach is not possible because between the register allocation pass and the VLIW packetizer pass other passes are run that can change the final code. For example the register allocator pass can insert spill code and the prologue / epilogue insertion pass inserts code related to the stack layout. Inserting new instructions into instructions packets that have already been formed is very ugly because \emph{packet spilling} could occur where a packet that is already full needs to move instructions to the next packet, etc. 
+In practice this approach is not possible because between the register allocation pass and the VLIW packetizer pass other passes are run that can change the final code. For example, the register allocator pass can insert spill code and the prologue / epilogue insertion pass inserts code related to the stack layout. Inserting new instructions into instructions packets that have already been formed is very ugly because \emph{packet spilling} could occur where a packet that is already full needs to move instructions to the next packet, etc. 
 
-The new machine scheduler could be customized to retain bundling information for the register allocator. Due to the complexity of implementing this approach we have choosen to change the register allocator itself and to make register allocation less aggressive. 
+The new machine scheduler could be customized to retain bundling information for the register allocator. Due to the complexity of implementing this approach we have chosen to change the register allocator itself and to make register allocation less aggressive. 
 
 The liveliness allocation pass determines when a virtual register is used. The register allocator uses this information to create a register mapping with minimal register pressure.
 
@@ -189,7 +190,7 @@ Extending of the liverange has been enabled by getting the boundary of the MBB f
 This approach is not optimal because it will increase the register usage even if RAW hazards do not occur. If more virtual registers are used then physical registers are available the execution speed will drop because extra spill code needs to be inserted.
 
 \section{Large immediate values}
-The $\rho$-VEX processor has support for using 32-bit immediate values. 8-bit immediate values can be handled in a single $\rho$-VEX instruction. Values larger then 8-bit values borrow space from the adjecant $\rho$-VEX instruction. The following code examples show the maximum amount of instruction in a packet for a 4-issue width $\rho$-VEX processor.
+The $\rho$-VEX processor has support for using 32-bit immediate values. 8-bit immediate values can be handled in a single $\rho$-VEX instruction. Values larger then 8-bit values borrow space from the adjacent $\rho$-VEX instruction. The following code examples show the maximum amount of instruction in a packet for a 4-issue width $\rho$-VEX processor.
 
 \begin{lstlisting}[language=rvex]
   add $r0.10  = $r0.10, 200
@@ -206,7 +207,7 @@ The $\rho$-VEX processor has support for using 32-bit immediate values. 8-bit im
 ;;
 \end{lstlisting}
 
-Large immediate values are used throughout the $\rho$-VEX ISA. Not only arithmatic instruction can use large immediate values but also load and store instructions to represent the address offset.
+Large immediate values are used throughout the $\rho$-VEX ISA. Not only arithmetic instruction can use large immediate values but also load and store instructions to represent the address offset.
 
 \begin{lstlisting}[language=rvex]
   ldw $r0.2 = 2000[$r0.2]
@@ -217,13 +218,13 @@ Large immediate values are used throughout the $\rho$-VEX ISA. Not only arithmat
 \label{sub:problem_statement}
 Large immediate values can be supported by creating a new instruction itinerary with support for large immediate values. This instruction itinerary would be special because it requires two functional units during VLIW packetization. The algorithm that builds the resource usage DFA needs to be updated to reflect instruction itineraries with multiple functional unit usage.
 
-Unfortunetely this approach is impractical for a couple of reasons. Each instruction that supports immediate values needs to be implemented twice, once for small immediate values and once for large immediate values. This would increase the risk of errors in the Tablegen files because each instruction has multiple definitions that need to be updated when changes are made.
+This approach is impractical for a couple of reasons. Each instruction that supports immediate values needs to be implemented twice, once for small immediate values and once for large immediate values. This would increase the risk of errors in the Tablegen files because each instruction has multiple definitions that need to be updated when changes are made.
 
 A second approach is to update the VLIW packetizer and to recognize large immediate values during the packetization pass.
 
 % subsection problem_statement (end)
 
-\subsection{implementation} % (fold)
+\subsection{Implementation} % (fold)
 \label{sub:implementation}
 During the packetization pass each instruction that uses an immediate value is checked before it is bundled in an instruction bundle. The packetizer determines the size of an immediate value and reserves an extra resource in the DFA when a large immediate value is used.
 
@@ -232,9 +233,9 @@ During the packetization pass each instruction that uses an immediate value is c
 
 
 \section{Conclusion}
-In this section we have discussed the optimizations that have been implemented to increase performance of $\rho$-VEX binaries that have been generated with the LLVM compiler.
+In this chapter we discussed the optimizations that have been implemented to increase performance of $\rho$-VEX binaries that have been generated with the LLVM compiler.
 
-The \texttt{rvexMachineScheduler} pass is used to handle structural and data hazards. Temporary instruction packets are generated and are filled with instructions that have been selected using cost based scheduling algorithms to reduce register pressure. The pass enables $\rho$-VEX binaries to execute correclty and to perform better then binaries that have not been scheduled using the \texttt{rvexMachineScheduler}.
+The \texttt{rvexMachineScheduler} pass is used to handle structural and data hazards. Temporary instruction packets are generated and are filled with instructions that have been selected using cost based scheduling algorithms to reduce register pressure. The pass enables $\rho$-VEX binaries to execute correctly and to perform better then binaries that have not been scheduled using the \texttt{rvexMachineScheduler}.
 
 The branch analysis optimization is used to erase unnecessary \texttt{goto} statements from the code. In addition hooks have been provided that allow the LLVM \texttt{BranchFolding} pass to further optimize branches that are used in $\rho$-VEX binaries.
 
@@ -242,3 +243,4 @@ The generic binary optimization allows binaries with generic binary support to p
 
 The immediate value optimization allows more efficient use of available instructions of the  $\rho$-VEX processor.
 \acresetall
+

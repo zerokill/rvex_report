@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  16 MAR 2014 18:03
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  18 MAR 2014 11:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -371,33 +371,30 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
 
 LaTeX Warning: Label `sub:implementation' multiply defined.
 
-
-LaTeX Warning: Label `tbl:GCC_perf' multiply defined.
-
 )
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 280.
-LaTeX Font Info:    ... okay on input line 280.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 280.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 280.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 282.
+LaTeX Font Info:    ... okay on input line 282.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 282.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 282.
 
  (/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    ... okay on input line 282.
 
 (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -428,7 +425,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring OFF on input line 280.
+Package hyperref Info: Link coloring OFF on input line 282.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -438,9 +435,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count126
 )
-LaTeX Info: Redefining \ref on input line 280.
-LaTeX Info: Redefining \pageref on input line 280.
-LaTeX Info: Redefining \nameref on input line 280.
+LaTeX Info: Redefining \ref on input line 282.
+LaTeX Info: Redefining \pageref on input line 282.
+LaTeX Info: Redefining \nameref on input line 282.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
@@ -451,7 +448,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count127
  (./0_template/cover.tex
-<0_template/fig/CE_conv.png, id=289, 770.88pt x 753.81625pt>
+<0_template/fig/CE_conv.png, id=293, 770.88pt x 753.81625pt>
 File: 0_template/fig/CE_conv.png Graphic file (type png)
 
 <use 0_template/fig/CE_conv.png>
@@ -479,7 +476,7 @@ Overfull \hbox (29.90347pt too wide) in paragraph at lines 29--40
 []|  $[]$ 
  []
 
-<0_template/fig/TUDelft_conv.png, id=290, 513.92pt x 241.90375pt>
+<0_template/fig/TUDelft_conv.png, id=294, 513.92pt x 241.90375pt>
 File: 0_template/fig/TUDelft_conv.png Graphic file (type png)
 
 <use 0_template/fig/TUDelft_conv.png>
@@ -497,7 +494,7 @@ Overfull \hbox (27.05846pt too wide) in paragraph at lines 50--55
  []
 
 (./0_template/abstract.tex))
-Overfull \hbox (24.21301pt too wide) in paragraph at lines 57--289
+Overfull \hbox (24.21301pt too wide) in paragraph at lines 57--291
 []|  $[]$
  []
 
@@ -510,7 +507,7 @@ plate/fig/CE_conv.png (PNG copy)> <./0_template/fig/TUDelft_conv.png>]
 
 
 ]
-Overfull \hbox (7.62512pt too wide) in paragraph at lines 304--304
+Overfull \hbox (7.62512pt too wide) in paragraph at lines 306--306
  [][] 
  []
 
@@ -518,12 +515,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.304 
+l.306 
        [0]pdfTeX warning (ext4): destination with the same identifier (name{pag
 e.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.305 \setcounter{page}{0} \cleardoublepage
+l.307 \setcounter{page}{0} \cleardoublepage
                                             [0
 
 ] (./0_template/front.tex
@@ -556,7 +553,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--67
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.314 \cleardoublepage
+l.316 \cleardoublepage
                        [1
 
 
@@ -587,8 +584,13 @@ l.314 \cleardoublepage
  [9] (./0_template/acronym.tex [10
 
 
-]) [11]
-(./0_template/ack.tex [12
+]) [11pdfTeX warning (ext4): destination with the same identifier (name{DFA}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.344 
+      ] (./0_template/ack.tex [12
 
 
 ]
@@ -599,7 +601,7 @@ Missing character: There is no ´ in font cmr10!
 
 ] (./1_introduction/index.tex
 Chapter 1.
-<1_introduction/img/MIPS_pipe.png, id=506, 632.6034pt x 291.489pt>
+<1_introduction/img/MIPS_pipe.png, id=531, 632.6034pt x 291.489pt>
 File: 1_introduction/img/MIPS_pipe.png Graphic file (type png)
 
 <use 1_introduction/img/MIPS_pipe.png>
@@ -608,14 +610,13 @@ Package pdftex.def Info: 1_introduction/img/MIPS_pipe.png used on input line 18
 (pdftex.def)             Requested size: 335.33424pt x 154.5151pt.
  [1
 
-] (./version.txt) [2 <./1_introduction/img/MIPS_pipe.png>] (./version.txt) [3] 
-(./version.txt) [4] (./version.txt)
-[5]) (./2_background/index.tex (./version.txt) [6]
+] [2 <./1_introduction/img/MIPS_pipe.png>] [3] [4] [5]) (./2_background/index.t
+ex [6]
 Chapter 2.
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
-<2_background/img/rvex_arch.png, id=568, 1656.1875pt x 1543.7675pt>
+<2_background/img/rvex_arch.png, id=611, 1656.1875pt x 1543.7675pt>
 File: 2_background/img/rvex_arch.png Graphic file (type png)
 
 <use 2_background/img/rvex_arch.png>
@@ -624,39 +625,39 @@ Package pdftex.def Info: 2_background/img/rvex_arch.png used on input line 15.
  [7
 
 ]
-<2_background/img/Instructions.png, id=577, 1295.84125pt x 632.3625pt>
+<2_background/img/Instructions.png, id=623, 1295.84125pt x 632.3625pt>
 File: 2_background/img/Instructions.png Graphic file (type png)
 
 <use 2_background/img/Instructions.png>
 Package pdftex.def Info: 2_background/img/Instructions.png used on input line 3
 9.
 (pdftex.def)             Requested size: 335.33424pt x 163.63844pt.
- (./version.txt) [8 <./2_background/img/rvex_arch.png (PNG copy)>]
+ [8 <./2_background/img/rvex_arch.png (PNG copy)>]
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ú in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ù in font cmr10!
- (./version.txt) [9 <./2_background/img/Instructions.png>]
+ [9 <./2_background/img/Instructions.png>]
 LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 74.
 
- (/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmtt.fd
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 Overfull \hbox (22.4208pt too wide) in paragraph at lines 71--88
  [][] 
  []
 
-<2_background/img/Basic_compiler.png, id=590, 978.65625pt x 225.84375pt>
+<2_background/img/Basic_compiler.png, id=637, 978.65625pt x 225.84375pt>
 File: 2_background/img/Basic_compiler.png Graphic file (type png)
 
 <use 2_background/img/Basic_compiler.png>
 Package pdftex.def Info: 2_background/img/Basic_compiler.png used on input line
  99.
 (pdftex.def)             Requested size: 335.33424pt x 77.38547pt.
- (./version.txt) [10 <./2_background/img/Basic_compiler.png (PNG copy)>] (./ver
-sion.txt) [11]
+ [10 <./2_background/img/Basic_compiler.png (PNG copy)>] [11]
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
@@ -665,9 +666,8 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 138.
-
-(./version.txt) [12]
-<2_background/img/Codegen.png, id=650, 2146.0175pt x 526.96875pt>
+ [12]
+<2_background/img/Codegen.png, id=700, 2146.0175pt x 526.96875pt>
 File: 2_background/img/Codegen.png Graphic file (type png)
 
 <use 2_background/img/Codegen.png>
@@ -679,9 +679,8 @@ Underfull \hbox (badness 5245) in paragraph at lines 202--203
 hineFunction \OT1/cmr/m/n/10.95 in-stance. The
  []
 
-(./version.txt) [13 <./2_background/img/Codegen.png (PNG copy)>] (./version.txt
-) [14]) (./3_implementation/index.tex (./version.txt) [15] (./version.txt)
-[16
+[13 <./2_background/img/Codegen.png (PNG copy)>] [14])
+(./3_implementation/index.tex [15] [16
 
 ]
 Chapter 3.
@@ -691,181 +690,203 @@ Underfull \hbox (badness 1448) in paragraph at lines 33--34
 hat in-herit from the
  []
 
-[17] <3_implementation/img/instr.png, id=689, 1656.1875pt x 828.09375pt>
+[17] <3_implementation/img/instr.png, id=744, 1656.1875pt x 828.09375pt>
 File: 3_implementation/img/instr.png Graphic file (type png)
 
 <use 3_implementation/img/instr.png>
 Package pdftex.def Info: 3_implementation/img/instr.png used on input line 43.
 (pdftex.def)             Requested size: 335.33424pt x 167.6628pt.
- (./version.txt) [18 <./3_implementation/img/instr.png (PNG copy)>] (./version.
-txt) [19] (./version.txt) [20]
-(./version.txt) [21] (./version.txt) [22] (./version.txt) [23]
+
+Underfull \vbox (badness 2564) has occurred while \output is active []
+
+ [18 <./3_implementation/img/instr.png (PNG copy)>] [19] [20] [21] [22] [23]
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-LaTeX Font Info:    Try loading font information for OML+cmtt on input line 265
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 271
 .
-LaTeX Font Info:    No file OMLcmtt.fd. on input line 265.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 271.
 
 
 LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textless' on input line 265.
+(Font)              for symbol `textless' on input line 271.
 
-(./version.txt) [24] (./version.txt) [25] (./version.txt) [26] (./version.txt)
-[27]) (./4_optimization/index.tex (./version.txt) [28]
+[24] [25] [26] [27]) (./4_optimization/index.tex [28]
 Chapter 4.
 [29
 
 ] (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-(./version.txt) [30]
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 []\OT1/cmr/m/n/10.95 In ad-di-tion LLVM hooks for \OT1/cmtt/m/n/10.95 insertbra
 nch\OT1/cmr/m/n/10.95 , \OT1/cmtt/m/n/10.95 removebranch \OT1/cmr/m/n/10.95 and
 
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 125--126
+Underfull \hbox (badness 1655) in paragraph at lines 128--129
 \OT1/cmtt/m/n/10.95 ReverseBranchCondition \OT1/cmr/m/n/10.95 have been im-ple-
 mented that al-low the Branch-Fold-ing
  []
 
-(./version.txt
-LaTeX Info: Active EOL character found while output routine is active 
-            This may be a bug in a package file you are using.
-) [31] (./version.txt
-LaTeX Info: Active EOL character found while output routine is active 
-            This may be a bug in a package file you are using.
-) [32] (./version.txt) [33] (./version.txt)
-[34]) (./5_results/index.tex (./version.txt) [35] (./version.txt) [36
+[32] [33] [34]) (./5_results/index.tex [35] [36
 
 ]
 Chapter 5.
-[37] <5_results/img/testbench.png, id=1014, 903.375pt x 526.96875pt>
+<5_results/img/testbench.png, id=1075, 903.375pt x 526.96875pt>
 File: 5_results/img/testbench.png Graphic file (type png)
 
 <use 5_results/img/testbench.png>
-Package pdftex.def Info: 5_results/img/testbench.png used on input line 33.
+Package pdftex.def Info: 5_results/img/testbench.png used on input line 11.
 (pdftex.def)             Requested size: 335.33424pt x 195.61061pt.
- (./version.txt) [38 <./5_results/img/testbench.png (PNG copy)>] (./version.txt
-) [39]
-<5_results/img/abs_perf.png, id=1032, 787.743pt x 445.1832pt>
+
+Underfull \vbox (badness 3646) has occurred while \output is active []
+
+ [37 <./5_results/img/testbench.png (PNG copy)>] [38] [39]
+<5_results/img/abs_perf.png, id=1110, 787.743pt x 445.1832pt>
 File: 5_results/img/abs_perf.png Graphic file (type png)
 
 <use 5_results/img/abs_perf.png>
-Package pdftex.def Info: 5_results/img/abs_perf.png used on input line 113.
+Package pdftex.def Info: 5_results/img/abs_perf.png used on input line 127.
 (pdftex.def)             Requested size: 335.33424pt x 189.50943pt.
-
-<5_results/img/rel_issue.png, id=1033, 574.3056pt x 321.8424pt>
-File: 5_results/img/rel_issue.png Graphic file (type png)
-
-<use 5_results/img/rel_issue.png>
-Package pdftex.def Info: 5_results/img/rel_issue.png used on input line 120.
-(pdftex.def)             Requested size: 335.33424pt x 187.92592pt.
-
-<5_results/img/rel_HP.png, id=1035, 775.2162pt x 404.2302pt>
+ [40] [41 <./5_results/img/abs_perf.png>]
+<5_results/img/rel_HP.png, id=1141, 775.2162pt x 404.2302pt>
 File: 5_results/img/rel_HP.png Graphic file (type png)
 
 <use 5_results/img/rel_HP.png>
-Package pdftex.def Info: 5_results/img/rel_HP.png used on input line 130.
+Package pdftex.def Info: 5_results/img/rel_HP.png used on input line 193.
 (pdftex.def)             Requested size: 335.33424pt x 174.85799pt.
- (./version.txt) [40]
-<5_results/img/rel_GCC.png, id=1064, 534.3162pt x 343.0416pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<5_results/img/rel_GCC.png, id=1144, 534.3162pt x 343.0416pt>
 File: 5_results/img/rel_GCC.png Graphic file (type png)
 
 <use 5_results/img/rel_GCC.png>
-Package pdftex.def Info: 5_results/img/rel_GCC.png used on input line 139.
+Package pdftex.def Info: 5_results/img/rel_GCC.png used on input line 226.
 (pdftex.def)             Requested size: 335.33424pt x 215.2903pt.
+ [42]
+<5_results/img/rel_issue.png, id=1161, 574.3056pt x 321.8424pt>
+File: 5_results/img/rel_issue.png Graphic file (type png)
 
-<5_results/img/rel_gen.png, id=1066, 620.5584pt x 372.9132pt>
+<use 5_results/img/rel_issue.png>
+Package pdftex.def Info: 5_results/img/rel_issue.png used on input line 238.
+(pdftex.def)             Requested size: 335.33424pt x 187.92592pt.
+ [43 <./5_results/img/rel_HP.png>]
+<5_results/img/rel_gen.png, id=1170, 620.5584pt x 372.9132pt>
 File: 5_results/img/rel_gen.png Graphic file (type png)
 
 <use 5_results/img/rel_gen.png>
-Package pdftex.def Info: 5_results/img/rel_gen.png used on input line 210.
+Package pdftex.def Info: 5_results/img/rel_gen.png used on input line 271.
 (pdftex.def)             Requested size: 335.33424pt x 201.51807pt.
- (./version.txt) [41 <./5_results/img/abs_perf.png> <./5_results/img/rel_issue.
-png>]
-Underfull \vbox (badness 2401) has occurred while \output is active []
+ [44 <./5_results/img/rel_GCC.png> <./5_results/img/rel_issue.png>] [45 <./5_re
+sults/img/rel_gen.png>]
+
+LaTeX Warning: Reference `generic_perf' on page 46 undefined on input line 300.
 
 
-(./version.txt) [42 <./5_results/img/rel_HP.png> <./5_results/img/rel_GCC.png>]
-(./version.txt) [43] (./version.txt) [44 <./5_results/img/rel_gen.png>]
-<5_results/img/compile-time.png, id=1094, 746.79pt x 440.3652pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+<5_results/img/compile-time.png, id=1191, 746.79pt x 440.3652pt>
 File: 5_results/img/compile-time.png Graphic file (type png)
 
 <use 5_results/img/compile-time.png>
-Package pdftex.def Info: 5_results/img/compile-time.png used on input line 292.
+Package pdftex.def Info: 5_results/img/compile-time.png used on input line 352.
 
 (pdftex.def)             Requested size: 335.33424pt x 197.73918pt.
- (./version.txt) [45])
-(./6_conclusion/index.tex (./version.txt) [46 <./5_results/img/compile-time.png
->]
+ [47]) (./6_conclusion/index.tex [48 <./5_results/img/compile-time.png>]
 Chapter 6.
-[47
+[49
 
-] (./version.txt) [48]) (./version.txt) [49] (./version.txt) [50
+] [50]) [51] [52
+
+] (./thesis.bbl
+Missing character: There is no œ in font cmr10!
+Missing character: There is no Å in font cmr10!
+ [53
 
 ]
-(./thesis.bbl
-Missing character: There is no œ in font cmr10!
-Missing character: There is no Å in font cmr10!
-Missing character: There is no œ in font cmr10!
-Missing character: There is no Å in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no à in font cmr10!
- [51
+ [54]) [55] [56
 
-]) (./version.txt) [52] (./appendix/appendixA.tex
+]
+(./appendix/appendixA.tex
 Appendix A.
-[53
+[57
 
 
-
-]) (./version.txt) [54] (./version.txt) [55] (./appendix/appendixB.tex
-(./version.txt) [56
+]) [58] [59] (./appendix/appendixB.tex [60
 
 
 
 ]
 Appendix B.
-) [57]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 393.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 393.
+) [61]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 395.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 395.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 393.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 393.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 395.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 395.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: FCA6888B41100328F98618A73C5D79C1;4500.
+(rerunfilecheck)             Checksum: 8FCAAC58B08894B713CCD4C6B0344C18;4584.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 393.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 395.
  ) 
 Here is how much of TeX's memory you used:
- 10561 strings out of 493633
- 155309 string characters out of 3143378
- 455853 words of memory out of 3000000
- 13049 multiletter control sequences out of 15000+200000
- 14904 words of font info for 52 fonts, out of 3000000 for 9000
+ 10605 strings out of 493633
+ 155912 string characters out of 3143378
+ 457252 words of memory out of 3000000
+ 13117 multiletter control sequences out of 15000+200000
+ 14605 words of font info for 51 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 36i,10n,51p,1008b,1762s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{cite.Jeff-Scott:1998fj} has been referenced but d
-oes not exist, replaced by a fixed one
+ 36i,10n,51p,1010b,1768s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{cite.Vahedi:2013mz} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Jeff-Scott:1998fj} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Bradlee:1991:IRA:106973.106986} has been refer
+enced but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.Anthony-Brandon:2013jk} has been referenced bu
 t does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.4874} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Hennessy:1983:DHP:892745} has been referenced 
+but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.llvm:presentation} has been referenced but doe
 s not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.clang:features} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.dragonegg:2014} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.llvm-loop:2014} has been referenced but does n
 ot exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.Seedorf:2011fj} has been referenced but does n
@@ -880,8 +901,17 @@ ot exist, replaced by a fixed one
 pdfTeX warning (dest): name{cite.Simpson:2011qc} has been referenced but does n
 ot exist, replaced by a fixed one
 
+pdfTeX warning (dest): name{cite.10.1109/MM.2014.12} has been referenced but do
+es not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{cite.Chris-Lattner:2004lq} has been referenced but 
 does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.gcc:2014} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.HP-VEX:2014} has been referenced but does not 
+exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.Joseph-A.-Fisher:2005cr} has been referenced b
 ut does not exist, replaced by a fixed one
@@ -889,17 +919,32 @@ ut does not exist, replaced by a fixed one
 pdfTeX warning (dest): name{cite.Lowney:1993qy} has been referenced but does no
 t exist, replaced by a fixed one
 
-pdfTeX warning (dest): name{cite.Fisher:1983:VLI:1067651.801649} has been refer
-enced but does not exist, replaced by a fixed one
+pdfTeX warning (dest): name{cite.2247} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Dinechin:2004vn} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Lam:1988:SPE:960116.54022} has been referenced
+ but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.Wall:1993xy} has been referenced but does not 
 exist, replaced by a fixed one
 
+pdfTeX warning (dest): name{cite.4242287} has been referenced but does not exis
+t, replaced by a fixed one
+
 pdfTeX warning (dest): name{cite.John-L.-Hennessy:2012bs} has been referenced b
 ut does not exist, replaced by a fixed one
 
-pdfTeX warning (dest): name{cite.Roel-Seedorf:2012qf} has been referenced but d
-oes not exist, replaced by a fixed one
+pdfTeX warning (dest): name{cite.Hinton:2001wd} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.5392028} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Fisher:1983:VLI:1067651.801649} has been refer
+enced but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.854391} has been referenced but does not exist
 , replaced by a fixed one
@@ -909,6 +954,9 @@ ist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.Joseph-A.-Fisher:2012rm} has been referenced b
 ut does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.Roel-Seedorf:2012qf} has been referenced but d
+oes not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{cite.John-L.-Hennessy:2009wq} has been referenced b
 ut does not exist, replaced by a fixed one
@@ -922,20 +970,19 @@ r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
 ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
 al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
 /texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texl
-ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texli
-ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
-e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
-2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2
-011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
-11/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/201
-1/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2011/
-texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2011/te
-xmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on thesis.pdf (75 pages, 1980112 bytes).
+exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/te
+xlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
+live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
+ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texliv
+e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive
+/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/20
+11/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2011
+/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on thesis.pdf (79 pages, 1954526 bytes).
 PDF statistics:
- 1373 PDF objects out of 1440 (max. 8388607)
- 1240 compressed objects within 13 object streams
- 540 named destinations out of 1000 (max. 500000)
- 644 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1522 PDF objects out of 1728 (max. 8388607)
+ 1384 compressed objects within 14 object streams
+ 615 named destinations out of 1000 (max. 500000)
+ 652 words of extra memory for PDF output out of 10000 (max. 10000000)
 

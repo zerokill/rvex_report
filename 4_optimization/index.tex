@@ -65,6 +65,8 @@ Some corner cases exist that have been manually implemented in the machine sched
 The $\rho$-VEX processor has a 1 cycle delay between defining a branch register and using a branch register. The scheduler has been customized to insert \texttt{nop} instruction proceeding each branch instruction. This solution is not optimal because the empty instruction could also be used to execute an instruction that is not dependent on the proceeding instructions. Unfortunately, this proved impossible to implement in the current version of the LLVM compiler because it is not possible to specify a delay between specific instruction classes.
 
 The following instruction sequence illustrates the current solution: 
+% FIXME layout
+\pagebreak
 
 \begin{lstlisting}[language=rvex]
   c0  cmpgt   $b0.0, $r0.2, 9
@@ -88,7 +90,8 @@ After the machine scheduler pass the temporary instruction bundles are deleted b
 
 The final packetization occurs during the VLIW packetizer pass. The VLIW packetizer detects \texttt{nop} operations and outputs these instructions as \emph{barrier} packets. These packets do not contain any instructions.
 
-
+% Moet ik dit hier vermelden of is dit beter om uit te lichten bij future work
+Scheduling could be improved further by integrating the instruction scheduling with the register allocation. The \texttt{getCandidate} function should be expanded to take into account both register pressure and resource utilization. In \cite{Bradlee:1991:IRA:106973.106986} an approach is discussed that minimizes register pressure and resource usage and can optimize performance.
 
 \section{Branch analysis}
 Analysis of assembly files generated with the LLVM-based compiler showed that branches were not handled correctly. Consider the following C code:
@@ -126,14 +129,14 @@ In addition LLVM hooks for \texttt{insertbranch}, \texttt{removebranch} and \tex
 
 
 \section{Generic binary optimization}
-Research has shown \cite{Anthony-Brandon:2013jk} that generic binaries incur a performance penalty because of inefficient register usage. Consider the previous generic binary example again:
+Research \cite{Anthony-Brandon:2013jk} has shown  that generic binaries incur a performance penalty because of inefficient register usage. Consider the previous generic binary example again:
 
 \begin{lstlisting}[language=rvex]
   add $r0.10  = $r0.10, $r0.11
   add $r0.12  = $r0.12, $r0.13
   add $r0.14  = $r0.14, $r0.8
   add $r0.8   = $r0.8, $r0.9
-;;
+;; 
 \end{lstlisting}
 
 This instruction packet is not legal because of the RAW hazard that is caused by r0.8. The current approach to fix the RAW hazard is to split the instruction packet into two separate instructions. 
@@ -190,7 +193,7 @@ Extending of the liverange has been enabled by getting the boundary of the MBB f
 This approach is not optimal because it will increase the register usage even if RAW hazards do not occur. If more virtual registers are used then physical registers are available the execution speed will drop because extra spill code needs to be inserted.
 
 \section{Large immediate values}
-The $\rho$-VEX processor has support for using 32-bit immediate values. 8-bit immediate values can be handled in a single $\rho$-VEX instruction. Values larger then 8-bit values borrow space from the adjacent $\rho$-VEX instruction. The following code examples show the maximum amount of instruction in a packet for a 4-issue width $\rho$-VEX processor.
+The $\rho$-VEX processor has support for using 32-bit immediate values. 8-bit immediate values can be handled in a single $\rho$-VEX instruction. Values larger then 8-bit values borrow space from the adjacent $\rho$-VEX instruction. The following code examples show the maximum amount of instruction in a packet for a 4-issue $\rho$-VEX processor.
 
 \begin{lstlisting}[language=rvex]
   add $r0.10  = $r0.10, 200

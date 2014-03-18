@@ -25,13 +25,18 @@
 J.~L. Hennessy and D.~A. Patterson, \emph{Computer Organization and
   Design}.\hskip 1em plus 0.5em minus 0.4em\relax Morgan Kaufmann, 2009.
 
+\bibitem{Roel-Seedorf:2012qf}
+R.~Seedorf, F.~Anjam, A.~Brandon, and S.~Wong, ``Design of a pipelined and
+  parameterized vliw processor: ρ-vex v2.0,'' \emph{6th HiPEAC Workshop on
+  Reconfigurable Computing (WRC 2012)}, 2012.
+
 \bibitem{Joseph-A.-Fisher:2012rm}
 J.~A. Fisher, \emph{The VEX System}, pdf.
 
 \bibitem{As:2008rt}
-T.~van As, ``ρ-vex: A reconfigurable and extensible vliw processor,'' Master's
-  thesis, Technical university Delft, Mekelweg 4, 2628 CD, Delft, The
-  Netherlands, 2008.
+T.~van As, ``$\rho$-vex: A reconfigurable and extensible vliw processor-vex: A
+  reconfigurable and extensible vliw processor,'' Master's thesis, Technical
+  university Delft, Mekelweg 4, 2628 CD, Delft, The Netherlands, 2008.
 
 \bibitem{854391}
 P.~Faraboschi, G.~Brown, J.~Fisher, G.~Desoll, and F.~Homewood, ``Lx: a
@@ -39,10 +44,22 @@ P.~Faraboschi, G.~Brown, J.~Fisher, G.~Desoll, and F.~Homewood, ``Lx: a
   \emph{Computer Architecture, 2000. Proceedings of the 27th International
   Symposium on}, 2000, pp. 203--213.
 
-\bibitem{Roel-Seedorf:2012qf}
-R.~Seedorf, F.~Anjam, A.~Brandon, and S.~Wong, ``Design of a pipelined and
-  parameterized vliw processor: ρ-vex v2.0,'' \emph{6th HiPEAC Workshop on
-  Reconfigurable Computing (WRC 2012)}, 2012.
+\bibitem{Fisher:1983:VLI:1067651.801649}
+\BIBentryALTinterwordspacing
+J.~A. Fisher, ``Very long instruction word architectures and the eli-512,''
+  \emph{SIGARCH Comput. Archit. News}, vol.~11, no.~3, pp. 140--150, Jun. 1983.
+  [Online]. Available: \url{http://dl.acm.org/citation.cfm?id=1067651.801649}
+\BIBentrySTDinterwordspacing
+
+\bibitem{5392028}
+R.~M. Tomasulo, ``An efficient algorithm for exploiting multiple arithmetic
+  units,'' \emph{IBM Journal of Research and Development}, vol.~11, no.~1, pp.
+  25--33, {Jan} 1967.
+
+\bibitem{Hinton:2001wd}
+G.~Hinton, D.~Sager, M.~Upton, D.~Boggs, D.~Carmean, A.~Kyker, and P.~Roussel,
+  ``The microarchitecture of the pentium 4 processor,'' \emph{Intel Technology
+  Journal Q1}, 2001.
 
 \bibitem{John-L.-Hennessy:2012bs}
 J.~L. Hennessy and D.~A. Patterson, \emph{Computer Architecture, A Quantitative
@@ -50,16 +67,31 @@ J.~L. Hennessy and D.~A. Patterson, \emph{Computer Architecture, A Quantitative
   Kaufmann, 2012, ch. Chapter Three: Intstruction-Level Parallelism and Its
   Exploitation, p. 244.
 
+\bibitem{4242287}
+N.~Sakran, M.~Yuffe, M.~Mehalel, J.~Doweck, E.~Knoll, and A.~Kovacs, ``The
+  implementation of the 65nm dual-core 64b merom processor,'' in
+  \emph{Solid-State Circuits Conference, 2007. ISSCC 2007. Digest of Technical
+  Papers. IEEE International}, Feb 2007, pp. 106--590.
+
 \bibitem{Wall:1993xy}
 D.~W. Wall, ``Limits of instruction-level parallelism,'' \emph{WRL Research
   Report}, p.~73, November 1993.
 
-\bibitem{Fisher:1983:VLI:1067651.801649}
+\bibitem{Lam:1988:SPE:960116.54022}
 \BIBentryALTinterwordspacing
-J.~A. Fisher, ``Very long instruction word architectures and the eli-512,''
-  \emph{SIGARCH Comput. Archit. News}, vol.~11, no.~3, pp. 140--150, Jun. 1983.
-  [Online]. Available: \url{http://dl.acm.org/citation.cfm?id=1067651.801649}
+M.~Lam, ``Software pipelining: An effective scheduling technique for vliw
+  machines,'' \emph{SIGPLAN Not.}, vol.~23, no.~7, pp. 318--328, Jun. 1988.
+  [Online]. Available: \url{http://doi.acm.org/10.1145/960116.54022}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Dinechin:2004vn}
+B.~D. de~Dinechin, ``From machine scheduling to vliw instruction scheduling,''
+  2004.
+
+\bibitem{2247}
+R.~Colwell, R.~Nix, J.~O'Donnell, D.~Papworth, and P.~Rodman, ``A vliw
+  architecture for a trace scheduling compiler,'' \emph{Computers, IEEE
+  Transactions on}, vol.~37, no.~8, pp. 967--979, Aug 1988.
 
 \bibitem{Lowney:1993qy}
 P.~G. Lowney, P.~G. Lowney, S.~M. Freudenberger, T.~J. Karzes, W.~D.
@@ -72,10 +104,28 @@ J.~A. Fisher, P.~Faraboschi, and C.~Young, \emph{Embedded computing: A VLIW
   Approach to Architecture, Compilers and Tools}.\hskip 1em plus 0.5em minus
   0.4em\relax Elsevier, 2005.
 
+\bibitem{HP-VEX:2014}
+\BIBentryALTinterwordspacing
+\emph{VEX Toolchain}, HP Inc. [Online]. Available:
+  \url{http://www.hpl.hp.com/downloads/vex/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{gcc:2014}
+\BIBentryALTinterwordspacing
+\emph{GCC, the GNU Compiler Collection}, Free Software Foundation, Inc.
+  [Online]. Available: \url{http://gcc.gnu.org}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Chris-Lattner:2004lq}
 V.~A. Chris~Lattner, ``Llvm: A compilation framework for lifelong program
   analysis \& transformation,'' \emph{Proceedings of the International
   Symposium on Code Generation and Optimization}, 2004.
+
+\bibitem{10.1109/MM.2014.12}
+L.~Codrescu, E.~Plondke, W.~Anderson, C.~Maule, C.~Koob, M.~Zeng, A.~Ingle,
+  C.~Tabony, and suresh venkumahanti, ``Qualcomm hexagon dsp: An architecture
+  optimized for mobile multimedia and communications,'' \emph{IEEE Micro},
+  vol.~99, no.~1, p.~1, 5555.
 
 \bibitem{Simpson:2011qc}
 L.~T. Simpson, ``Porting llvm to a next generation dsp,'' \emph{LLVM
@@ -89,26 +139,64 @@ C.~Erhardt, ``Design and implementation of a tricore backend for the llvm
 \bibitem{Antani:2014om}
 L.~Antani, H.~Ansari, and A.~Parameswaran, ``Tricore port for gcc - an
   analysis,'' Master's thesis, Indian Institute of Technology, Bombay Mumbai,
-  XXXX.
+  Unknown.
 
 \bibitem{Seedorf:2011fj}
 R.~Seedorf, ``Fingerprint verification on the vex processor,'' Master's thesis,
   Technical university Delft, 2011.
 
+\bibitem{llvm-loop:2014}
+\BIBentryALTinterwordspacing
+LLVM, ``Auto-vectorization in llvm.'' [Online]. Available:
+  \url{http://llvm.org/docs/Vectorizers.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{dragonegg:2014}
+\BIBentryALTinterwordspacing
+------, ``Dragonegg - using llvm as a gcc backend.'' [Online]. Available:
+  \url{http://dragonegg.llvm.org}
+\BIBentrySTDinterwordspacing
+
 \bibitem{clang:features}
-Clang, ``Clang - features and goals.''
+\BIBentryALTinterwordspacing
+Clang. Clang - features and goals. [Online]. Available:
+  \url{http://clang.llvm.org/features.html}
+\BIBentrySTDinterwordspacing
 
 \bibitem{llvm:presentation}
 C.~Lattner, ``The llvm compiler framework and infrastructure (part 1),''
   Presentation.
 
+\bibitem{Hennessy:1983:DHP:892745}
+J.~L. Hennessy, N.~Jouppi, S.~Przybylski, C.~Rowen, and T.~Gross, ``Design of a
+  high performance vlsi processor,'' Stanford, CA, USA, Tech. Rep., 1983.
+
+\bibitem{4874}
+R.~Garner, A.~Agrawal, F.~Briggs, E.~Brown, D.~Hough, B.~Joy, S.~Kleiman,
+  S.~Muchnick, M.~Namjoo, D.~Patterson, J.~Pendleton, and R.~Tuck, ``The
+  scalable processor architecture (sparc),'' in \emph{Compcon Spring '88.
+  Thirty-Third IEEE Computer Society International Conference, Digest of
+  Papers}, Feb 1988, pp. 278--283.
+
 \bibitem{Anthony-Brandon:2013jk}
 A.~Brandon and S.~Wong, ``Support for dynamic issue width in vliw processors
   using generic binaries,'' \emph{EDAA}, 2013.
+
+\bibitem{Bradlee:1991:IRA:106973.106986}
+\BIBentryALTinterwordspacing
+D.~G. Bradlee, S.~J. Eggers, and R.~R. Henry, ``Integrating register allocation
+  and instruction scheduling for riscs,'' \emph{SIGPLAN Not.}, vol.~26, no.~4,
+  pp. 122--131, Apr. 1991. [Online]. Available:
+  \url{http://doi.acm.org/10.1145/106973.106986}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Jeff-Scott:1998fj}
 J.~Scott, L.~H. Lee, J.~Arends, and B.~Moyer, ``Designing the low-power m*core
   architecture,'' in \emph{Proc. IEEE Power Driven Microarchitecture Workshop},
   1998.
+
+\bibitem{Vahedi:2013mz}
+M.~Vahedi, ``Iterative instruction scheduling for a vliw processor,'' Master's
+  thesis, Technical University Delft, 2013.
 
 \end{thebibliography}

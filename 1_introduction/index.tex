@@ -9,7 +9,7 @@ In 2008, Thijs van As designed the first version of the $\rho$-VEX processor \ci
 
 Around this processor a set of tools has been developed in collaboration with the TU Delft, IBM, STMicroelectronics and other universities. Currently, the $\rho$-VEX 2.0 tool suite include a synthesizable core, a compiler system, and a processor simulator. IBM has developed a GCC-based VLIW compiler backend.
 
-Very Long Instruction Word (VLIW) processors can execute multiple operations during a single clock cycle. A compiler is required to find parallelism between instructions and to provide scheduling that enables the VLIW processor to execute multiple operations during a single cycle.
+Very Long Instruction Word (VLIW) \cite{Fisher:1983:VLI:1067651.801649} processors can execute multiple operations during a single clock cycle. A compiler is required to find parallelism between instructions and to provide scheduling that enables the VLIW processor to execute multiple operations during a single cycle.
 
 Regular RISC type processor, such as the MIPS and ARM processor, contains a single instruction pipeline that executes instructions. Figure \ref{fig:mips_pipe} shows a basic MIPS integer pipeline. By introducing pipelining registers the clock frequency of a processor can be increased because execution of an instruction is broken up into smaller and simpler parts. The RISC pipeline can contain multiple instructions that are in different stages of execution.
 
@@ -20,21 +20,21 @@ Regular RISC type processor, such as the MIPS and ARM processor, contains a sing
 \label{fig:mips_pipe}
 \end{figure}
 
-Generally speaking, pipelining will decrease the Instructions Per Clock (IPC) rate of a processor because it is very difficult to use all the stages of the pipeline all the time. Pipelining introduced hazards where situations will occur that force the pipeline to wait until a certain execution has finished executing. This wait cycle decreases the IPC of the processor and in turn decreases the performance. Special hardware has been developed, such as forwarding units, branch predictors, and speculative execution that will try to increase the CPI to a value that approaches 1.0. 
+Generally speaking, pipelining will decrease the Instructions Per Clock (IPC) rate of a processor because it is very difficult to use all the stages of the pipeline all the time. Pipelining introduced hazards where situations will occur that force the pipeline to wait until a certain execution has finished executing. This wait cycle decreases the IPC of the processor and in turn decreases the performance. Special hardware has been developed, such as forwarding units, branch predictors, and speculative execution that will try to increase the CPI to a value that approaches 1.0 \cite{John-L.-Hennessy:2009wq}. 
 
-If a higher than 1.0 IPC is desired multiple instructions need to be executed during a single clock cycle. Machines that can execute multiple instructions are called multi-issue machines. These types of processors use special hardware to find dependencies between instructions and to determine which instructions can be executed in parallel. These techniques include Tomasulo's algorithm for \emph{Out of Order} execution and register renaming. Most modern processors use these techniques to increase performance.
+If a higher than 1.0 IPC is desired multiple instructions need to be executed during a single clock cycle. Machines that can execute multiple instructions are called multi-issue machines. These types of processors use special hardware to find dependencies between instructions and to determine which instructions can be executed in parallel. These techniques include Tomasulo's algorithm \cite{5392028} for \emph{Out of Order} execution and register renaming. Most modern processors use these techniques to increase performance.
 
-Finding dependencies between instructions becomes increasingly complex when the issue width of machines is increased. The Pentium 4 processor demonstrated the limitations of further ILP extraction in a spectacular way. It used a 20-stage pipeline \cite{John-L.-Hennessy:2012bs} with seven functional units. It operated on RISC-like micro-ops instead of x86 instructions and could handle 50 in-flight instructions at a time. The amount of silicon and energy that was dedicated to finding and executing ILP made the Pentium 4 processor very inefficient. The clock frequency increase that Intel expected the hyper pipelined processor (6-7 GHz) to deliver never materialized and the Pentium 4 Netburst architecture was dropped for a much simpler architecture.
+Finding dependencies between instructions becomes increasingly complex when the issue-width of machines is increased. The Pentium 4 processor \cite{Hinton:2001wd}demonstrated the limitations of further ILP extraction in a spectacular way. It used a 20-stage pipeline \cite{John-L.-Hennessy:2012bs} with seven functional units. It operated on RISC-like micro-ops instead of x86 instructions and could handle 50 in-flight instructions at a time. The amount of silicon and energy that was dedicated to finding and executing ILP made the Pentium 4 processor very inefficient. The clock frequency increase that Intel expected the hyper pipelined processor (6-7 GHz) to deliver never materialized and the Pentium 4 Netburst architecture was dropped for a much simpler architecture \cite{4242287}.
 
 In \cite{Wall:1993xy} the actual limitations of ILP extraction in hardware has been demonstrated and it has been shown that other techniques need to be used to find and execute more ILP.
 
-VLIW processors differ from multiple issue machines in that parallelism is found during compile-time instead of during run-time. This results in a processor that can be made significantly simpler because the ILP extraction algorithms do not need to be implemented and because dependency checking is not required during run-time. Additional ILP can also be found with the compiler because the compiler has got a higher-level view of the code that is to be executed. Optimizations such as swing modulo scheduling and loop vectorization are nearly impossible to achieve in hardware because the higher-level structure of a program is no longer available. A compiler can interpret the higher-level structure of a program and optimize the output for better scheduling.
+VLIW processors differ from multi-issue machines in that parallelism is found during compile-time instead of during run-time \cite{Lam:1988:SPE:960116.54022} \cite{Dinechin:2004vn}. This results in a processor that can be made significantly simpler because the ILP extraction algorithms do not need to be implemented and because dependency checking is not required during run-time. Additional ILP can also be found with the compiler because the compiler has got a higher-level view of the code that is to be executed. Optimizations such as swing modulo scheduling and loop vectorization are nearly impossible to achieve in hardware because the higher-level structure of a program is no longer available. A compiler can interpret the higher-level structure of a program and optimize the output for better scheduling.
 
-The origins of the VEX ISA can be traced to the company Multiflow and John Fisher, one of the inventors of VLIW processors at Yale University \cite{Fisher:1983:VLI:1067651.801649}. Multiflow designed a computer that used VLIW processors to execute instructions up to 1024-bits in size. Along with these computers Multiflow also designed a compiler system that used trace based scheduling to extract ILP from programs. Reportedly the code base for the Multiflow compiler has been used in modern compiler such as Intel C Compiler (ICC) and HP VEX compiler because of the robustness and the amount of ILP that could be exposed by the compiler \cite{Lowney:1993qy}.
+The origins of the VEX ISA can be traced to the company Multiflow and John Fisher, one of the inventors of VLIW processors at Yale University \cite{Fisher:1983:VLI:1067651.801649}. Multiflow designed a computer that used VLIW processors to execute instructions up to 1024-bits in size. Along with these computers Multiflow also designed a compiler system that used trace based scheduling to extract ILP from programs \cite{2247}. Reportedly the code base for the Multiflow compiler has been used in modern compiler such as Intel C Compiler (ICC) and HP-VEX compiler because of the robustness and the amount of ILP that could be exposed by the compiler \cite{Lowney:1993qy}.
 
-John Fisher has designed the VEX ISA as an example of VLIW type processors \cite{Joseph-A.-Fisher:2005cr}. His work includes the design of an ISA, processor design, and a compiler system that generates code for this processor. Thijs van As developed a processor called $\rho$-VEX that is binary compatible with the VEX processor.
+John Fisher has designed the VEX ISA as an example of VLIW type processors \cite{Joseph-A.-Fisher:2005cr}. His work includes the design of an ISA, processor design, and a compiler system that generates code for this processor. Thijs van As developed a processor called $\rho$-VEX that is binary compatible with the VEX processor \cite{As:2008rt}.
 
-Currently two different compilers exist that target the $\rho$-VEX processor: the HP-VEX compiler and a GCC port developed by IBM. We will show that both existing compilers are not optimal and that a new compiler is required for the $\rho$-VEX project. Further we will present a LLVM based compiler that targets the $\rho$-VEX processor with performance and features similar to the HP-VEX compiler. 
+Currently two different compilers exist that target the $\rho$-VEX processor: the HP-VEX compiler \cite{HP-VEX:2014} and a GCC port developed by IBM. We will show that both existing compilers are not optimal and that a new compiler is required for the $\rho$-VEX project. Further we will present a LLVM based compiler that targets the $\rho$-VEX processor with performance and features similar to the HP-VEX compiler. 
 
 \section{Problem statement}
 % FIXME logic used not clear
@@ -52,7 +52,7 @@ Based on these properties we have analyzed the HP-VEX and GCC-based compiler.
 \newline
 HP-VEX:
 \begin{itemize}
-	\item \textbf{Code quality:} Excellent code quality and ILP extraction.
+	\item \textbf{Code quality:} Excellent code quality and ILP extraction. 
 	\item \textbf{Support:} Bad, no active community.
 	\item \textbf{Front-end:} Bad, only support for C.
 	\item \textbf{Back-end:} Not applicable since compiler is specifically targeted to one architecture.
@@ -61,18 +61,18 @@ HP-VEX:
 
 GCC:
 \begin{itemize}
-	\item \textbf{Code quality:} The $\rho$-VEX backend for GCC has not been optimized and the quality of the code is quite low. Performance of GCC executables is lower then code compiled by the HP-VEX compiler. Some programs do not function correctly when compiled by GCC. Some programs are unable to be compiled by GCC.
-	\item \textbf{Support:} There is a very active development community around GCC itself. Unfortunately, the support for the $\rho$-VEX is not good because the $\rho$-VEX branch is maintained privately.
+	\item \textbf{Code quality:} The $\rho$-VEX backend for GCC has not been optimized and the quality of the code is quite low. Performance of GCC executables is lower then code compiled by the HP-VEX compiler. Some programs do not function correctly when compiled by GCC.
+	\item \textbf{Support:} There is a very active development community around GCC itself \cite{gcc:2014}. Unfortunately, the support for the $\rho$-VEX is not good because the $\rho$-VEX branch is maintained privately.
 	\item \textbf{Front-end:} GCC supports a large number of programming languages including C, C++, Fortran and Java
-	\item \textbf{Customization:} Because GCC is open source the compiler can be customized to support new passes, optimizations and instructions. The $\rho$-VEX backend currently only supports a 4-issue width $\rho$-VEX processor. Furthermore, the internal workings of GCC are complex and poorly documented. Different parts of the compiler are linked in a complex way and it is very difficult to obtain a general overview on how the compiler operates. Because of the complexity it is difficult to add new functionality to the GCC compiler.
+	\item \textbf{Customization:} Because GCC is open source the compiler can be customized to support new passes, optimizations and instructions. The $\rho$-VEX backend currently only supports a 4-issue $\rho$-VEX processor. Furthermore, the internal workings of GCC are complex and poorly documented. Different parts of the compiler are linked in a complex way and it is very difficult to obtain a general overview on how the compiler operates. Because of the complexity it is difficult to add new functionality to the GCC compiler.
 \end{itemize}
 
 The comparison shows that both the HP-VEX and GCC compilers have serious disadvantages. The fact that HP-VEX cannot be customized excludes it from further development for the $\rho$-VEX project. Bringing the GCC compiler performance and features up to the same level as HP-VEX will be very difficult because of the complexity involved with GCC development.  
 
-In 2000, the LLVM project \cite{Chris-Lattner:2004lq} has been started with the goal of replacing the code generator in the GCC compiler. LLVM provides a modern, modular design and is written in C++. Originally, the GCC front-end was used to translate programs into LLVM compatible intermediate representation. Around 2005, the Clang project was started which aimed to replace the GCC front-end with an independent front-end that supports C, C++ and ObjC. Currently the LLVM-based compiler offers performance that approaches GCC but offering a significant improvement in terms of modularity, ease of development and "hackability". In addition, the LLVM compiler can also be used to target different architectures such as GPU's and VLIW based processors.
+In 2000, the LLVM project \cite{Chris-Lattner:2004lq} has been started with the goal of replacing the code generator in the GCC compiler. LLVM provides a modern, modular design and is written in C++. Originally, the GCC front-end was used to translate programs into LLVM compatible intermediate representation. Around 2005, the Clang project was started which aimed to replace the GCC front-end with an independent front-end that supports C, C++ and ObjC. Currently the LLVM-based compiler offers performance that approaches GCC but offering a significant improvement in terms of modularity, ease of development and ``hackability''. In addition, the LLVM compiler can also be used to target different architectures such as GPU's and VLIW based processors.
 
 \subsection{Previous works}
-Currently the LLVM compiler has support for a VLIW type processor called \emph{Hexagon}. In \cite{Simpson:2011qc} it is mentioned that it took two engineers 23 days to get a back-end working. Within 107 Calendar days they were able to achieve 87\% performance of GCC.
+Currently the LLVM compiler has support for the Qualcom Hexagon VLIW processor \cite{10.1109/MM.2014.12}. In \cite{Simpson:2011qc} it is mentioned that it took two engineers 23 days to get a LLVM-based back-end working. Within 107 Calendar days they were able to achieve 87\% performance of GCC.
 
 \cite{Erhardt:2009sy} documents the implementation of a LLVM backend for the TriCore processor. They conclude that their TriCore backend could emerge as a serious alternative to the current compilers that target the TriCore processor.
 
@@ -96,7 +96,7 @@ The following steps need to be completed for successful implementation of a $\rh
 	\item Research LLVM compiler framework
 	\item Build LLVM-based VEX compiler with following features:
 	\begin{itemize}
-		\item 4-issue-width VLIW
+		\item 4-issue $\rho$-VEX processor
 		\item Code generation
 		\item Assembly emitter
 	\end{itemize}
@@ -124,7 +124,7 @@ In Chapter \ref{chap:implementation} will discuss how the $\rho$-VEX compiler wa
 
 Chapter \ref{chap:optimization} will discuss how the performance of the LLVM compiler has been optimized. Compilation problems that have been found are demonstrated and we will show how these problems have been resolved to increase performance of the binaries.
 
-Chapter \ref{chap:results} will explore the performance of the new compiler. Performance will be compared to existing compilers in terms of issue width. 
+Chapter \ref{chap:results} will explore the performance of the new compiler. Performance will be compared to existing compilers in terms of issue-width. 
 
 A conclusion and recommendations for future research is presented in Chapter \ref{chap:conclusion}.  
 

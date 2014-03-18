@@ -13,7 +13,7 @@ The architecture of the $\rho$-VEX core is depicted in Figure \ref{fig:rvex_arch
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{2_background/img/rvex_arch.png}
-\caption{$\rho$-VEX architecture}
+\caption{$\rho$-VEX architecture \cite{Roel-Seedorf:2012qf}}
 \label{fig:rvex_arch}
 \end{figure}
 
@@ -25,14 +25,14 @@ The pipeline uses five stages to execute an instruction. For example, consider a
   \item \textbf{Fetch stage:} An instruction is selected from the instruction memory using the Program Counter (PC) or the Branch Target address. Note that 1 instruction contains four different operations.
   \item \textbf{Decode stage:} Each operation is decoded in parallel and the needed registers are read from the register file. 
   \item \textbf{Execute 1 stage:} In this stage, the functional units produce results for ALU operations. In addition this stage is also used to write to the data memory when Store operations are executed. The $\rho$-VEX processor uses $16*32$-bit multipliers that require two stages to produce a result. In this stage the multiplication operations are started.
-  \item \textbf{Execute 2 stage:} This stage produces results for MUL operations. In addition this stage reads data from the data memory when load operations are executed.
+  \item \textbf{Execute 2 stage:} This stage produces results for multiply operations. In addition this stage reads data from the data memory when load operations are executed.
   \item \textbf{Writeback stage:} In this stage results that have been generated in the previous stages are committed to the register file.
 \end{itemize}
 
-The $\rho$-VEX processor uses a bypass network to forward operations to other pipeline stages when needed.
+The $\rho$-VEX processor uses a bypass network to forward operations to other pipeline stages when needed \cite{Roel-Seedorf:2012qf}.
 
 \subsection{ISA}
-The assembly format for VEX instructions is shown in Figure \ref{fig:rvex_asm} \cite{Joseph-A.-Fisher:2012rm}. The destination of an operation is to the left of the "="" sign, while the source operands are listed on the right-hand side. On the right-hand side both registers and immediate values can be used as source operands. The $\rho$-VEX processor does not support multiple clusters and each instruction is executed on cluster 0.
+The assembly format for VEX instructions is shown in Figure \ref{fig:rvex_asm} \cite{Joseph-A.-Fisher:2012rm}. The destination of an operation is to the left of the ``='' sign, while the source operands are listed on the right-hand side. On the right-hand side both registers and immediate values can be used as source operands. The $\rho$-VEX processor does not support multiple clusters and each instruction is executed on cluster 0.
 
 \begin{figure}[ht!]
 \centering
@@ -90,9 +90,9 @@ The \ref{tbl:rvex_reg} described the properties of all the available $\rho$-VEX 
 \end{table}
 
 \section{LLVM Compiler infrastructure}
-LLVM is based on the classic three-stage compiler architecture depicted in figure \ref{fig:compiler_structure}. The compiler uses a number language-specific front-ends, an optimizer and target-specific backends. Each module consists of a number of generic passes that are used to transform the code. This modular design enables compiler designers to introduce new passes and parts of the compiler without having to change the existing framework. Support for a new processor can be added by building a new back-end. The existing front-end and optimizer can be reused for the new compiler.
+LLVM is based on the classic three-stage compiler architecture depicted in figure \ref{fig:compiler_structure}. The compiler uses a number language-specific frontends, an optimizer and target-specific backends. Each module consists of a number of generic passes that are used to transform the code. This modular design enables compiler designers to introduce new passes and parts of the compiler without having to change the existing framework. Support for a new processor can be added by building a new back-end. The existing frontend and optimizer can be reused for the new compiler.
 
-% FIXME pas plaatje aan want in plaatje staat front-end en back-end, moet worden frontend, backend
+% FIXME pas plaatje aan want in plaatje staat frontend en back-end, moet worden frontend, backend
 
 \begin{figure}[ht]
 \centering
@@ -101,7 +101,7 @@ LLVM is based on the classic three-stage compiler architecture depicted in figur
 \label{fig:compiler_structure}
 \end{figure}
 
-The front-end is used to transform the plain text source code of a program into an intermediate representation that will be used during compilation process. This transformation is achieved by performing the following steps:
+The frontend is used to transform the plain text source code of a program into an intermediate representation that will be used during compilation process. This transformation is achieved by performing the following steps:
 
 \begin{enumerate}
   \item \textbf{Lexical analysis:} Break input into individual tokens.
@@ -109,20 +109,20 @@ The front-end is used to transform the plain text source code of a program into 
   \item \textbf{Semantic analysis:} Semantic information is added to the parse tree, type checking is performed and a symbol table is built.
 \end{enumerate}
 
-The resulting abstract syntax tree (AST) is transformed into LLVM IR and passed to the optimizer and backend of the compiler. These parts of the compilation process are completely language agnostic and do not require any other information from the front-end.
+The resulting abstract syntax tree (AST) is transformed into LLVM IR and passed to the optimizer and backend of the compiler. These parts of the compilation process are completely language agnostic and do not require any other information from the frontend.
 
-The optimizer is used to analyze and optimize the program. Optimization such as dead code elimination and copy propagation are performed during this phase but also more advanced operations that extract ILP (loop vectorization) can be enabled.
+The optimizer is used to analyze and optimize the program. Optimization such as dead code elimination and copy propagation are performed during this phase but also more advanced operations that extract ILP, such as loop vectorization \cite{llvm-loop:2014}, can be enabled.
 
-The back-end optimizes and generates code for a specific architecture. The LLVM IR is transformed into processor specific assembly instructions. In addition the backend also allocates registers, and schedules the instructions.
+The back-end optimizes and generates code for a specific architecture. The LLVM IR is transformed into processor specific assembly instructions. In addition the z also allocates registers, and schedules the instructions.
 
-\subsection{Current front-ends}
+\subsection{Current frontends}
 % FIXME can this be merged?
-The modular design of LLVM enables the compiler to be used as a part of the existing GCC compiler. For example, the dragonegg GCC plugin is designed to replace the GCC code generator and optimizer with the LLVM backend. This would enable LLVM to be able to use the existing GCC based front-ends and supported languages.
+The modular design of LLVM enables the compiler to be used as a part of the existing GCC compiler. For example, the dragonegg GCC plugin \cite{dragonegg:2014} is designed to replace the GCC code generator and optimizer with the LLVM backend. This would enable LLVM to be able to use the existing GCC based frontends and supported languages.
 
-Clang has been developed to allow LLVM to operate independently of GCC. Clang is a front-end supporting C, C++, and ObjC. The front-end is designed to be closely integrated with the Integrated Development Environment (IDE) allowing more expressive diagnostic messages. In addition, Clang also aims to provide faster compilation and lower memory usage \cite{clang:features}.
+Clang has been developed to allow LLVM to operate independently of GCC. Clang is a frontend supporting C, C++, and ObjC. The frontend is designed to be closely integrated with the Integrated Development Environment (IDE) allowing more expressive diagnostic messages. In addition, Clang also aims to provide faster compilation and lower memory usage \cite{clang:features}.
 
 \subsection{LLVM IR}
-The front-end transforms a source code into the LLVM internal representation (LLVM IR). The LLVM IR is used to represent a high level language cleanly in a target independent way and is used during all phases of compilation. Instructions are similar to RISC instructions and can use three operands. Control flow instructions and type specific load/store instructions are used and an infinite amount of registers are available in Single Static Assignment (SSA) form. The LLVM IR is available in three different forms: human readable text, binary form, and an in-memory form \cite{llvm:presentation}.
+The frontend transforms a source code into the LLVM Intermediate representation (LLVM IR). The LLVM IR is used to represent a high level language cleanly in a target independent way and is used during all phases of compilation. Instructions are similar to RISC instructions and can use three operands. Control flow instructions and type specific load/store instructions are used and an infinite amount of registers are available in Single Static Assignment (SSA) form. The LLVM IR is available in three different forms: human readable text, binary form, and an in-memory form \cite{llvm:presentation}.
 
 The LLVM IR is designed to expose high-level information for further optimization. Examples of high-level information include dataflow analysis using the SSA form, control-flow graphs, language independent type information and explicit use of pointer arithmetic. 
 
@@ -210,26 +210,24 @@ The current version of the LLVM compiler supports the following processor archit
   \item \textbf{ARM:} RISC type processor designed for use in embedded systems.
   \item \textbf{AArch64:} Targets ARMv8 ISA that has support for 64-bit architectures.
   \item \textbf{Hexagon:} 32-bit DSP processor developed by Qualcomm. Targets a VLIW type processor
-  \item \textbf{MIPS:} One of the original RISC type processors.  
+  \item \textbf{MIPS:} One of the original RISC type processors \cite{Hennessy:1983:DHP:892745}.  
   \item \textbf{MBlaze:} Derivative of the MIPS processor developed by Xilinx for use in FPGAs.
   \item \textbf{MSP430:} 16-bit processor developed by Texas Instruments.
   \item \textbf{NVPTX:} CUDA backend targeting NVIDIA GPUs.
   \item \textbf{PowerPC:} RISC type processor developed by IBM.
   \item \textbf{R600:} Backend that targets R600 AMD GPUs.
-  \item \textbf{Sparc:} One of the original RISC type processors.
+  \item \textbf{Sparc:} One of the original RISC type processors \cite{4874}.
   \item \textbf{SystemZ:} Processor used in IBM Mainframes.
   \item \textbf{X86:} General purpose processor.
   \item \textbf{XCore:} 32-bit RISC type processor.
 \end{itemize}
 
-Backends that target other architectures also exist but these are not included in the distribution of the LLVM compiler and are not actively maintained by the LLVM community.
-
-The \emph{Hexagon}, \emph{NVPTX}, and \emph{R600} backends are of special interest because these backends target VLIW processors or massive parallel systems such as GPUs. The \emph{Hexagon} processor demonstrates that it is possible to build a LLVM backend that targets a general purpose VLIW type processor.
+Backends that target other architectures also exist but these are not included in the distribution of the LLVM compiler and are not actively maintained by the LLVM community. The Hexagon, NVPTX, and R600 backends are of special interest because these backends target VLIW processors or massive parallel systems such as GPUs. The Hexagon processor demonstrates that it is possible to build a LLVM backend that targets a general purpose VLIW type processor.
 
 \section{Verification}
 Verification of the LLVM compiler is extremely important. Performance of the generated binaries is irrelevant if only half of the binaries produce a correct result. The LLVM compiler will be verified by simulating the generated binaries. 
 
-Two simulators are available; XSTsim and Modelsim. XSTsim is an ISA simulator that can simulate a 4 issue width $\rho$-VEX processor. Output of the simulator is customizable and the simulator is fast enough to simulate large executables. Modelsim is used to perform a complete functional simulation of the $\rho$-VEX processor. The Modelsim simulation provides the highest accuracy because an actual $\rho$-VEX processor is simulated and is used for execution. The disadvantage of using Modelsim is the performance. Simulation of an executable will take a long time because the complete processor is simulated.
+Two simulators are available; XSTsim and Modelsim. XSTsim is an ISA simulator that can simulate a 4-issue $\rho$-VEX processor. Output of the simulator is customizable and the simulator is fast enough to simulate large executables. Modelsim is used to perform a complete functional simulation of the $\rho$-VEX processor. The Modelsim simulation provides the highest accuracy because an actual $\rho$-VEX processor is simulated and is used for execution. The disadvantage of using Modelsim is the performance. Simulation of an executable will take a long time because the complete processor is simulated.
 
 Writing test programs that generate certain instruction sequences will be used to verify the compiler. The output of these test programs will be compared to the expected result to check for errors in the backend.
 

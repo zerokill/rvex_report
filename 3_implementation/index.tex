@@ -59,6 +59,9 @@ class rvexReg<string n> : Register<n> {
 }
 \end{lstlisting}
 
+% FIXME layout
+\pagebreak
+
 The \texttt{rvexReg} class is used to define the general purpose registers and the branch registers.
 \begin{lstlisting}[language=tblgen]
 class rvexGPRReg<bits<7> num, string n> : rvexReg<n> {
@@ -91,17 +94,20 @@ def BRRegs   : RegisterClass<"rvex", [i32], 32,
   )>;
 \end{lstlisting}
 
-The branch registers have been defined to also use 32 bit values even though in reality the branch register is only 1 bit wide. This has been done because LLVM had a lot of trouble identifying the correct instruction patterns for compare instructions. The $\rho$-VEX compare instruction can produce results in both the CPURegs and the BRegs as illustrated in the following example:
+The branch registers have been defined to also use 32-bit values even though in reality the branch register is only 1-bit wide. This has been done because LLVM had a lot of trouble identifying the correct instruction patterns for compare instructions. The $\rho$-VEX compare instruction can produce results in both the CPURegs and the BRegs as illustrated in the following example:
 
 \begin{lstlisting}
 <1 bit>BRRegs = Operation, <32 bit>CPURegs, <32 bit>CPURegs
 <32 bit>CPURegs = Operation, <32 bit>CPURegs, <32 bit>CPURegs
 \end{lstlisting}
 
-The LLVM compiler is unaware that when the compare instruction is used to define a 32-bit result only the lowest bit will be set. The compiler tried to resolve this issue by inserting \texttt{truncate} and \texttt{zero\_extend} instructions even though this is not required. This has been solved by implementing the BRRegs as 32 bit wide so LLVM will not insert truncate and extend instructions when operating on these type of instructions.
+The LLVM compiler is unaware that when the compare instruction is used to define a 32-bit result only the lowest bit will be set. The compiler tried to resolve this issue by inserting \texttt{truncate} and \texttt{zero\_extend} instructions even though this is not required. This has been solved by implementing the BRRegs as 32-bit wide so LLVM will not insert truncate and extend instructions when operating on these type of instructions.
 
 \subsection{Pipeline definition}
 \texttt{tablegen} can be used to describe the architecture of the processor in a generic way. LLVM will schedule an instruction to a processor functional unit during the scheduling pass. The following code describes the available functional units for a 4-issue a $\rho$-VEX processor.
+
+% FIXME layout
+\pagebreak
 
 \begin{lstlisting}[language=tblgen]
 def P0 : FuncUnit;
@@ -130,7 +136,7 @@ def rvexGenericItineraries : ProcessorItineraries<[P0, P1, P2, P3], [], [
 ]>;
 \end{lstlisting}
 
-The machine model class is used to encapsulate the processor itineraries and certain high-level properties such as issue width and latencies.
+The machine model class is used to encapsulate the processor itineraries and certain high-level properties such as issue-width and latencies.
 
 \begin{lstlisting}[language=tblgen]
 def rvexModel : SchedMachineModel {
@@ -143,8 +149,8 @@ def rvexModel : SchedMachineModel {
 \texttt{tablegen} is also used to describe other properties of the target processor. LLVM has stated as goal to move more parts of the backend description to the \texttt{tablegen} format because \texttt{tablegen} offers such a flexible implementation. At the moment \texttt{tablegen} is also used to implement:
 
 \begin{itemize}
-  \item Calling convention
-  \item Subtarget features
+  \item \textbf{Calling convention:} Describes the registers that are used to pass arguments between functions, the return registers, the callee-saved registers, the caller-saved registers and the reserved registers. 
+  \item \textbf{Subtarget features:} Target-specific features can be defined using the subtarget description. 
 \end{itemize}
 
 \section{Code generation}
@@ -315,7 +321,7 @@ The packetizer pass is an optional pass that is used for VLIW targets. The packe
 
 The \texttt{tablegen} pipeline definition is used to build a DFA that represents the resource usage of the processor. The DFA can be used to determine to which functional unit an instruction can be mapped and if enough functional units are available.
 
-The DFA representation is powerful enough to consider different properties of functional units. For example consider a 4-issue width VLIW processor but with only one unit supporting load / store operations. The DFA can model this pipeline and guarantee only one load / store instruction will be executed per clock cycle.
+The DFA representation is powerful enough to consider different properties of functional units. For example consider a 4-issue VLIW processor but with only one unit supporting load / store operations. The DFA can model this pipeline and guarantee only one load / store instruction will be executed per clock cycle.
 
 The VLIW packetizer also checks if certain instructions are legal to bundle together. The packetizer can be customized to check for hazards such as data dependency hazards, anti dependencies and output dependencies. Custom hazards can also be inserted to make sure that control flow instructions are always in a single bundle.
 
@@ -325,9 +331,12 @@ This section describes features that have been added to the LLVM compiler. Curre
 \subsection{Generic binary support}
 % FIXME uitleggen hoe instructies worden geserialized
 
-By disallowing RAW hazards in instruction bundles, binaries can be generated that can execute on any $\rho$-VEX processor irrespective of issue width. For example consider the following instruction packet. The RAW hazard will occur on the r0.8 register.
+In \cite{Anthony-Brandon:2013jk} the design was presented for a binary format that will execute on any $\rho$-VEX processor, regardless of issue-width. This is achieved by generating binaries for an 8-issue $\rho$-VEX processor. If this binary is executed on a $\rho$-VEX processor with a lower issue-width the execution of the binary will be \emph{serialized} and is performed in steps. For instance, consider executing a generic binary on a 2-issue $\rho$-VEX processor. 4 instruction cycles are needed to execute each part of the instruction packet.
 
-\begin{lstlisting}[language=rvex]
+
+The generic binary format adds certain instruction packet constraints. Data hazards are not allowed inside generic instruction packets because these would alter the register state of the processor. For instance, consider the instruction packet listed in \ref{lst:gen_binary}. A Read After Write (RAW) hazard will occur on the \texttt{r0.8} register. When this instruction is serialized the contents of register \texttt{r0.8} is altered during the first clock cycle. During the second clock cycle this updated register will be used for execution even though the compiler intended to use the original value of \texttt{r0.8}. By disallowing RAW hazards in instruction bundles, binaries can be generated that can execute on any $\rho$-VEX processor irrespective of issue-width.
+
+\begin{lstlisting}[language=rvex, label=lst:gen_binary, caption={Regular $\rho$-VEX binary.}]
   add $r0.10  = $r0.10, $r0.11
   add $r0.12  = $r0.12, $r0.13
   add $r0.14  = $r0.14, $r0.8
@@ -335,12 +344,24 @@ By disallowing RAW hazards in instruction bundles, binaries can be generated tha
 ;; 
 \end{lstlisting}
 
-Execution of this code on a 4-issue width processor will be fine but if this instruction is executed on a 2-issue width processor a problem will arise. The contents of register r0.8 will be changed during execution of the first bundle and execution of the second bundle will produce an invalid result.
+To ensure that the first use of \texttt{r0.8} is executed before the last use of this register the bundle will be split as shown in Listing \ref{lst:gen_binary2}.
 
-This bundle should be split into two instructions during compilation. This can be achieved by checking for RAW hazards inside a bundle during the VLIW packetizer pass. The VLIW packetizer will detect these hazards and split the instructions into different bundles so correct execution is guaranteed.
+% FIXME layout
+\pagebreak
+
+\begin{lstlisting}[language=rvex, label=lst:gen_binary2, caption={Generic $\rho$-VEX binary.}]
+  add $r0.10  = $r0.10, $r0.11
+  add $r0.12  = $r0.12, $r0.13
+  add $r0.14  = $r0.14, $r0.8
+;;
+  add $r0.8   = $r0.8, $r0.9
+;; 
+\end{lstlisting}
+
+The VLIW packetization step is used to find RAW hazards between operations in instruction packets. If a RAW hazard is found the current packet is finalized and the operation is added to the next instruction packet.
 
 \subsection{Compiler parameterization}
-The HP VEX compiler supports a machine description file that describes properties of the processor. Using this machine description certain parameters, such as issue width, multiply units, load / store units, and branch units can be customized. 
+The HP VEX compiler supports a machine description file that describes properties of the processor. Using this machine description certain parameters, such as issue-width, multiply units, load / store units, and branch units can be customized. 
 
 Currently the LLVM compiler supports parameterization through subtarget support. Backend features can be enabled and disabled with command line parameters. The ARM backend uses this approach to select between different ARMv7 architectures, floating point support and div/mul support. This approach would not be useful for the $\rho$-VEX processor because of the amount of features that can be customized. Each customizable feature would need a new subtarget. For example, when four features can be customized (W, X, Y and Z), then $W*X*Y*Z$ subtargets would be needed. Clearly, this approach is not usable for the $\rho$-VEX processor where multiple parameters can be customized with a wide range of possibilities.
 
@@ -350,7 +371,7 @@ The following properties can be customized through the machine description file:
 
 \begin{itemize}
   \item \textbf{Generic binary:} disable RAW hazard check in VLIW packetizer
-  \item \textbf{Width:} issue width of the processor
+  \item \textbf{Width:} issue-width of the processor
   \item \textbf{Stages:} describes all the available functional units an the amount of cycles an instruction fills a functional unit.
   \item \textbf{Instruction itinerary:} maps an instruction itinerary to a function unit. Also describes at what cycle the output contains a legal value.
 \end{itemize}
@@ -361,7 +382,7 @@ The location of the machine description file is passed to the \texttt{rvexMCTarg
 
 Some parameters such as the toggling of generic binary support is not handled through the \texttt{rvexMCTargetDesc} file. These parameters are used to set global state flags that can be read at anypoint in the compilation process. The \texttt{Is\_Generic\_flag} is used during the \texttt{rvexVLIWPacketizer} pass and during the liveliness calculation pass.
 
-The following code demonstrates the configuration file for a 4-issue width  $\rho$-VEX processor with support for generic binaries. The \texttt{Stages} parameter uses three values. The first value describes the amount of clock cycles a instruction occupies a functional unit the second parameter is a bitmask for which functional unit can handle this instruction. The third parameter is currently not used.
+The following code demonstrates the configuration file for a 4-issue $\rho$-VEX processor with support for generic binaries. The \texttt{Stages} parameter uses three values. The first value describes the amount of clock cycles a instruction occupies a functional unit the second parameter is a bitmask for which functional unit can handle this instruction. The third parameter is currently not used.
 
 The \texttt{InstrItinerary} parameter describes which type of instruction maps to which \texttt{Stage}. The first value describes which Stage an instruction is going to use, the second parameter describes when the result of the operation is available.
 
@@ -379,9 +400,7 @@ In this section, we have shown how the $\rho$-VEX backend for the LLVM compiler 
 
 The finished DAG is transformed into a sequential list of instructions. This instruction list is used for the remaining passes. The remaining passes are used to map virtual registers to physical registers, emit prologue and epilogue functions and to perform VLIW packetization.
 
-Support for floating-point operations has been added by porting the LLVM floating point library to the $\rho$-VEX processor.
-
-Certain features that are required for the $\rho$-VEX processor were not available in the LLVM compiler. Features such as a machine description file are new to LLVM and we have shown what changes have been made to the LLVM compiler to support machine description files. In addition, we have shown how the backend has been updated to provide support for the $\rho$-VEX generic binary format.
+Certain features that are required for the $\rho$-VEX processor were not available in the LLVM compiler. Features such as a machine description file are new to LLVM and we have shown what changes have been made to the LLVM compiler to support machine description files. In addition, we have shown how the backend has been updated to provide support for the $\rho$-VEX generic binary format. Support for floating-point operations has been added by porting the LLVM floating point library to the $\rho$-VEX processor.
 
 
 \acresetall

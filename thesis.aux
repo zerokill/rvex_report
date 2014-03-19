@@ -97,11 +97,11 @@
 \newacro{CPI}[\AC@hyperlink{CPI}{CPI}]{Clocks Per Instruction}
 \newacro{DAG}[\AC@hyperlink{DAG}{DAG}]{Directed Acyclic Graph}
 \newacro{DFA}[\AC@hyperlink{DFA}{DFA}]{Deterministic Finite Automaton}
-\newacro{DFA}[\AC@hyperlink{DFA}{DFA}]{Deterministic Finite Automaton}
 \newacro{DSL}[\AC@hyperlink{DSL}{DSL}]{Domain-specific Language}
 \newacro{FP}[\AC@hyperlink{FP}{FP}]{Floating-point}
 \newacro{FU}[\AC@hyperlink{FU}{FU}]{Functional Unit}
 \newacro{GCC}[\AC@hyperlink{GCC}{GCC}]{GNU Compiler Collection}
+\newacro{IDE}[\AC@hyperlink{IDE}{IDE}]{Integrated Development Environment}
 \newacro{ILP}[\AC@hyperlink{ILP}{ILP}]{Instruction Level Parallelism}
 \newacro{IPC}[\AC@hyperlink{IPC}{IPC}]{Instructions Per Clock}
 \newacro{IR}[\AC@hyperlink{IR}{IR}]{Intermediate Representation}
@@ -110,6 +110,7 @@
 \newacro{JIT}[\AC@hyperlink{JIT}{JIT}]{Just-in-time compilation}
 \newacro{LLVM}[\AC@hyperlink{LLVM}{LLVM}]{Low Level Virtual Machine}
 \newacro{MBB}[\AC@hyperlink{MBB}{MBB}]{Machine Basic Block}
+\newacro{MI}[\AC@hyperlink{MI}{MI}]{Machine Instruction}
 \newacro{OoO}[\AC@hyperlink{OoO}{OoO}]{Out-of-Order Execution}
 \newacro{PC}[\AC@hyperlink{PC}{PC}]{Program Counter}
 \newacro{RAW}[\AC@hyperlink{RAW}{RAW}]{Read After Write}
@@ -247,118 +248,126 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chap:implementation}{{3}{17}{Implementation\relax }{chapter.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Tablegen}{17}{section.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces \texttt  {tblgen} instructions\relax }}{18}{figure.caption.13}}
-\newlabel{fig:tblgen}{{3.1}{18}{\texttt {tblgen} instructions\relax \relax }{figure.caption.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Base $\rho $-VEX instruction}{17}{lstlisting.3.1}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Class representing three-operand instructions}{17}{lstlisting.3.2}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}\texttt  {add} instruction}{18}{lstlisting.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces \texttt  {tablegen} instructions\relax }}{18}{figure.caption.13}}
+\newlabel{fig:tblgen}{{3.1}{18}{\texttt {tablegen} instructions\relax \relax }{figure.caption.13}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Register definition}{18}{subsection.3.1.1}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}Register class definition}{18}{lstlisting.3.4}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}$\rho $-VEX register types}{19}{lstlisting.3.5}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}$\rho $-VEX register}{19}{lstlisting.3.6}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}$\rho $-VEX register classes}{19}{lstlisting.3.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Pipeline definition}{19}{subsection.3.1.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Other specifications}{20}{subsection.3.1.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Code generation}{21}{section.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Instruction transformation}{21}{subsection.3.2.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Instruction Lowering}{21}{subsection.3.2.2}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}Expanded instructions}{21}{subsubsection.3.2.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}Promote instruction}{21}{subsubsection.3.2.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}Promote instruction}{22}{subsubsection.3.2.2.2}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.3}Custom expansion}{22}{subsubsection.3.2.2.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Instruction selection}{22}{subsection.3.2.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}New instructions}{22}{subsection.3.2.4}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4.1}Extend ISD namespace}{23}{subsubsection.3.2.4.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4.2}Instruction lowering}{23}{subsubsection.3.2.4.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4.3}Instruction selection}{23}{subsubsection.3.2.4.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4.3}Instruction selection}{24}{subsubsection.3.2.4.3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4.4}Other cases}{24}{subsubsection.3.2.4.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Floating-point operations}{24}{subsection.3.2.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.6}Scheduling}{24}{subsection.3.2.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Floating-point operations}{25}{subsection.3.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.6}Scheduling}{25}{subsection.3.2.6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.7}Register allocation}{25}{subsection.3.2.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.8}Hazard recognizer}{25}{subsection.3.2.8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.9}Prologue and epilogue insertion}{25}{subsection.3.2.9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.10}VLIW Packetizer}{25}{subsection.3.2.10}}
 \citation{Anthony-Brandon:2013jk}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.9}Prologue and epilogue insertion}{26}{subsection.3.2.9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.10}VLIW Packetizer}{26}{subsection.3.2.10}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}New LLVM features}{26}{section.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Generic binary support}{26}{subsection.3.3.1}}
-\newlabel{lst:gen_binary}{{3.1}{26}{Regular $\rho $-VEX binary}{lstlisting.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Regular $\rho $-VEX binary.}{26}{lstlisting.3.1}}
-\newlabel{lst:gen_binary2}{{3.2}{27}{Generic $\rho $-VEX binary}{lstlisting.3.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Generic $\rho $-VEX binary.}{27}{lstlisting.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Generic binary support}{27}{subsection.3.3.1}}
+\newlabel{lst:gen_binary}{{3.8}{27}{Regular $\rho $-VEX binary}{lstlisting.3.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Regular $\rho $-VEX binary.}{27}{lstlisting.3.8}}
+\newlabel{lst:gen_binary2}{{3.9}{27}{Generic $\rho $-VEX binary}{lstlisting.3.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}Generic $\rho $-VEX binary.}{27}{lstlisting.3.9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Compiler parameterization}{27}{subsection.3.3.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Conclusion}{28}{section.3.4}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Optimization}{29}{chapter.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Conclusion}{29}{section.3.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Optimization}{31}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:optimization}{{4}{29}{Optimization\relax }{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Machine scheduler}{29}{section.4.1}}
-\newlabel{lst:scheduler}{{4.1}{30}{\relax }{lstlisting.4.-25}{}}
+\newlabel{chap:optimization}{{4}{31}{Optimization\relax }{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Machine scheduler}{31}{section.4.1}}
+\newlabel{lst:scheduler}{{4.1}{32}{\relax }{lstlisting.4.-18}{}}
 \citation{Bradlee:1991:IRA:106973.106986}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Branch analysis}{31}{section.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Branch analysis}{33}{section.4.2}}
 \citation{Anthony-Brandon:2013jk}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Generic binary optimization}{32}{section.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Problem statement}{32}{subsection.4.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Implementation}{33}{subsection.4.3.2}}
-\newlabel{sub:implementation}{{4.3.2}{33}{Implementation\relax }{subsection.4.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Large immediate values}{33}{section.4.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Problem statement}{34}{subsection.4.4.1}}
-\newlabel{sub:problem_statement}{{4.4.1}{34}{Problem statement\relax }{subsection.4.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Implementation}{34}{subsection.4.4.2}}
-\newlabel{sub:implementation}{{4.4.2}{34}{Implementation\relax }{subsection.4.4.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Conclusion}{34}{section.4.5}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Verification and Results}{37}{chapter.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Generic binary optimization}{34}{section.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Problem statement}{35}{subsection.4.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Implementation}{35}{subsection.4.3.2}}
+\newlabel{sub:implementation}{{4.3.2}{35}{Implementation\relax }{subsection.4.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Large immediate values}{36}{section.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Problem statement}{36}{subsection.4.4.1}}
+\newlabel{sub:problem_statement}{{4.4.1}{36}{Problem statement\relax }{subsection.4.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Implementation}{37}{subsection.4.4.2}}
+\newlabel{sub:implementation}{{4.4.2}{37}{Implementation\relax }{subsection.4.4.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Conclusion}{37}{section.4.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Verification and Results}{39}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:results}{{5}{37}{Verification and Results\relax }{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Simulation environment}{37}{section.5.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces $\rho $-VEX testbench\relax }}{37}{figure.caption.14}}
-\newlabel{fig:rvex_tb}{{5.1}{37}{$\rho $-VEX testbench\relax \relax }{figure.caption.14}{}}
+\newlabel{chap:results}{{5}{39}{Verification and Results\relax }{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Simulation environment}{39}{section.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces $\rho $-VEX testbench\relax }}{39}{figure.caption.14}}
+\newlabel{fig:rvex_tb}{{5.1}{39}{$\rho $-VEX testbench\relax \relax }{figure.caption.14}{}}
 \citation{Jeff-Scott:1998fj}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Verification}{38}{section.5.2}}
-\newlabel{lst:bench_jpeg}{{5.2}{39}{\relax }{lstlisting.5.-37}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces LLVM-based compiler performance in ns\relax }}{40}{table.caption.15}}
-\newlabel{tbl:LLVM_perf}{{5.1}{40}{LLVM-based compiler performance in ns\relax \relax }{table.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Benchmark results}{40}{section.5.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}General performance}{40}{subsection.5.3.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.1}HP-VEX performance}{40}{subsubsection.5.3.1.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Absolute performance\relax }}{41}{figure.caption.16}}
-\newlabel{fig:abs_perf}{{5.2}{41}{Absolute performance\relax \relax }{figure.caption.16}{}}
-\newlabel{lst:hp_ex}{{5.1}{41}{HP compiler output\relax }{lstlisting.5.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}HP compiler output}{41}{lstlisting.5.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces HP-based compiler performance in ns\relax }}{42}{table.caption.17}}
-\newlabel{tbl:HP_perf}{{5.2}{42}{HP-based compiler performance in ns\relax \relax }{table.caption.17}{}}
-\newlabel{lst:llvm_ex}{{5.2}{42}{LLVM compiler output\relax }{lstlisting.5.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}LLVM compiler output}{42}{lstlisting.5.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.2}GCC performance}{42}{subsubsection.5.3.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.3}Issue-width}{42}{subsubsection.5.3.1.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces HP-LLVM relative performance\relax }}{43}{figure.caption.18}}
-\newlabel{fig:rel_HP}{{5.3}{43}{HP-LLVM relative performance\relax \relax }{figure.caption.18}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces GCC-based compiler performance in ns\relax }}{43}{table.caption.19}}
-\newlabel{tbl:GCC_perf}{{5.3}{43}{GCC-based compiler performance in ns\relax \relax }{table.caption.19}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.4}Compiler optimizations}{43}{subsubsection.5.3.1.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces GCC-LLVM relative performance\relax }}{44}{figure.caption.20}}
-\newlabel{fig:rel_GCC}{{5.4}{44}{GCC-LLVM relative performance\relax \relax }{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Relative performance for increasing issue-width\relax }}{44}{figure.caption.21}}
-\newlabel{fig:rel_issue}{{5.5}{44}{Relative performance for increasing issue-width\relax \relax }{figure.caption.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Generic binary}{44}{subsection.5.3.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Relative performance of LLVM-compiler binaries\relax }}{45}{table.caption.22}}
-\newlabel{tbl:rel_perf}{{5.4}{45}{Relative performance of LLVM-compiler binaries\relax \relax }{table.caption.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Generic-Regular performance\relax }}{45}{figure.caption.23}}
-\newlabel{fig:rel_gen}{{5.6}{45}{Generic-Regular performance\relax \relax }{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Verification}{40}{section.5.2}}
+\newlabel{lst:bench_jpeg}{{5.1}{41}{\texttt {jpeg} code example\relax }{lstlisting.5.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}\texttt  {jpeg} code example}{41}{lstlisting.5.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces LLVM-based compiler performance in ns\relax }}{42}{table.caption.15}}
+\newlabel{tbl:LLVM_perf}{{5.1}{42}{LLVM-based compiler performance in ns\relax \relax }{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Benchmark results}{42}{section.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}General performance}{42}{subsection.5.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.1}HP-VEX performance}{42}{subsubsection.5.3.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Absolute performance\relax }}{43}{figure.caption.16}}
+\newlabel{fig:abs_perf}{{5.2}{43}{Absolute performance\relax \relax }{figure.caption.16}{}}
+\newlabel{lst:hp_ex}{{5.2}{43}{HP compiler output\relax }{lstlisting.5.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}HP compiler output}{43}{lstlisting.5.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces HP-based compiler performance in ns\relax }}{44}{table.caption.17}}
+\newlabel{tbl:HP_perf}{{5.2}{44}{HP-based compiler performance in ns\relax \relax }{table.caption.17}{}}
+\newlabel{lst:llvm_ex}{{5.3}{44}{LLVM compiler output\relax }{lstlisting.5.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.3}LLVM compiler output}{44}{lstlisting.5.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.2}GCC performance}{44}{subsubsection.5.3.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces HP-LLVM relative performance\relax }}{45}{figure.caption.18}}
+\newlabel{fig:rel_HP}{{5.3}{45}{HP-LLVM relative performance\relax \relax }{figure.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces GCC-based compiler performance in ns\relax }}{45}{table.caption.19}}
+\newlabel{tbl:GCC_perf}{{5.3}{45}{GCC-based compiler performance in ns\relax \relax }{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.3}Issue-width}{45}{subsubsection.5.3.1.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces GCC-LLVM relative performance\relax }}{46}{figure.caption.20}}
+\newlabel{fig:rel_GCC}{{5.4}{46}{GCC-LLVM relative performance\relax \relax }{figure.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Relative performance of LLVM-compiler binaries\relax }}{46}{table.caption.22}}
+\newlabel{tbl:rel_perf}{{5.4}{46}{Relative performance of LLVM-compiler binaries\relax \relax }{table.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Relative performance for increasing issue-width\relax }}{47}{figure.caption.21}}
+\newlabel{fig:rel_issue}{{5.5}{47}{Relative performance for increasing issue-width\relax \relax }{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1.4}Compiler optimizations}{47}{subsubsection.5.3.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Generic binary}{47}{subsection.5.3.2}}
 \citation{Anthony-Brandon:2013jk}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Generic binary performance\relax }}{46}{table.caption.24}}
-\newlabel{tbl:generic_perf}{{5.5}{46}{Generic binary performance\relax \relax }{table.caption.24}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Register usage\relax }}{46}{table.caption.25}}
-\newlabel{tbl:gen_regs}{{5.6}{46}{Register usage\relax \relax }{table.caption.25}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Compile-time in seconds\relax }}{47}{table.caption.26}}
-\newlabel{tbl:compile-time}{{5.7}{47}{Compile-time in seconds\relax \relax }{table.caption.26}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Compile-time}{47}{subsection.5.3.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Conclusion}{47}{section.5.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Generic-Regular performance\relax }}{48}{figure.caption.23}}
+\newlabel{fig:rel_gen}{{5.6}{48}{Generic-Regular performance\relax \relax }{figure.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Generic binary performance\relax }}{48}{table.caption.24}}
+\newlabel{tbl:generic_perf}{{5.5}{48}{Generic binary performance\relax \relax }{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Register usage\relax }}{49}{table.caption.25}}
+\newlabel{tbl:gen_regs}{{5.6}{49}{Register usage\relax \relax }{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Compile-time}{49}{subsection.5.3.3}}
 \citation{Lowney:1993qy}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Compile-time in seconds\relax }}{48}{figure.caption.27}}
-\newlabel{fig:compile-time}{{5.7}{48}{Compile-time in seconds\relax \relax }{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{49}{chapter.6}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Compile-time in seconds\relax }}{50}{table.caption.26}}
+\newlabel{tbl:compile-time}{{5.7}{50}{Compile-time in seconds\relax \relax }{table.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Compile-time in seconds\relax }}{50}{figure.caption.27}}
+\newlabel{fig:compile-time}{{5.7}{50}{Compile-time in seconds\relax \relax }{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Conclusion}{50}{section.5.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{53}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:conclusion}{{6}{49}{Conclusion\relax }{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary}{49}{section.6.1}}
+\newlabel{chap:conclusion}{{6}{53}{Conclusion\relax }{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary}{53}{section.6.1}}
 \citation{Lowney:1993qy}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Main contributions}{50}{section.6.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Main contributions}{54}{section.6.2}}
 \citation{Vahedi:2013mz}
 \citation{Bradlee:1991:IRA:106973.106986}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Future work}{51}{section.6.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Future work}{55}{section.6.3}}
 \bibstyle{IEEEtran}
 \bibdata{biblio,bibdesk}
 \bibcite{John-L.-Hennessy:2009wq}{1}
@@ -395,9 +404,9 @@
 \bibcite{Bradlee:1991:IRA:106973.106986}{32}
 \bibcite{Jeff-Scott:1998fj}{33}
 \bibcite{Vahedi:2013mz}{34}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{55}{Item.40}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{59}{Item.40}}
 \@auxtag{appendix/appendixA}{%
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}LLVM Quickstart guide}{57}{appendix.A}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}LLVM Quickstart guide}{61}{appendix.A}}
 }
 \@auxtag{appendix/appendixA}{%
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -406,13 +415,13 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 }
 \@auxtag{appendix/appendixA}{%
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Compilation}{57}{section.A.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Compilation}{61}{section.A.1}}
 }
 \@auxtag{appendix/appendixA}{%
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}Simulation}{58}{section.A.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}Simulation}{62}{section.A.2}}
 }
 \@setckpt{appendix/appendixA}{%
-\setcounter{page}{59}
+\setcounter{page}{63}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
@@ -448,7 +457,7 @@
 \setcounter{lstlisting}{0}
 }
 \@auxtag{appendix/appendixB}{%
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}LLVM Development guide}{61}{appendix.B}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}LLVM Development guide}{65}{appendix.B}}
 }
 \@auxtag{appendix/appendixB}{%
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -457,10 +466,10 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 }
 \@auxtag{appendix/appendixB}{%
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Building LLVM from source}{61}{section.B.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}Building LLVM from source}{65}{section.B.1}}
 }
 \@setckpt{appendix/appendixB}{%
-\setcounter{page}{61}
+\setcounter{page}{65}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}

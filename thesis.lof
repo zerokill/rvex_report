@@ -6,16 +6,16 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Basic compiler structure\relax }}{10}{figure.caption.11}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Basic codegeneration process\relax }}{13}{figure.caption.12}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \texttt {tblgen} instructions\relax }}{18}{figure.caption.13}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \texttt {tablegen} instructions\relax }}{18}{figure.caption.13}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces $\rho $-VEX testbench\relax }}{37}{figure.caption.14}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Absolute performance\relax }}{41}{figure.caption.16}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces HP-LLVM relative performance\relax }}{43}{figure.caption.18}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces GCC-LLVM relative performance\relax }}{44}{figure.caption.20}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Relative performance for increasing issue-width\relax }}{44}{figure.caption.21}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Generic-Regular performance\relax }}{45}{figure.caption.23}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Compile-time in seconds\relax }}{48}{figure.caption.27}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces $\rho $-VEX testbench\relax }}{39}{figure.caption.14}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Absolute performance\relax }}{43}{figure.caption.16}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces HP-LLVM relative performance\relax }}{45}{figure.caption.18}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces GCC-LLVM relative performance\relax }}{46}{figure.caption.20}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Relative performance for increasing issue-width\relax }}{47}{figure.caption.21}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Generic-Regular performance\relax }}{48}{figure.caption.23}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Compile-time in seconds\relax }}{50}{figure.caption.27}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

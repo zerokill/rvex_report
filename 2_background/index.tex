@@ -8,7 +8,7 @@ The $\rho$-VEX processor is based on the VEX ISA \cite{As:2008rt}. The processor
 The VEX ISA defines hardware operations as syllables. An instruction is defined as a set of multiple syllables. The VEX operations are similar to 32-bit RISC operations.
 
 \subsection{Architecture}
-The architecture of the $\rho$-VEX core is depicted in Figure \ref{fig:rvex_arch} \cite{Seedorf:2011fj}. The core uses a five stage pipelined design. There are multiple functional units with different functionalities, such as ALU’s, multipliers, load / store units, and branch units.
+The architecture of the $\rho$-VEX core is depicted in Figure \ref{fig:rvex_arch} \cite{Seedorf:2011fj}. The core uses a five-stage pipelined design. There are multiple functional units with different functionalities, such as ALU’s, multipliers, load / store units, and branch units.
 
 \begin{figure}[ht]
 \centering
@@ -105,15 +105,15 @@ The frontend is used to transform the plain text source code of a program into a
 
 \begin{enumerate}
   \item \textbf{Lexical analysis:} Break input into individual tokens.
-  \item \textbf{Syntax analysis:} Using a grammar the sequence of tokens is transformed into a parse tree which represents the structure of the program. Clang uses a handwritten recursive descent parser for this transformation
-  \item \textbf{Semantic analysis:} Semantic information is added to the parse tree, type checking is performed and a symbol table is built.
+  \item \textbf{Syntax analysis:} Using a grammar, the sequence of tokens is transformed into a parse tree which represents the structure of the program. Clang uses a handwritten recursive descent parser for this transformation
+  \item \textbf{Semantic analysis:} Semantic information is added to the parse tree, type checking is performed, and a symbol table is built.
 \end{enumerate}
 
-The resulting abstract syntax tree (AST) is transformed into LLVM IR and passed to the optimizer and backend of the compiler. These parts of the compilation process are completely language agnostic and do not require any other information from the frontend.
+The resulting abstract syntax tree (AST) is transformed into LLVM IR and passed to the optimizer and backend of the compiler. These parts of the compilation process are completely language agnostic and do not require any other information from the backend.
 
 The optimizer is used to analyze and optimize the program. Optimization such as dead code elimination and copy propagation are performed during this phase but also more advanced operations that extract ILP, such as loop vectorization \cite{llvm-loop:2014}, can be enabled.
 
-The back-end optimizes and generates code for a specific architecture. The LLVM IR is transformed into processor specific assembly instructions. In addition the z also allocates registers, and schedules the instructions.
+The back-end optimizes and generates code for a specific architecture. The LLVM IR is transformed into processor specific assembly instructions. In addition the backend also allocates registers, and schedules the instructions.
 
 \subsection{Current frontends}
 % FIXME can this be merged?
@@ -179,7 +179,7 @@ define i32 @main() nounwind ssp uwtable {
 \subsection{Code generation}
 During code generation the optimized LLVM IR is translated into machine-specific assembly instructions. The modular design of LLVM enables generic algorithms to be used for this process. 
 
-A backend is described in a domain-specific language (DSL) called \texttt{tablegen}. The \texttt{tablegen} files describe properties of a backend such as available instructions, registers, calling convention and pipeline structure. During compilation of LLVM the \texttt{tablegen} files are converted into a C++ description of the backend. \texttt{tablegen} has been specifically designed to describe the backend structure in a flexible and generic way. Common features can be more easily described using \texttt{tablegen}. For example the \texttt{Add} and \texttt{Sub} instruction are almost identical and using \texttt{tablegen} can be described in a more generic way. This results in less repetition and reduces the chance of error in the backend description.
+A backend is described in a domain-specific language (DSL) called \texttt{tablegen}. The \texttt{tablegen} files describe properties of a backend such as available instructions, registers, calling convention and pipeline structure. During compilation of LLVM the \texttt{tablegen} files are converted into a C++ description of the backend. \texttt{tablegen} has been specifically designed to describe the backend structure in a flexible and generic way. Common features can be more easily described using \texttt{tablegen}. For example the \texttt{add} and \texttt{sub} instruction are almost identical and using \texttt{tablegen} can be described in a more generic way. This results in less repetition and reduces the chance of error in the backend description.
 
 Because of the generic description of the backend large amount of code can be reused by each backend. Algorithms such as register allocation and instruction selection operate on the generic \texttt{tablegen} descriptions and do not require target specific hooks to operate correctly. An additional advantage of this approach is that multiple algorithms are available to achieve certain functionality. For example, LLVM offers the developer a choice between four different register allocation algorithms. Each algorithm has a number of advantages and disadvantages and the developer can choose between an algorithm which matches the target processor best.
 
@@ -227,14 +227,14 @@ Backends that target other architectures also exist but these are not included i
 \section{Verification}
 Verification of the LLVM compiler is extremely important. Performance of the generated binaries is irrelevant if only half of the binaries produce a correct result. The LLVM compiler will be verified by simulating the generated binaries. 
 
-Two simulators are available; XSTsim and Modelsim. XSTsim is an ISA simulator that can simulate a 4-issue $\rho$-VEX processor. Output of the simulator is customizable and the simulator is fast enough to simulate large executables. Modelsim is used to perform a complete functional simulation of the $\rho$-VEX processor. The Modelsim simulation provides the highest accuracy because an actual $\rho$-VEX processor is simulated and is used for execution. The disadvantage of using Modelsim is the performance. Simulation of an executable will take a long time because the complete processor is simulated.
+Two simulators are available: XSTsim and Modelsim. XSTsim is an ISA simulator that can simulate a 4-issue $\rho$-VEX processor. Output of the simulator is customizable and the simulator is fast enough to simulate large executables. Modelsim is used to perform a complete functional simulation of the $\rho$-VEX processor. The Modelsim simulation provides the highest accuracy because the hardware description files of the $\rho$-VEX processor are used during simulation. The disadvantage of using Modelsim is the performance. Simulation of an executable will take a long time because the complete processor is simulated.
 
 Writing test programs that generate certain instruction sequences will be used to verify the compiler. The output of these test programs will be compared to the expected result to check for errors in the backend.
 
 Writing test programs that have a high coverage of all the possible output patterns is impossible. To further verify the compiler we will compile benchmark programs that simulate certain. The output of the benchmarking programs will be compared to expected outputs to check for errors in the compiler.
 
 \section{Conclusion}
-This chapter presented the basic design of the $\rho$-VEX processor and of the LLVM compiler framework. The $\rho$-VEX processor is a VLIW-type processor that uses RISC like instructions to operate. We presented the basic design of the processor, instructions that are supported, register properties, and the run-time architecture has been discussed. This information will be used during implementation of the LLVM-based compiler.
+This chapter presented the basic design of the $\rho$-VEX processor and of the LLVM compiler framework. The $\rho$-VEX processor is a VLIW-type processor that uses RISC like instructions to operate. We presented the basic design of the processor, the instructions that are supported, register properties, and the run-time architecture has been discussed. This information will be used during implementation of the LLVM-based compiler.
 
 We also discussed the basic working of the LLVM compiler framework. Building a $\rho$-VEX backend for the LLVM compiler is feasible because the current version of the LLVM compiler already targets a VLIW processor. 
 

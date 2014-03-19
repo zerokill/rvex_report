@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  18 MAR 2014 11:36
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  19 MAR 2014 17:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -584,13 +584,8 @@ l.316 \cleardoublepage
  [9] (./0_template/acronym.tex [10
 
 
-]) [11pdfTeX warning (ext4): destination with the same identifier (name{DFA}) h
-as been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.344 
-      ] (./0_template/ack.tex [12
+]) [11]
+(./0_template/ack.tex [12
 
 
 ]
@@ -601,7 +596,7 @@ Missing character: There is no « in font cmr10!
 
 ] (./1_introduction/index.tex
 Chapter 1.
-<1_introduction/img/MIPS_pipe.png, id=531, 632.6034pt x 291.489pt>
+<1_introduction/img/MIPS_pipe.png, id=533, 632.6034pt x 291.489pt>
 File: 1_introduction/img/MIPS_pipe.png Graphic file (type png)
 
 <use 1_introduction/img/MIPS_pipe.png>
@@ -616,7 +611,7 @@ Chapter 2.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-<2_background/img/rvex_arch.png, id=611, 1656.1875pt x 1543.7675pt>
+<2_background/img/rvex_arch.png, id=613, 1656.1875pt x 1543.7675pt>
 File: 2_background/img/rvex_arch.png Graphic file (type png)
 
 <use 2_background/img/rvex_arch.png>
@@ -625,7 +620,7 @@ Package pdftex.def Info: 2_background/img/rvex_arch.png used on input line 15.
  [7
 
 ]
-<2_background/img/Instructions.png, id=623, 1295.84125pt x 632.3625pt>
+<2_background/img/Instructions.png, id=625, 1295.84125pt x 632.3625pt>
 File: 2_background/img/Instructions.png Graphic file (type png)
 
 <use 2_background/img/Instructions.png>
@@ -650,7 +645,7 @@ Overfull \hbox (22.4208pt too wide) in paragraph at lines 71--88
  [][] 
  []
 
-<2_background/img/Basic_compiler.png, id=637, 978.65625pt x 225.84375pt>
+<2_background/img/Basic_compiler.png, id=639, 978.65625pt x 225.84375pt>
 File: 2_background/img/Basic_compiler.png Graphic file (type png)
 
 <use 2_background/img/Basic_compiler.png>
@@ -667,7 +662,7 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 138.
  [12]
-<2_background/img/Codegen.png, id=700, 2146.0175pt x 526.96875pt>
+<2_background/img/Codegen.png, id=702, 2146.0175pt x 526.96875pt>
 File: 2_background/img/Codegen.png Graphic file (type png)
 
 <use 2_background/img/Codegen.png>
@@ -690,15 +685,12 @@ Underfull \hbox (badness 1448) in paragraph at lines 33--34
 hat in-herit from the
  []
 
-[17] <3_implementation/img/instr.png, id=744, 1656.1875pt x 828.09375pt>
+[17] <3_implementation/img/instr.png, id=746, 1656.1875pt x 828.09375pt>
 File: 3_implementation/img/instr.png Graphic file (type png)
 
 <use 3_implementation/img/instr.png>
 Package pdftex.def Info: 3_implementation/img/instr.png used on input line 43.
 (pdftex.def)             Requested size: 335.33424pt x 167.6628pt.
-
-Underfull \vbox (badness 2564) has occurred while \output is active []
-
  [18 <./3_implementation/img/instr.png (PNG copy)>] [19] [20] [21] [22] [23]
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
@@ -712,21 +704,28 @@ LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
 (Font)              for symbol `textless' on input line 271.
 
-[24] [25] [26] [27]) (./4_optimization/index.tex [28]
-Chapter 4.
-[29
+[24] [25] [26] [27]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 387.
 
-] (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 387.
+ [28])
+(./4_optimization/index.tex [29] [30
+
+]
+Chapter 4.
+[31] (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
-[31]
+[32] [33]
 Underfull \hbox (badness 10000) in paragraph at lines 128--129
-[]\OT1/cmr/m/n/10.95 In ad-di-tion LLVM hooks for \OT1/cmtt/m/n/10.95 insertbra
-nch\OT1/cmr/m/n/10.95 , \OT1/cmtt/m/n/10.95 removebranch \OT1/cmr/m/n/10.95 and
-
+[]\OT1/cmr/m/n/10.95 In ad-di-tion, LLVM hooks for \OT1/cmtt/m/n/10.95 insertbr
+anch\OT1/cmr/m/n/10.95 , \OT1/cmtt/m/n/10.95 removebranch\OT1/cmr/m/n/10.95 , a
+nd
  []
 
 
@@ -735,103 +734,99 @@ Underfull \hbox (badness 1655) in paragraph at lines 128--129
 mented that al-low the Branch-Fold-ing
  []
 
-[32] [33] [34]) (./5_results/index.tex [35] [36
+[34] [35] [36]) (./5_results/index.tex [37] [38
 
 ]
 Chapter 5.
-<5_results/img/testbench.png, id=1075, 903.375pt x 526.96875pt>
+<5_results/img/testbench.png, id=1086, 903.375pt x 526.96875pt>
 File: 5_results/img/testbench.png Graphic file (type png)
 
 <use 5_results/img/testbench.png>
 Package pdftex.def Info: 5_results/img/testbench.png used on input line 11.
 (pdftex.def)             Requested size: 335.33424pt x 195.61061pt.
-
-Underfull \vbox (badness 3646) has occurred while \output is active []
-
- [37 <./5_results/img/testbench.png (PNG copy)>] [38] [39]
-<5_results/img/abs_perf.png, id=1110, 787.743pt x 445.1832pt>
+ [39 <./5_results/img/testbench.png (PNG copy)>] [40] [41] <5_results/img/abs_p
+erf.png, id=1119, 554.5518pt x 315.0972pt>
 File: 5_results/img/abs_perf.png Graphic file (type png)
 
 <use 5_results/img/abs_perf.png>
-Package pdftex.def Info: 5_results/img/abs_perf.png used on input line 127.
-(pdftex.def)             Requested size: 335.33424pt x 189.50943pt.
- [40] [41 <./5_results/img/abs_perf.png>]
-<5_results/img/rel_HP.png, id=1141, 775.2162pt x 404.2302pt>
+Package pdftex.def Info: 5_results/img/abs_perf.png used on input line 125.
+(pdftex.def)             Requested size: 335.33424pt x 190.54063pt.
+ [42] [43 <./5_results/img/abs_perf.png>]
+<5_results/img/rel_HP.png, id=1152, 693.792pt x 444.7014pt>
 File: 5_results/img/rel_HP.png Graphic file (type png)
 
 <use 5_results/img/rel_HP.png>
-Package pdftex.def Info: 5_results/img/rel_HP.png used on input line 193.
-(pdftex.def)             Requested size: 335.33424pt x 174.85799pt.
+Package pdftex.def Info: 5_results/img/rel_HP.png used on input line 197.
+(pdftex.def)             Requested size: 335.33424pt x 214.94029pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<5_results/img/rel_GCC.png, id=1144, 534.3162pt x 343.0416pt>
+<5_results/img/rel_GCC.png, id=1155, 694.7556pt x 488.5452pt>
 File: 5_results/img/rel_GCC.png Graphic file (type png)
 
 <use 5_results/img/rel_GCC.png>
-Package pdftex.def Info: 5_results/img/rel_GCC.png used on input line 226.
-(pdftex.def)             Requested size: 335.33424pt x 215.2903pt.
- [42]
-<5_results/img/rel_issue.png, id=1161, 574.3056pt x 321.8424pt>
+Package pdftex.def Info: 5_results/img/rel_GCC.png used on input line 233.
+(pdftex.def)             Requested size: 335.33424pt x 235.80359pt.
+ [44] [45 <./5_results/img/rel_HP.png>]
+<5_results/img/rel_issue.png, id=1176, 694.7556pt x 456.2646pt>
 File: 5_results/img/rel_issue.png Graphic file (type png)
 
 <use 5_results/img/rel_issue.png>
-Package pdftex.def Info: 5_results/img/rel_issue.png used on input line 238.
-(pdftex.def)             Requested size: 335.33424pt x 187.92592pt.
- [43 <./5_results/img/rel_HP.png>]
-<5_results/img/rel_gen.png, id=1170, 620.5584pt x 372.9132pt>
+Package pdftex.def Info: 5_results/img/rel_issue.png used on input line 247.
+(pdftex.def)             Requested size: 335.33424pt x 220.22287pt.
+ [46 <./5_results/img/rel_GCC.png>]
+<5_results/img/rel_gen.png, id=1183, 622.0038pt x 446.1468pt>
 File: 5_results/img/rel_gen.png Graphic file (type png)
 
 <use 5_results/img/rel_gen.png>
-Package pdftex.def Info: 5_results/img/rel_gen.png used on input line 271.
-(pdftex.def)             Requested size: 335.33424pt x 201.51807pt.
- [44 <./5_results/img/rel_GCC.png> <./5_results/img/rel_issue.png>] [45 <./5_re
-sults/img/rel_gen.png>]
-
-LaTeX Warning: Reference `generic_perf' on page 46 undefined on input line 300.
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [46]
-<5_results/img/compile-time.png, id=1191, 746.79pt x 440.3652pt>
+Package pdftex.def Info: 5_results/img/rel_gen.png used on input line 283.
+(pdftex.def)             Requested size: 335.33424pt x 240.52084pt.
+ [47 <./5_results/img/rel_issue.png>] [48 <./5_results/img/rel_gen.png>]
+<5_results/img/compile-time.png, id=1201, 746.79pt x 440.3652pt>
 File: 5_results/img/compile-time.png Graphic file (type png)
 
 <use 5_results/img/compile-time.png>
-Package pdftex.def Info: 5_results/img/compile-time.png used on input line 352.
+Package pdftex.def Info: 5_results/img/compile-time.png used on input line 364.
 
 (pdftex.def)             Requested size: 335.33424pt x 197.73918pt.
- [47]) (./6_conclusion/index.tex [48 <./5_results/img/compile-time.png>]
-Chapter 6.
-[49
 
-] [50]) [51] [52
+Underfull \vbox (badness 4001) has occurred while \output is active []
+
+ [49]
+[50 <./5_results/img/compile-time.png>]
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¥ in font cmr10!
+) (./6_conclusion/index.tex [51]
+[52
+
+]
+Chapter 6.
+[53] [54]) [55] [56
 
 ] (./thesis.bbl
 Missing character: There is no Ï in font cmr10!
 Missing character: There is no  in font cmr10!
- [53
+ [57
 
 ]
 Missing character: There is no Ì in font cmr10!
 Missing character: There is no ˆ in font cmr10!
- [54]) [55] [56
+ [58]) [59] [60
 
 ]
 (./appendix/appendixA.tex
 Appendix A.
-[57
+[61
 
 
-]) [58] [59] (./appendix/appendixB.tex [60
+]) [62] [63] (./appendix/appendixB.tex [64
 
 
 
 ]
 Appendix B.
-) [61]
+) [65]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 395.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 395.
  (./thesis.aux)
@@ -844,21 +839,18 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 395.
  ) 
 Here is how much of TeX's memory you used:
- 10605 strings out of 493633
- 155912 string characters out of 3143378
- 457252 words of memory out of 3000000
- 13117 multiletter control sequences out of 15000+200000
+ 10630 strings out of 493633
+ 156263 string characters out of 3143378
+ 486618 words of memory out of 3000000
+ 13133 multiletter control sequences out of 15000+200000
  14605 words of font info for 51 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 36i,10n,51p,1010b,1768s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,51p,1011b,1203s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{cite.Vahedi:2013mz} has been referenced but does 
 not exist, replaced by a fixed one
 
@@ -979,10 +971,10 @@ e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive
 2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/20
 11/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2011
 /texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on thesis.pdf (79 pages, 1954526 bytes).
+Output written on thesis.pdf (83 pages, 1751146 bytes).
 PDF statistics:
- 1522 PDF objects out of 1728 (max. 8388607)
- 1384 compressed objects within 14 object streams
- 615 named destinations out of 1000 (max. 500000)
+ 1541 PDF objects out of 1728 (max. 8388607)
+ 1399 compressed objects within 14 object streams
+ 621 named destinations out of 1000 (max. 500000)
  652 words of extra memory for PDF output out of 10000 (max. 10000000)
 
